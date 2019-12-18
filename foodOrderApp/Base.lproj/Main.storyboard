@@ -1,28 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tsm-MN-65Z">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Search-->
+        <scene sceneID="LZl-dB-Ota">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="foodOrderApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="HEE-ux-wXk" userLabel="Search" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7NZ-uB-PxY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" name="Fire Brick"/>
+                        <color key="tintColor" name="Rosy Brown"/>
+                        <viewLayoutGuide key="safeArea" id="yeF-Uf-m7U"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Search" id="5CK-db-rlo" userLabel="Search"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vNN-PN-Pbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-513" y="66"/>
+        </scene>
+        <!--Cart-->
+        <scene sceneID="pXX-cd-k1n">
+            <objects>
+                <viewController id="ZxQ-aN-ayC" userLabel="Cart" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8JK-mq-jk3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="Rosy Brown"/>
+                        <viewLayoutGuide key="safeArea" id="jYO-N8-y0X"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Cart" id="02j-X9-cx9" userLabel="Cart"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Cz-4C-Bj3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="446" y="66"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="hlE-kA-X8J">
+            <objects>
+                <viewController id="Nfc-iq-vfw" userLabel="Account" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cps-b0-LkK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="White Smoke"/>
+                        <viewLayoutGuide key="safeArea" id="YOg-hR-0kX"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Account" id="gKg-Gj-4JI" userLabel="Account"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uP3-7B-VJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1309" y="66"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="Bbb-pD-xkf">
+            <objects>
+                <viewController id="CB7-V9-8HM" userLabel="Home" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oMM-C0-L5q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="Tan"/>
+                        <color key="tintColor" name="Fire Brick"/>
+                        <viewLayoutGuide key="safeArea" id="5GR-mx-Z5r"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" id="Frb-2A-oWw" userLabel="Home"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cay-i3-hzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1374" y="55"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="wIW-8K-wrk">
+            <objects>
+                <tabBarController id="tsm-MN-65Z" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rh7-Sd-gjR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="CB7-V9-8HM" kind="relationship" relationship="viewControllers" id="7hF-mv-HYB"/>
+                        <segue destination="HEE-ux-wXk" kind="relationship" relationship="viewControllers" id="RFk-UU-3lC"/>
+                        <segue destination="ZxQ-aN-ayC" kind="relationship" relationship="viewControllers" id="sAA-4A-fo1"/>
+                        <segue destination="Nfc-iq-vfw" kind="relationship" relationship="viewControllers" id="i8E-Ge-FVi"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NWV-EH-2li" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-446" y="-717"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="Fire Brick">
+            <color red="0.73725490196078436" green="0.19215686274509805" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Rosy Brown">
+            <color red="0.69411764705882351" green="0.53725490196078429" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Tan">
+            <color red="0.80784313725490198" green="0.74509803921568629" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="White Smoke">
+            <color red="0.93725490196078431" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
