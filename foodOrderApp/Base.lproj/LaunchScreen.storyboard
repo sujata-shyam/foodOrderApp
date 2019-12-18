@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,22 +15,31 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="overFullScreen" id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="2eI-nF-p3f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i0j-zI-lPd" userLabel="imgViewLaunch">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WS-Fx-t5r" userLabel="lblText">
+                                <rect key="frame" x="72.5" y="400" width="269" height="96"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="60"/>
+                                <color key="textColor" name="Fire Brick"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cook" translatesAutoresizingMaskIntoConstraints="NO" id="Aok-8a-1Pd" userLabel="imgView">
+                                <rect key="frame" x="81" y="280" width="240" height="120"/>
+                                <color key="tintColor" name="Fire Brick"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="i0j-zI-lPd" secondAttribute="bottom" id="0uQ-ZS-H2V"/>
-                            <constraint firstItem="i0j-zI-lPd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="23d-ye-YSL"/>
-                            <constraint firstItem="i0j-zI-lPd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9iO-RO-dXc"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="i0j-zI-lPd" secondAttribute="trailing" id="hPf-rf-QD6"/>
+                            <constraint firstItem="Aok-8a-1Pd" firstAttribute="top" secondItem="OLH-22-9W5" secondAttribute="top" constant="236" id="7qx-xq-WtK"/>
+                            <constraint firstItem="7WS-Fx-t5r" firstAttribute="centerY" secondItem="2eI-nF-p3f" secondAttribute="centerY" id="Ne9-nZ-F3P"/>
+                            <constraint firstItem="OLH-22-9W5" firstAttribute="trailing" secondItem="Aok-8a-1Pd" secondAttribute="trailing" constant="93" id="Nk4-5K-wVp"/>
+                            <constraint firstItem="7WS-Fx-t5r" firstAttribute="centerX" secondItem="2eI-nF-p3f" secondAttribute="centerX" id="X1q-oA-pya"/>
+                            <constraint firstItem="7WS-Fx-t5r" firstAttribute="top" secondItem="Aok-8a-1Pd" secondAttribute="bottom" id="evV-DC-spU"/>
+                            <constraint firstItem="Aok-8a-1Pd" firstAttribute="leading" secondItem="OLH-22-9W5" secondAttribute="leading" constant="81" id="lRn-8c-8ab"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="OLH-22-9W5"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -38,6 +48,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Launch" width="1152" height="1728"/>
+        <image name="cook" width="170" height="170"/>
+        <namedColor name="Fire Brick">
+            <color red="0.73725490196078436" green="0.19215686274509805" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
