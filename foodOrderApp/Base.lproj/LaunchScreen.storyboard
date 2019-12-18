@@ -20,13 +20,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WS-Fx-t5r" userLabel="lblText">
-                                <rect key="frame" x="72.5" y="400" width="269" height="96"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="60"/>
+                                <rect key="frame" x="128.5" y="420" width="157" height="56"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="35"/>
                                 <color key="textColor" name="Fire Brick"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cook" translatesAutoresizingMaskIntoConstraints="NO" id="Aok-8a-1Pd" userLabel="imgView">
-                                <rect key="frame" x="81" y="280" width="240" height="120"/>
+                                <rect key="frame" x="81" y="280" width="240" height="140"/>
                                 <color key="tintColor" name="Fire Brick"/>
                             </imageView>
                         </subviews>
