@@ -139,16 +139,22 @@ extension homeViewController : UISearchBarDelegate
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
-        print("CLICKED")
-//        let result = createRequest(searchText:searchBar.text!)
-//        loadCategories(with: result.0, predicate: result.1)
+        //print("CLICKED")
+        if(searchBar.text!.count > 0)
+        {
+            loadJSONDataWithSearchString(searchText: searchBar.text!.lowercased())
+        }
+        else
+        {
+            loadJSONDataWithCoordinates()
+        }
     }
     
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
-//        print(searchText)
+        //print(searchText)
 //        if(searchText.count > 0)
 //        {
 //            loadCategories()

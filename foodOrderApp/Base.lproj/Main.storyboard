@@ -68,7 +68,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yKx-wf-fyg">
+                            <searchBar contentMode="redraw" text="GeekSkool" translatesAutoresizingMaskIntoConstraints="NO" id="yKx-wf-fyg">
                                 <rect key="frame" x="10" y="54" width="394" height="89.5"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
