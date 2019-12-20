@@ -68,14 +68,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BfC-yu-htP" userLabel="txtSearchCriteria">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yKx-wf-fyg">
                                 <rect key="frame" x="10" y="54" width="394" height="89.5"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mGP-PI-qSG" userLabel="restaurantTableView">
-                                <rect key="frame" x="10" y="148.5" width="394" height="674.5"/>
+                                <rect key="frame" x="10" y="153.5" width="394" height="669.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="resTableViewCell" rowHeight="145" id="hrI-Dr-51m" userLabel="restaurantTableViewCell" customClass="restaurantTableViewCell" customModule="foodOrderApp" customModuleProvider="target">
@@ -141,14 +139,14 @@
                         <color key="backgroundColor" name="White Smoke"/>
                         <color key="tintColor" name="Fire Brick"/>
                         <constraints>
-                            <constraint firstItem="BfC-yu-htP" firstAttribute="leading" secondItem="5GR-mx-Z5r" secondAttribute="leading" constant="10" id="2eh-oi-qkz"/>
                             <constraint firstItem="mGP-PI-qSG" firstAttribute="bottom" secondItem="5GR-mx-Z5r" secondAttribute="bottom" constant="10" id="3gf-lP-AQX"/>
-                            <constraint firstItem="5GR-mx-Z5r" firstAttribute="trailing" secondItem="BfC-yu-htP" secondAttribute="trailing" constant="10" id="6BZ-it-q1V"/>
+                            <constraint firstItem="mGP-PI-qSG" firstAttribute="top" secondItem="yKx-wf-fyg" secondAttribute="bottom" constant="10" id="8mq-Hu-gnE"/>
+                            <constraint firstItem="yKx-wf-fyg" firstAttribute="top" secondItem="5GR-mx-Z5r" secondAttribute="top" constant="10" id="SV7-QS-Ypl"/>
                             <constraint firstItem="mGP-PI-qSG" firstAttribute="leading" secondItem="5GR-mx-Z5r" secondAttribute="leading" constant="10" id="XJ9-wp-jmh"/>
-                            <constraint firstItem="BfC-yu-htP" firstAttribute="height" secondItem="oMM-C0-L5q" secondAttribute="height" multiplier="0.1" id="e8u-eo-74t"/>
-                            <constraint firstItem="BfC-yu-htP" firstAttribute="top" secondItem="5GR-mx-Z5r" secondAttribute="top" constant="10" id="fci-pX-cPp"/>
+                            <constraint firstItem="yKx-wf-fyg" firstAttribute="height" secondItem="oMM-C0-L5q" secondAttribute="height" multiplier="0.1" id="lW6-8T-WB0"/>
                             <constraint firstItem="5GR-mx-Z5r" firstAttribute="trailing" secondItem="mGP-PI-qSG" secondAttribute="trailing" constant="10" id="pXD-Li-DNh"/>
-                            <constraint firstItem="mGP-PI-qSG" firstAttribute="top" secondItem="BfC-yu-htP" secondAttribute="bottom" constant="5" id="xf2-HH-6aT"/>
+                            <constraint firstItem="yKx-wf-fyg" firstAttribute="leading" secondItem="5GR-mx-Z5r" secondAttribute="leading" constant="10" id="tfR-vN-ZrG"/>
+                            <constraint firstAttribute="trailing" secondItem="yKx-wf-fyg" secondAttribute="trailing" constant="10" id="vW7-dP-9tE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5GR-mx-Z5r"/>
                     </view>

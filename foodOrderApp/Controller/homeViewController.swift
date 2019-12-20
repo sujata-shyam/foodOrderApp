@@ -101,3 +101,11 @@ extension homeViewController: UITableViewDelegate, UITableViewDataSource
         return cell!
     }
 }
+
+extension homeViewController : UISearchBarDelegate
+{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
+        
+    }
+}
