@@ -18,7 +18,7 @@
                     <view key="view" contentMode="scaleToFill" id="7NZ-uB-PxY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="Fire Brick"/>
+                        <color key="backgroundColor" name="Tan"/>
                         <color key="tintColor" name="Rosy Brown"/>
                         <viewLayoutGuide key="safeArea" id="yeF-Uf-m7U"/>
                     </view>
@@ -38,7 +38,7 @@
                         <color key="backgroundColor" name="Rosy Brown"/>
                         <viewLayoutGuide key="safeArea" id="jYO-N8-y0X"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Cart" id="02j-X9-cx9" userLabel="Cart"/>
+                    <tabBarItem key="tabBarItem" title="Cart" image="cart" id="02j-X9-cx9" userLabel="Cart"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Cz-4C-Bj3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,7 +54,7 @@
                         <color key="backgroundColor" name="White Smoke"/>
                         <viewLayoutGuide key="safeArea" id="YOg-hR-0kX"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Account" id="gKg-Gj-4JI" userLabel="Account"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="account" id="gKg-Gj-4JI" userLabel="Account"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uP3-7B-VJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -153,7 +153,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5GR-mx-Z5r"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="Frb-2A-oWw" userLabel="Home"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="Frb-2A-oWw" userLabel="Home"/>
                     <connections>
                         <outlet property="restaurantTableView" destination="mGP-PI-qSG" id="Wge-bg-WEV"/>
                     </connections>
@@ -184,12 +184,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="account" width="24" height="24"/>
+        <image name="cart" width="24" height="24"/>
+        <image name="home" width="24" height="24"/>
         <image name="search" width="24" height="24"/>
         <namedColor name="Fire Brick">
             <color red="0.73725490196078436" green="0.19215686274509805" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Rosy Brown">
             <color red="0.69411764705882351" green="0.53725490196078429" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Tan">
+            <color red="0.80784313725490198" green="0.74509803921568629" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="White Smoke">
             <color red="0.93725490196078431" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

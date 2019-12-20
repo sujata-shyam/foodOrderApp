@@ -132,14 +132,8 @@ extension homeViewController: UITableViewDelegate, UITableViewDataSource
 
 extension homeViewController : UISearchBarDelegate
 {
-//    func createRequest(searchText:String)
-//    {
-//
-//    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
-        //print("CLICKED")
         if(searchBar.text!.count > 0)
         {
             loadJSONDataWithSearchString(searchText: searchBar.text!.lowercased())
@@ -148,20 +142,23 @@ extension homeViewController : UISearchBarDelegate
         {
             loadJSONDataWithCoordinates()
         }
+        
+        DispatchQueue.main.async
+        {
+            searchBar.resignFirstResponder()
+        }
     }
-    
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
         //print(searchText)
 //        if(searchText.count > 0)
 //        {
-//            loadCategories()
+            //loadCategories()
 //            DispatchQueue.main.async
 //            {
-//                    searchBar.resignFirstResponder()
+//                searchBar.resignFirstResponder()
 //            }
-//        }
+        //}
     }
 }
