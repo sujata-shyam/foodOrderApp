@@ -8,9 +8,17 @@
 
 import UIKit
 
-class homeViewController: UIViewController,  UITableViewDelegate, UITableViewDataSource
+class homeViewController: UIViewController  //,  UITableViewDelegate, UITableViewDataSource
 {
     var arrPredictions = [Predictions]()
+    
+    var arrImages = [UIImage(imageLiteralResourceName: "Baked"),
+                     UIImage(imageLiteralResourceName: "American"),
+                     UIImage(imageLiteralResourceName: "Pizza"),
+                     UIImage(imageLiteralResourceName: "FrenchFries"),
+                     UIImage(imageLiteralResourceName: "Burger"),
+                     UIImage(imageLiteralResourceName: "Indian")
+                     ]
     
     @IBOutlet weak var restaurantTableView: UITableView!
     
@@ -20,12 +28,7 @@ class homeViewController: UIViewController,  UITableViewDelegate, UITableViewDat
         loadJSONData()
         restaurantTableView.dataSource = self 
         restaurantTableView.delegate = self
-        //restaurantTableView.reloadData()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        self.restaurantTableView.reloadData()
-//    }
     
     func loadJSONData()
     {
@@ -62,10 +65,10 @@ class homeViewController: UIViewController,  UITableViewDelegate, UITableViewDat
 
     
 
-//}
+}
 
-//extension homeViewController: UITableViewDelegate, UITableViewDataSource
-//{
+extension homeViewController: UITableViewDelegate, UITableViewDataSource
+{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if(arrPredictions.count > 0)
@@ -81,6 +84,18 @@ class homeViewController: UIViewController,  UITableViewDelegate, UITableViewDat
         
         if(arrPredictions.count > 0)
         {
+            var imageIndex = 0
+            
+            if(indexPath.row < arrImages.count)
+            {
+                imageIndex = indexPath.row
+            }
+            else
+            {
+                imageIndex = (indexPath.row % arrImages.count)
+            }
+            
+            cell?.imgFoodPic.image = arrImages[imageIndex]
             cell?.lblTitle.text = arrPredictions[indexPath.row].name
         }
         return cell!
