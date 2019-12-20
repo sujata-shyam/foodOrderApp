@@ -13,6 +13,10 @@
 		8563212A23A8D154001A9F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8563212923A8D154001A9F32 /* Assets.xcassets */; };
 		8563212D23A8D154001A9F32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8563212B23A8D154001A9F32 /* LaunchScreen.storyboard */; };
 		85BC414023A9F91B00AA5B0D /* Colour.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85BC413F23A9F91B00AA5B0D /* Colour.xcassets */; };
+		85BC414223AB2F4000AA5B0D /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414123AB2F4000AA5B0D /* homeViewController.swift */; };
+		85BC414523AB5FAF00AA5B0D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414423AB5FAF00AA5B0D /* API.swift */; };
+		85BC414823AB740D00AA5B0D /* place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414723AB740D00AA5B0D /* place.swift */; };
+		85BC414B23AB88C500AA5B0D /* restaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414A23AB88C500AA5B0D /* restaurantTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		8563212C23A8D154001A9F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8563212E23A8D154001A9F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85BC413F23A9F91B00AA5B0D /* Colour.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colour.xcassets; sourceTree = "<group>"; };
+		85BC414123AB2F4000AA5B0D /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
+		85BC414423AB5FAF00AA5B0D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		85BC414723AB740D00AA5B0D /* place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = place.swift; sourceTree = "<group>"; };
+		85BC414A23AB88C500AA5B0D /* restaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restaurantTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,43 @@
 		8563212123A8D150001A9F32 /* foodOrderApp */ = {
 			isa = PBXGroup;
 			children = (
+				85BC414923AB87AA00AA5B0D /* TableViewCells */,
+				85BC414623AB6A9500AA5B0D /* Model */,
+				85BC414323AB5F5A00AA5B0D /* Controller */,
 				8563212223A8D150001A9F32 /* AppDelegate.swift */,
-				8563212423A8D150001A9F32 /* ViewController.swift */,
 				8563212623A8D150001A9F32 /* Main.storyboard */,
 				8563212923A8D154001A9F32 /* Assets.xcassets */,
 				8563212B23A8D154001A9F32 /* LaunchScreen.storyboard */,
 				8563212E23A8D154001A9F32 /* Info.plist */,
 				85BC413F23A9F91B00AA5B0D /* Colour.xcassets */,
+				85BC414423AB5FAF00AA5B0D /* API.swift */,
 			);
 			path = foodOrderApp;
+			sourceTree = "<group>";
+		};
+		85BC414323AB5F5A00AA5B0D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				85BC414123AB2F4000AA5B0D /* homeViewController.swift */,
+				8563212423A8D150001A9F32 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		85BC414623AB6A9500AA5B0D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85BC414723AB740D00AA5B0D /* place.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		85BC414923AB87AA00AA5B0D /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				85BC414A23AB88C500AA5B0D /* restaurantTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +176,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8563212523A8D150001A9F32 /* ViewController.swift in Sources */,
+				85BC414223AB2F4000AA5B0D /* homeViewController.swift in Sources */,
+				85BC414523AB5FAF00AA5B0D /* API.swift in Sources */,
+				85BC414823AB740D00AA5B0D /* place.swift in Sources */,
+				85BC414B23AB88C500AA5B0D /* restaurantTableViewCell.swift in Sources */,
 				8563212323A8D150001A9F32 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

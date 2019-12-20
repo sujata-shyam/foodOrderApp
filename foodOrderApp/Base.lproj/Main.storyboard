@@ -22,7 +22,7 @@
                         <color key="tintColor" name="Rosy Brown"/>
                         <viewLayoutGuide key="safeArea" id="yeF-Uf-m7U"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" id="5CK-db-rlo" userLabel="Search"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="search" id="5CK-db-rlo" userLabel="Search"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNN-PN-Pbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -63,19 +63,103 @@
         <!--Home-->
         <scene sceneID="Bbb-pD-xkf">
             <objects>
-                <viewController id="CB7-V9-8HM" userLabel="Home" sceneMemberID="viewController">
+                <viewController id="CB7-V9-8HM" userLabel="Home" customClass="homeViewController" customModule="foodOrderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oMM-C0-L5q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="Tan"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BfC-yu-htP" userLabel="txtSearchCriteria">
+                                <rect key="frame" x="10" y="54" width="394" height="89.5"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mGP-PI-qSG" userLabel="restaurantTableView">
+                                <rect key="frame" x="10" y="148.5" width="394" height="674.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="resTableViewCell" rowHeight="145" id="hrI-Dr-51m" userLabel="restaurantTableViewCell" customClass="restaurantTableViewCell" customModule="foodOrderApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="394" height="145"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hrI-Dr-51m" id="P3M-x3-WCs">
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="144.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j0h-3h-lzC" userLabel="imgFoodPic">
+                                                    <rect key="frame" x="10" y="5" width="118" height="134.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mui-mk-N3h" userLabel="lblTitle">
+                                                    <rect key="frame" x="138" y="10" width="246" height="58"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zb-rc-Y8E" userLabel="lblType">
+                                                    <rect key="frame" x="138" y="66.5" width="226" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYI-u5-Uxr" userLabel="lblCost">
+                                                    <rect key="frame" x="138" y="105.5" width="246" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="mui-mk-N3h" secondAttribute="trailing" constant="10" id="0xu-ko-9ej"/>
+                                                <constraint firstAttribute="bottom" secondItem="sYI-u5-Uxr" secondAttribute="bottom" constant="10" id="7aq-xr-gdA"/>
+                                                <constraint firstAttribute="bottom" secondItem="j0h-3h-lzC" secondAttribute="bottom" constant="5" id="9da-hF-qu5"/>
+                                                <constraint firstItem="sYI-u5-Uxr" firstAttribute="leading" secondItem="j0h-3h-lzC" secondAttribute="trailing" constant="10" id="Ai9-zC-5z8"/>
+                                                <constraint firstItem="j0h-3h-lzC" firstAttribute="top" secondItem="P3M-x3-WCs" secondAttribute="top" constant="5" id="JdW-9k-yde"/>
+                                                <constraint firstItem="j0h-3h-lzC" firstAttribute="leading" secondItem="P3M-x3-WCs" secondAttribute="leading" constant="10" id="QjL-OI-1mH"/>
+                                                <constraint firstItem="sYI-u5-Uxr" firstAttribute="top" secondItem="2Zb-rc-Y8E" secondAttribute="bottom" constant="10" id="Zad-tG-6uJ"/>
+                                                <constraint firstItem="mui-mk-N3h" firstAttribute="leading" secondItem="j0h-3h-lzC" secondAttribute="trailing" constant="10" id="aCW-by-MJ4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2Zb-rc-Y8E" secondAttribute="trailing" constant="10" id="cLE-0L-UeL"/>
+                                                <constraint firstAttribute="trailing" secondItem="sYI-u5-Uxr" secondAttribute="trailing" constant="10" id="mZS-KL-ll9"/>
+                                                <constraint firstItem="2Zb-rc-Y8E" firstAttribute="leading" secondItem="j0h-3h-lzC" secondAttribute="trailing" constant="10" id="pWQ-yg-ctm"/>
+                                                <constraint firstItem="mui-mk-N3h" firstAttribute="top" secondItem="P3M-x3-WCs" secondAttribute="top" constant="10" id="sVo-OP-xHg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="sYI-u5-Uxr" firstAttribute="height" secondItem="hrI-Dr-51m" secondAttribute="height" multiplier="0.2" id="3ab-H2-0Gg"/>
+                                            <constraint firstItem="j0h-3h-lzC" firstAttribute="width" secondItem="hrI-Dr-51m" secondAttribute="width" multiplier="0.3" id="4TX-wj-G3u"/>
+                                            <constraint firstItem="mui-mk-N3h" firstAttribute="height" secondItem="hrI-Dr-51m" secondAttribute="height" multiplier="0.4" id="L6h-Mm-HMg"/>
+                                            <constraint firstItem="2Zb-rc-Y8E" firstAttribute="height" secondItem="hrI-Dr-51m" secondAttribute="height" multiplier="0.2" id="mVj-CE-KEe"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imgFoodPic" destination="j0h-3h-lzC" id="yr4-YC-gE8"/>
+                                            <outlet property="lblCost" destination="sYI-u5-Uxr" id="2el-Aa-jh3"/>
+                                            <outlet property="lblTitle" destination="mui-mk-N3h" id="V3l-ib-ttL"/>
+                                            <outlet property="lblType" destination="2Zb-rc-Y8E" id="Sdn-CD-rFE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" name="White Smoke"/>
                         <color key="tintColor" name="Fire Brick"/>
+                        <constraints>
+                            <constraint firstItem="BfC-yu-htP" firstAttribute="leading" secondItem="5GR-mx-Z5r" secondAttribute="leading" constant="10" id="2eh-oi-qkz"/>
+                            <constraint firstItem="mGP-PI-qSG" firstAttribute="bottom" secondItem="5GR-mx-Z5r" secondAttribute="bottom" constant="10" id="3gf-lP-AQX"/>
+                            <constraint firstItem="5GR-mx-Z5r" firstAttribute="trailing" secondItem="BfC-yu-htP" secondAttribute="trailing" constant="10" id="6BZ-it-q1V"/>
+                            <constraint firstItem="mGP-PI-qSG" firstAttribute="leading" secondItem="5GR-mx-Z5r" secondAttribute="leading" constant="10" id="XJ9-wp-jmh"/>
+                            <constraint firstItem="BfC-yu-htP" firstAttribute="height" secondItem="oMM-C0-L5q" secondAttribute="height" multiplier="0.1" id="e8u-eo-74t"/>
+                            <constraint firstItem="BfC-yu-htP" firstAttribute="top" secondItem="5GR-mx-Z5r" secondAttribute="top" constant="10" id="fci-pX-cPp"/>
+                            <constraint firstItem="5GR-mx-Z5r" firstAttribute="trailing" secondItem="mGP-PI-qSG" secondAttribute="trailing" constant="10" id="pXD-Li-DNh"/>
+                            <constraint firstItem="mGP-PI-qSG" firstAttribute="top" secondItem="BfC-yu-htP" secondAttribute="bottom" constant="5" id="xf2-HH-6aT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="5GR-mx-Z5r"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="Frb-2A-oWw" userLabel="Home"/>
+                    <connections>
+                        <outlet property="restaurantTableView" destination="mGP-PI-qSG" id="Wge-bg-WEV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cay-i3-hzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1374" y="55"/>
+            <point key="canvasLocation" x="-1375.3623188405797" y="54.910714285714285"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="wIW-8K-wrk">
@@ -99,14 +183,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="search" width="24" height="24"/>
         <namedColor name="Fire Brick">
             <color red="0.73725490196078436" green="0.19215686274509805" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Rosy Brown">
             <color red="0.69411764705882351" green="0.53725490196078429" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Tan">
-            <color red="0.80784313725490198" green="0.74509803921568629" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="White Smoke">
             <color red="0.93725490196078431" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
