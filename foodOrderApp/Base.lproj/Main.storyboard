@@ -71,6 +71,9 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yKx-wf-fyg">
                                 <rect key="frame" x="10" y="54" width="394" height="89.5"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="CB7-V9-8HM" id="ydX-xE-Q7a"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mGP-PI-qSG" userLabel="restaurantTableView">
                                 <rect key="frame" x="10" y="153.5" width="394" height="669.5"/>

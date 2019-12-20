@@ -6,7 +6,6 @@
 //  Copyright © 2019 Sujata. All rights reserved.
 //
 
-//import Foundation
 
 struct place:Codable
 {

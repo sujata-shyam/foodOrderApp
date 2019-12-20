@@ -8,9 +8,9 @@
 
 import UIKit
 
-class homeViewController: UIViewController  //,  UITableViewDelegate, UITableViewDataSource
+class homeViewController: UIViewController
 {
-    var arrPredictions = [Predictions]()
+    var arrRestaurants = [restaurant]()
     
     var arrImages = [UIImage(imageLiteralResourceName: "Baked"),
                      UIImage(imageLiteralResourceName: "American"),
@@ -21,19 +21,25 @@ class homeViewController: UIViewController  //,  UITableViewDelegate, UITableVie
                      ]
     
     @IBOutlet weak var restaurantTableView: UITableView!
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        loadJSONData()
-        restaurantTableView.dataSource = self 
+        
+        loadJSONDataWithCoordinates()
+        
+        restaurantTableView.dataSource = self
         restaurantTableView.delegate = self
     }
     
-    func loadJSONData()
+    func loadJSONDataWithSearchString(searchText:String)
     {
-        let urlString = "https://tummypolice.iyangi.com/api/v1/place/autocomplete/json?input=domi"
+        var arrPredictions = [Predictions]()
+        var urlString = "https://tummypolice.iyangi.com/api/v1/place/autocomplete/json?input="
+        urlString.append(searchText)
+        
         let url = URL(string: urlString)
+        
         if let url = url{
             let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
                 guard let data =  data else { print("URLSession not workig")
@@ -44,15 +50,13 @@ class homeViewController: UIViewController  //,  UITableViewDelegate, UITableVie
                     
                     if(dictPlaces.predictions!.count > 0)
                     {
-                        self.arrPredictions = Array(dictPlaces.predictions!)
-                        print(self.arrPredictions)
+                        arrPredictions = Array(dictPlaces.predictions!)
+                        
+                        let latitude = arrPredictions[0].lat
+                        let longitude = arrPredictions[0].lon
+                        
+                        self.loadJSONDataWithCoordinates(latitude!, longitude!)
                     }
-                    
-                     DispatchQueue.main.async
-                     {
-                        self.restaurantTableView.reloadData()
-                     }
-                    
                 }
                 catch
                 {
@@ -63,17 +67,41 @@ class homeViewController: UIViewController  //,  UITableViewDelegate, UITableVie
         }
     }
 
-    
-
+    func loadJSONDataWithCoordinates(_ latitude:String = "12.9615402", _ longitude:String = "77.6441973")
+    {
+        let urlString = "https://tummypolice.iyangi.com/api/v1/restaurants?latitude=\(latitude)&longitude=\(longitude)"
+        
+        let url = URL(string: urlString)
+            
+        if let url = url{
+            let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
+                guard let data =  data else { print("URLSession not workig")
+                    return }
+                do
+                {
+                    self.arrRestaurants = try JSONDecoder().decode([restaurant].self, from: data)
+                    DispatchQueue.main.async
+                    {
+                            self.restaurantTableView.reloadData()
+                    }
+                }
+                catch
+                {
+                    print("error:\(error)")
+                }
+            }
+            task.resume()
+        }
+    }
 }
 
 extension homeViewController: UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if(arrPredictions.count > 0)
+        if(arrRestaurants.count > 0)
         {
-            return arrPredictions.count
+            return arrRestaurants.count
         }
         return 0
     }
@@ -82,7 +110,7 @@ extension homeViewController: UITableViewDelegate, UITableViewDataSource
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "resTableViewCell", for: indexPath) as? restaurantTableViewCell
         
-        if(arrPredictions.count > 0)
+        if(arrRestaurants.count > 0)
         {
             var imageIndex = 0
             
@@ -96,7 +124,7 @@ extension homeViewController: UITableViewDelegate, UITableViewDataSource
             }
             
             cell?.imgFoodPic.image = arrImages[imageIndex]
-            cell?.lblTitle.text = arrPredictions[indexPath.row].name
+            cell?.lblTitle.text = arrRestaurants[indexPath.row].name
         }
         return cell!
     }
@@ -104,8 +132,30 @@ extension homeViewController: UITableViewDelegate, UITableViewDataSource
 
 extension homeViewController : UISearchBarDelegate
 {
+//    func createRequest(searchText:String)
+//    {
+//
+//    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+        print("CLICKED")
+//        let result = createRequest(searchText:searchBar.text!)
+//        loadCategories(with: result.0, predicate: result.1)
+    }
+    
+    
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
-        
+//        print(searchText)
+//        if(searchText.count > 0)
+//        {
+//            loadCategories()
+//            DispatchQueue.main.async
+//            {
+//                    searchBar.resignFirstResponder()
+//            }
+//        }
     }
 }
