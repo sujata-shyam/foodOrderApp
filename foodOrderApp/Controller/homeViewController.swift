@@ -128,6 +128,22 @@ extension homeViewController: UITableViewDelegate, UITableViewDataSource
         }
         return cell!
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        performSegue(withIdentifier: "goToRestaurantDetail", sender: tableView)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let restaurantVC = segue.destination as? restaurantViewController
+        {
+            if let indexPath = restaurantTableView.indexPathForSelectedRow
+            {
+                restaurantVC.selectedRestaurant = arrRestaurants[indexPath.row]
+            }
+        }
+    }
 }
 
 extension homeViewController : UISearchBarDelegate
