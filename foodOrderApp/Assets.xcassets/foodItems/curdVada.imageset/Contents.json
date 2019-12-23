@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "tasty-dahi-vada-topping-red-sauce-indian-food-made-vadas-dipped-thick-curd-32423878.jpg",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "tasty-dahi-vada-topping-red-sauce-indian-food-made-vadas-dipped-thick-curd-32423878@2x.jpg",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "tasty-dahi-vada-topping-red-sauce-indian-food-made-vadas-dipped-thick-curd-32423878@3x.jpg",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
