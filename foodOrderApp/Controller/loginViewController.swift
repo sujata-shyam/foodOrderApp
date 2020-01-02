@@ -9,11 +9,12 @@
 import UIKit
 import Foundation
 
-class loginViewController: UIViewController
+class loginViewController: UIViewController//, UITextFieldDelegate
 {
     //MARK :- LogIn IB Outlets
     
     @IBOutlet weak var txtPhone: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var viewLogin: UIView!
     @IBOutlet weak var lblClientName: UILabel!
     
@@ -30,6 +31,19 @@ class loginViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        setTextDelegate()
+    }
+    
+    func setTextDelegate()
+    {
+        txtRegName.delegate = self
+        txtRegEmail.delegate = self
+        //txtRegPhone.delegate = self
+        txtRegPassword.delegate = self
+        
+        //txtPhone.delegate = self
+        txtPassword.delegate = self
     }
     
     @IBAction func btnLoginTapped(_ sender: UIButton)
@@ -42,6 +56,7 @@ class loginViewController: UIViewController
         {
             loadLoginData()
         }
+        txtPhone.resignFirstResponder()
     }
     
     func loadLoginData()
@@ -69,13 +84,13 @@ class loginViewController: UIViewController
         URLSession.shared.dataTask(with: searchURLRequest){ data, response,error in
             guard let data =  data else { return }
         
-            print(data)
+            //print(data)
             do
             {
-                if let response1 = response
-                {
-                    print(response1)
-                }
+//                if let response1 = response
+//                {
+//                    print(response1)
+//                }
                 
                 guard let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode)
@@ -131,18 +146,57 @@ class loginViewController: UIViewController
     
     @IBAction func btnRegisterTapped(_ sender: UIButton)
     {
-        registerUser()
-        checkInput()
+        if(checkInput())
+        {
+            registerUser()
+        }
+        txtRegPhone.resignFirstResponder()
     }
     
-//    func checkInput()
-//    {
-//        if(txtRegName.text?.isEmpty)
-//        {
-//            
-//        }
-//        
-//    }
+    func checkInput()->Bool
+    {
+        if(txtRegName.text!.isEmpty || txtRegEmail.text!.isEmpty || txtRegPhone.text!.isEmpty || txtRegPassword.text!.isEmpty)
+        {
+            displayAlert(title: "", message: "Please enter the required details.")
+            return false
+        }
+        
+        if(txtRegPhone.text?.count != 10)
+        {
+            displayAlert(title: "", message: "Please enter a valid 10-digit phone number.")
+            return false
+        }
+        
+        if(txtRegPassword.text!.count < 8)
+        {
+            displayAlert(title: "", message: "Password has to be minimum of 8 characters.")
+            return false
+        }
+        else
+        {
+            if(!txtRegPassword.text!.isAlphanumeric)
+            {
+                displayAlert(title: "", message: "Password can have only alpha-numeric characters.")
+                return false
+            }
+        }
+        
+        if(!isValidEmail(txtRegEmail.text!))
+        {
+            displayAlert(title: "", message: "Please enter a valid email address.")
+            return false
+        }
+        
+
+        return true
+    }
+    
+    func isValidEmail(_ email: String) -> Bool
+    {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
     
     func registerUser()
     {
@@ -155,15 +209,16 @@ class loginViewController: UIViewController
         
         do
         {
+
             let jsonBody = try JSONEncoder().encode(SignUpRequest(
                 username: txtRegName.text,
                 password: txtRegPassword.text,
                 email: txtRegEmail.text,
-                phone: txtPhone.text
+                phone: txtRegPhone.text
             ))
             searchURLRequest.httpBody = jsonBody
             
-            print(jsonBody)
+            print("jsonBody:\(jsonBody)")
         }
         catch
         {
@@ -172,12 +227,16 @@ class loginViewController: UIViewController
         
         URLSession.shared.dataTask(with: searchURLRequest){data, response,error in
             guard let data =  data else { return }
-            print(data)
+            
+//            let received = String(data: data, encoding: String.Encoding.utf8)
+//
+//            print("received: \(received)")
+            
             do
             {
 //                if let response1 = response
 //                {
-//                    print(response1)
+//                    print("response1:\(response1)")
 //                }
                 
                 guard let response = response as? HTTPURLResponse,
@@ -188,12 +247,47 @@ class loginViewController: UIViewController
                 }
                 
                 let signUpDetailsResponse = try JSONDecoder().decode(SignUpResponse.self, from: data)
+                
                 print(signUpDetailsResponse)
+                
+                if let name = signUpDetailsResponse.username
+                {
+                    DispatchQueue.main.async
+                        {
+                            self.lblClientName.text = "Hello \(name))"
+                            self.lblClientName.isHidden = false
+                            self.btnLogout.isHidden = false
+                            self.viewSignUp.isHidden = true
+                    }
+                }
+                else
+                {
+                    DispatchQueue.main.async
+                        {
+                            self.displayAlert(title: "", message: "Sorry. Could not register. Try after sometime.")
+                    }
+                }
             }
             catch
             {
                 print(error)
             }
         }.resume()
+    }
+}
+
+extension String
+{
+    var isAlphanumeric: Bool {
+        return !isEmpty && range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil
+    }
+}
+
+extension loginViewController:UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
     }
 }
