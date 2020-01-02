@@ -54,12 +54,12 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         }
         else
         {
-            loadLoginData()
+            loadLoginData(txtPhone.text!)
         }
         txtPhone.resignFirstResponder()
     }
     
-    func loadLoginData()
+    func loadLoginData(_ phoneNumber: String)
     {
         let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/login")
         var searchURLRequest = URLRequest(url: searchURL!)
@@ -70,7 +70,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         do
         {
             let jsonBody = try JSONEncoder().encode(LoginRequest(
-                phone: txtPhone.text
+                phone: phoneNumber //txtPhone.text
             ))
             searchURLRequest.httpBody = jsonBody
             
@@ -140,8 +140,9 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         viewSignUp.isHidden = false
     }
     
-    
-    @IBAction func btnLogoutTapped(_ sender: UIButton){
+    @IBAction func btnLogoutTapped(_ sender: UIButton)
+    {
+        
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton)
@@ -254,10 +255,9 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 {
                     DispatchQueue.main.async
                         {
-                            self.lblClientName.text = "Hello \(name))"
-                            self.lblClientName.isHidden = false
-                            self.btnLogout.isHidden = false
+                            self.displayAlert(title: "", message: "Registration successful.")
                             self.viewSignUp.isHidden = true
+                            self.loadLoginData(self.txtRegPhone.text!)                            
                     }
                 }
                 else
