@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		852DBEF223B0817000232CF3 /* itemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DBEF123B0817000232CF3 /* itemTableViewCell.swift */; };
+		852DBEF623B313C800232CF3 /* accountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DBEF523B313C800232CF3 /* accountViewController.swift */; };
+		852DBEF823B338B000232CF3 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DBEF723B338B000232CF3 /* loginViewController.swift */; };
+		852DBEFA23B33A1D00232CF3 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DBEF923B33A1C00232CF3 /* user.swift */; };
 		8563212323A8D150001A9F32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563212223A8D150001A9F32 /* AppDelegate.swift */; };
 		8563212523A8D150001A9F32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563212423A8D150001A9F32 /* ViewController.swift */; };
 		8563212823A8D150001A9F32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8563212623A8D150001A9F32 /* Main.storyboard */; };
@@ -25,6 +28,9 @@
 
 /* Begin PBXFileReference section */
 		852DBEF123B0817000232CF3 /* itemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemTableViewCell.swift; sourceTree = "<group>"; };
+		852DBEF523B313C800232CF3 /* accountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountViewController.swift; sourceTree = "<group>"; };
+		852DBEF723B338B000232CF3 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		852DBEF923B33A1C00232CF3 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		8563211F23A8D150001A9F32 /* foodOrderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = foodOrderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8563212223A8D150001A9F32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8563212423A8D150001A9F32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +98,8 @@
 				8563212423A8D150001A9F32 /* ViewController.swift */,
 				85BC414123AB2F4000AA5B0D /* homeViewController.swift */,
 				85C424AF23AE029000E9ABEA /* restaurantViewController.swift */,
+				852DBEF523B313C800232CF3 /* accountViewController.swift */,
+				852DBEF723B338B000232CF3 /* loginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -102,6 +110,7 @@
 				85BC414723AB740D00AA5B0D /* place.swift */,
 				85C424AD23ACAF1600E9ABEA /* restaurant.swift */,
 				85C424B123AE176E00E9ABEA /* menuItem.swift */,
+				852DBEF923B33A1C00232CF3 /* user.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,13 +196,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				852DBEFA23B33A1D00232CF3 /* user.swift in Sources */,
 				852DBEF223B0817000232CF3 /* itemTableViewCell.swift in Sources */,
+				852DBEF623B313C800232CF3 /* accountViewController.swift in Sources */,
 				85C424AE23ACAF1600E9ABEA /* restaurant.swift in Sources */,
 				85C424B023AE029000E9ABEA /* restaurantViewController.swift in Sources */,
 				8563212523A8D150001A9F32 /* ViewController.swift in Sources */,
 				85BC414223AB2F4000AA5B0D /* homeViewController.swift in Sources */,
 				85BC414523AB5FAF00AA5B0D /* API.swift in Sources */,
 				85BC414823AB740D00AA5B0D /* place.swift in Sources */,
+				852DBEF823B338B000232CF3 /* loginViewController.swift in Sources */,
 				85BC414B23AB88C500AA5B0D /* restaurantTableViewCell.swift in Sources */,
 				85C424B223AE176E00E9ABEA /* menuItem.swift in Sources */,
 				8563212323A8D150001A9F32 /* AppDelegate.swift in Sources */,
