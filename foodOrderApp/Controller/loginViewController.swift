@@ -50,7 +50,8 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     {
         if(txtPhone.text!.isEmpty)
         {
-            displayAlert(title: "", message: "Please enter the phone no.")
+            //displayAlert(title: "", message: "Please enter the phone no.")
+            displayAlert(vc: self, title: "", message: "Please enter the phone no.")
         }
         else
         {
@@ -116,7 +117,8 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 {
                     DispatchQueue.main.async
                     {
-                    self.displayAlert(title: "Failed Login Attempt", message: "User does not exist")
+                    //self.displayAlert(title: "Failed Login Attempt", message: "User does not exist")
+                        displayAlert(vc: self, title: "Failed Login Attempt", message: "User does not exist")
                     }
                 }
             }
@@ -127,12 +129,12 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         }.resume()
     }
     
-    func displayAlert(title: String, message: String)
-    {
-        let alert =  UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler:nil ))
-        present(alert, animated: true)
-    }
+//    func displayAlert(title: String, message: String)
+//    {
+//        let alert =  UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler:nil ))
+//        present(alert, animated: true)
+//    }
     
     @IBAction func btnSignupTapped(_ sender: UIButton)
     {
@@ -158,37 +160,39 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     {
         if(txtRegName.text!.isEmpty || txtRegEmail.text!.isEmpty || txtRegPhone.text!.isEmpty || txtRegPassword.text!.isEmpty)
         {
-            displayAlert(title: "", message: "Please enter the required details.")
+            //displayAlert(title: "", message: "Please enter the required details.")
+            displayAlert(vc: self, title: "", message: "Please enter the required details.")
             return false
         }
         
         if(txtRegPhone.text?.count != 10)
         {
-            displayAlert(title: "", message: "Please enter a valid 10-digit phone number.")
+            //displayAlert(title: "", message: "Please enter a valid 10-digit phone number.")
+            displayAlert(vc: self, title: "", message: "Please enter a valid 10-digit phone number.")
             return false
         }
         
         if(txtRegPassword.text!.count < 8)
         {
-            displayAlert(title: "", message: "Password has to be minimum of 8 characters.")
+            //displayAlert(title: "", message: "Password has to be minimum of 8 characters.")
+            displayAlert(vc: self, title: "", message: "Password has to be minimum of 8 characters.")
             return false
         }
         else
         {
             if(!txtRegPassword.text!.isAlphanumeric)
             {
-                displayAlert(title: "", message: "Password can have only alpha-numeric characters.")
+                //displayAlert(title: "", message: "Password can have only alpha-numeric characters.")
+                displayAlert(vc: self, title: "", message: "Password can have only alpha-numeric characters.")
                 return false
             }
         }
-        
         if(!isValidEmail(txtRegEmail.text!))
         {
-            displayAlert(title: "", message: "Please enter a valid email address.")
+            //displayAlert(title: "", message: "Please enter a valid email address.")
+            displayAlert(vc: self, title: "", message: "Please enter a valid email address.")
             return false
         }
-        
-
         return true
     }
     
@@ -210,7 +214,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         
         do
         {
-
             let jsonBody = try JSONEncoder().encode(SignUpRequest(
                 username: txtRegName.text,
                 password: txtRegPassword.text,
@@ -230,7 +233,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
             guard let data =  data else { return }
             
 //            let received = String(data: data, encoding: String.Encoding.utf8)
-//
 //            print("received: \(received)")
             
             do
@@ -251,20 +253,22 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 
                 print(signUpDetailsResponse)
                 
-                if let name = signUpDetailsResponse.username
+                if signUpDetailsResponse.username != nil
                 {
                     DispatchQueue.main.async
                         {
-                            self.displayAlert(title: "", message: "Registration successful.")
+                            //self.displayAlert(title: "", message: "Registration successful.")
+                            displayAlert(vc: self, title: "", message: "Registration successful.")
                             self.viewSignUp.isHidden = true
-                            self.loadLoginData(self.txtRegPhone.text!)                            
+                            self.loadLoginData(self.txtRegPhone.text!)
                     }
                 }
                 else
                 {
                     DispatchQueue.main.async
-                        {
-                            self.displayAlert(title: "", message: "Sorry. Could not register. Try after sometime.")
+                    {
+                        //self.displayAlert(title: "", message: "Sorry. Could not register. Try after sometime.")
+                        displayAlert(vc: self, title: "", message: "Sorry. Could not register. Try after sometime.")
                     }
                 }
             }

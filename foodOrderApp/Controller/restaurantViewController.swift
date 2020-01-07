@@ -16,9 +16,15 @@ class restaurantViewController: UIViewController
     @IBOutlet weak var lblOtherDetails: UILabel!
     
     @IBOutlet weak var menuItemTableView: UITableView!
+        
+    var arrMenuItems = [MenuItem]()
+    //var cartItems = [CartItemDetail]()
+    var cartItems = [String:CartItemDetail?]()
+
+    var selectedRestaurant = Restaurant(id: nil, name: nil, description: nil, city: nil, location: nil) //Value passed from prev. View Controller
     
-    var arrMenuItems = [menuItem]()
-    var selectedRestaurant = restaurant(id: nil, name: nil, description: nil, city: nil, location: nil) //Value passed from prev. View Controller
+    var restIDFromCart = ""
+    
     var arrImages = [
         UIImage(imageLiteralResourceName: "pongal"),
         UIImage(imageLiteralResourceName: "masalaDosa"),
@@ -40,6 +46,7 @@ class restaurantViewController: UIViewController
         if let restaurantId = selectedRestaurant.id
         {
             loadMenuItemFromJSONData(restaurantId)
+            loadCartItemFromJSONDataGET()
         }
         
         menuItemTableView.delegate = self
@@ -62,7 +69,7 @@ class restaurantViewController: UIViewController
                     return }
                 do
                 {
-                    self.arrMenuItems = try JSONDecoder().decode([menuItem].self, from: data)
+                    self.arrMenuItems = try JSONDecoder().decode([MenuItem].self, from: data)
                     DispatchQueue.main.async
                     {
                         self.menuItemTableView.reloadData()
@@ -76,6 +83,115 @@ class restaurantViewController: UIViewController
             task.resume()
         }
     }
+    
+    func loadCartItemFromJSONDataGET()
+    {
+        let url = URL(string: "https://tummypolice.iyangi.com/api/v1/cart")
+        
+        if let url = url{
+            let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
+                guard let data =  data else { print("URLSession not workig")
+                    return }
+                do
+                {
+                    let initialCart = try JSONDecoder().decode(Cart.self, from: data)
+                    print(initialCart)
+                    
+                    if ((initialCart.restaurantId != "") || (initialCart.restaurantId != nil))
+                    {
+                        self.restIDFromCart = initialCart.restaurantId!
+                        
+                        if(initialCart.cartItems.count > 0)
+                        {
+                            self.cartItems = initialCart.cartItems
+
+                            //for value in Array(initialCart.cartItems.values)
+//                            {
+//                                self.cartItems.append(value!)
+//                            }
+                        }
+                    }
+//                    DispatchQueue.main.async
+//                    {
+//                        self.menuItemTableView.reloadData()
+//                    }
+                }
+                catch
+                {
+                    print("error:\(error)")
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    func loadCartItemFromJSONDataPOST(_ restaurandId: String, _ itemId: String, _ name: String, _ price: Double, _ quantity: Int)
+    {
+        let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/cart")
+        var searchURLRequest = URLRequest(url: searchURL!)
+        
+        searchURLRequest.httpMethod = "POST"
+        searchURLRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //let tempCartDetail = CartItemDetail(name: name, price: price, quantity: quantity)
+
+        do
+        {
+            let jsonBody = try JSONEncoder().encode(Cart(
+            restaurantId: restaurandId, //"3152696958",
+            cartItems : [itemId: CartItemDetail(name: name, price: price, quantity: quantity)]
+            ))
+            searchURLRequest.httpBody = jsonBody
+            
+            print("jsonBody:\(jsonBody)")
+        }
+        catch
+        {
+            print(error)
+        }
+        
+        URLSession.shared.dataTask(with: searchURLRequest){data, response,error in
+            guard let data =  data else { return }
+            
+//            let received = String(data: data, encoding: String.Encoding.utf8)
+//            print("received: \(received)")
+            
+            do
+            {
+                guard let response = response as? HTTPURLResponse,
+                    (200...299).contains(response.statusCode)
+                    else {
+                        print(error as Any)
+                        return
+                }
+
+                let cartResponse = try JSONDecoder().decode(Cart.self, from: data)
+
+                print(cartResponse)
+
+                self.loadCartItemFromJSONDataGET()
+//                if signUpDetailsResponse.username != nil
+//                {
+//                    DispatchQueue.main.async
+//                    {
+//                        self.displayAlert(title: "", message: "Registration successful.")
+//                    }
+//                }
+//                else
+//                {
+//                    DispatchQueue.main.async
+//                        {
+//                            //self.displayAlert(title: "", message: "Sorry. Could not register. Try after sometime.")
+//                            displayAlert(vc: self, title: "", message: "Sorry. Could not register. Try after sometime.")
+//                    }
+//                }
+            }
+            catch
+            {
+                print(error)
+            }
+        }.resume()
+    }
+    
 }
 
 extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
@@ -106,10 +222,33 @@ extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
             cell?.lblItemTitle.text = arrMenuItems[indexPath.row].name
             cell?.txtViewIngredients.text = arrMenuItems[indexPath.row].ingredients
             cell?.lblCost.text = String(arrMenuItems[indexPath.row].price! as Double)
-        }
+            
+            for(key, value) in cartItems
+            {
+                if(key == arrMenuItems[indexPath.row].id)
+                {
+                    cell?.lblAdd.text = String(Int((value?.quantity)!))
+                }
+            }
         
+            cell?.btnAddAction = { [unowned self] in
+
+                var tempQuantity = 0
+                
+                if let quantity = Int((cell?.lblAdd.text)!)
+                {
+                    cell?.lblAdd.text = String(quantity + 1)
+                    tempQuantity = quantity + 1
+                }
+                else
+                {
+                    cell?.lblAdd.text = "1"
+                    tempQuantity = 1
+                }
+                self.loadCartItemFromJSONDataPOST(self.selectedRestaurant.id!, self.arrMenuItems[indexPath.row].id!, self.arrMenuItems[indexPath.row].name!, self.arrMenuItems[indexPath.row].price!, tempQuantity)
+            }
+        }
         return cell!
     }
-    
     
 }

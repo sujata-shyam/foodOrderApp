@@ -16,6 +16,7 @@
 		8563212823A8D150001A9F32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8563212623A8D150001A9F32 /* Main.storyboard */; };
 		8563212A23A8D154001A9F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8563212923A8D154001A9F32 /* Assets.xcassets */; };
 		8563212D23A8D154001A9F32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8563212B23A8D154001A9F32 /* LaunchScreen.storyboard */; };
+		859692DF23C0BAC2003CF291 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */; };
 		85BC414023A9F91B00AA5B0D /* Colour.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85BC413F23A9F91B00AA5B0D /* Colour.xcassets */; };
 		85BC414223AB2F4000AA5B0D /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414123AB2F4000AA5B0D /* homeViewController.swift */; };
 		85BC414523AB5FAF00AA5B0D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414423AB5FAF00AA5B0D /* API.swift */; };
@@ -38,6 +39,7 @@
 		8563212923A8D154001A9F32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8563212C23A8D154001A9F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8563212E23A8D154001A9F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		85BC413F23A9F91B00AA5B0D /* Colour.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colour.xcassets; sourceTree = "<group>"; };
 		85BC414123AB2F4000AA5B0D /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		85BC414423AB5FAF00AA5B0D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		8563212123A8D150001A9F32 /* foodOrderApp */ = {
 			isa = PBXGroup;
 			children = (
+				859692DD23C0BA9B003CF291 /* Global */,
 				85BC414923AB87AA00AA5B0D /* TableViewCells */,
 				85BC414623AB6A9500AA5B0D /* Model */,
 				85BC414323AB5F5A00AA5B0D /* Controller */,
@@ -90,6 +93,14 @@
 				85BC414423AB5FAF00AA5B0D /* API.swift */,
 			);
 			path = foodOrderApp;
+			sourceTree = "<group>";
+		};
+		859692DD23C0BA9B003CF291 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		85BC414323AB5F5A00AA5B0D /* Controller */ = {
@@ -198,6 +209,7 @@
 			files = (
 				852DBEFA23B33A1D00232CF3 /* user.swift in Sources */,
 				852DBEF223B0817000232CF3 /* itemTableViewCell.swift in Sources */,
+				859692DF23C0BAC2003CF291 /* GlobalFunctions.swift in Sources */,
 				852DBEF623B313C800232CF3 /* accountViewController.swift in Sources */,
 				85C424AE23ACAF1600E9ABEA /* restaurant.swift in Sources */,
 				85C424B023AE029000E9ABEA /* restaurantViewController.swift in Sources */,

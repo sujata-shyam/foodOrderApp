@@ -549,13 +549,19 @@
                                                             <color key="textColor" name="Fire Brick"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nw-Ti-yFs" userLabel="btnPlus">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nw-Ti-yFs" userLabel="btnPlus">
                                                             <rect key="frame" x="79" y="0.0" width="19.5" height="27.5"/>
                                                             <state key="normal" title="+"/>
+                                                            <connections>
+                                                                <action selector="btnPlusTapped:" destination="3z6-ik-SGE" eventType="touchUpInside" id="YG8-gq-TsT"/>
+                                                            </connections>
                                                         </button>
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCD-T9-uLY" userLabel="btnMinus">
                                                             <rect key="frame" x="0.0" y="0.0" width="19.5" height="27.5"/>
                                                             <state key="normal" title="-"/>
+                                                            <connections>
+                                                                <action selector="btnMinusTapped:" destination="3z6-ik-SGE" eventType="touchUpInside" id="weh-54-vzu"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" name="Tan"/>
@@ -612,7 +618,10 @@
                                             <constraint firstItem="x1r-m6-GlE" firstAttribute="width" secondItem="3z6-ik-SGE" secondAttribute="width" multiplier="0.3" id="xSP-Ih-F0U"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="btnMinus" destination="BCD-T9-uLY" id="3ti-P9-mNv"/>
+                                            <outlet property="btnPlus" destination="8nw-Ti-yFs" id="1uV-GR-5SA"/>
                                             <outlet property="imgFoodItem" destination="x1r-m6-GlE" id="9Wb-4M-AuB"/>
+                                            <outlet property="lblAdd" destination="oN5-Xe-6vs" id="vkJ-9F-tUe"/>
                                             <outlet property="lblCost" destination="bZa-ia-14u" id="ytY-AW-Mtn"/>
                                             <outlet property="lblItemTitle" destination="Lf9-FG-dMP" id="d8y-HN-NFn"/>
                                             <outlet property="txtViewIngredients" destination="XMP-qI-gnx" id="MG9-3t-QxW"/>

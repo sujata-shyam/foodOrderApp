@@ -6,7 +6,7 @@
 //  Copyright © 2019 Sujata. All rights reserved.
 //
 
-struct restaurant:Codable
+struct Restaurant:Codable
 {
     let id : String?
     let name : String?

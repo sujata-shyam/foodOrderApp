@@ -7,7 +7,7 @@
 //
 
 
-struct place:Codable
+struct Place:Codable
 {
     let status : String?
     let predictions : [Predictions]?

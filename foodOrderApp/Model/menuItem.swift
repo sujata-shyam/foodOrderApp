@@ -6,7 +6,7 @@
 //  Copyright © 2019 Sujata. All rights reserved.
 //
 
-struct menuItem:Codable
+struct MenuItem:Codable
 {
     let id: String?
     let name: String?
@@ -15,3 +15,18 @@ struct menuItem:Codable
     let ingredients: String?
     let price: Double?
 }
+
+struct Cart:Codable
+{
+    let restaurantId: String?
+    let cartItems : [String:CartItemDetail?]
+}
+
+struct CartItemDetail:Codable
+{
+    let name: String?
+    let price: Double?
+    let quantity: Int?
+}
+
+

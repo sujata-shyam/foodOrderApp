@@ -10,7 +10,7 @@ import UIKit
 
 class homeViewController: UIViewController
 {
-    var arrRestaurants = [restaurant]()
+    var arrRestaurants = [Restaurant]()
     
     var arrImages = [UIImage(imageLiteralResourceName: "Baked"),
                      UIImage(imageLiteralResourceName: "American"),
@@ -46,7 +46,7 @@ class homeViewController: UIViewController
                     return }
                 do
                 {
-                    let dictPlaces = try JSONDecoder().decode(place.self, from: data)
+                    let dictPlaces = try JSONDecoder().decode(Place.self, from: data)
                     
                     if(dictPlaces.predictions!.count > 0)
                     {
@@ -79,7 +79,7 @@ class homeViewController: UIViewController
                     return }
                 do
                 {
-                    self.arrRestaurants = try JSONDecoder().decode([restaurant].self, from: data)
+                    self.arrRestaurants = try JSONDecoder().decode([Restaurant].self, from: data)
                     DispatchQueue.main.async
                     {
                             self.restaurantTableView.reloadData()
