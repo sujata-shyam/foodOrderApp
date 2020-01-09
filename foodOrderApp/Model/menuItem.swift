@@ -26,7 +26,7 @@ struct CartItemDetail:Codable
 {
     let name: String?
     let price: Double?
-    let quantity: Int?
+    var quantity: Int?
 }
 
 

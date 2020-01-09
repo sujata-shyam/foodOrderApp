@@ -18,7 +18,6 @@ class restaurantViewController: UIViewController
     @IBOutlet weak var menuItemTableView: UITableView!
         
     var arrMenuItems = [MenuItem]()
-    //var cartItems = [CartItemDetail]()
     var cartItems = [String:CartItemDetail?]()
 
     var selectedRestaurant = Restaurant(id: nil, name: nil, description: nil, city: nil, location: nil) //Value passed from prev. View Controller
@@ -43,14 +42,14 @@ class restaurantViewController: UIViewController
         super.viewDidLoad()
         loadRestaurantDetails()
         
-        if let restaurantId = selectedRestaurant.id
-        {
-            loadMenuItemFromJSONData(restaurantId)
-            loadCartItemFromJSONDataGET()
-        }
-        
         menuItemTableView.delegate = self
         menuItemTableView.dataSource = self
+        
+        if let restaurantId = selectedRestaurant.id
+        {
+            loadCartItemFromJSONDataGET()
+            loadMenuItemFromJSONData(restaurantId)
+        }
     }
     
     func loadRestaurantDetails()
@@ -104,17 +103,8 @@ class restaurantViewController: UIViewController
                         if(initialCart.cartItems.count > 0)
                         {
                             self.cartItems = initialCart.cartItems
-
-                            //for value in Array(initialCart.cartItems.values)
-//                            {
-//                                self.cartItems.append(value!)
-//                            }
                         }
                     }
-//                    DispatchQueue.main.async
-//                    {
-//                        self.menuItemTableView.reloadData()
-//                    }
                 }
                 catch
                 {
@@ -127,19 +117,28 @@ class restaurantViewController: UIViewController
     
     func loadCartItemFromJSONDataPOST(_ restaurandId: String, _ itemId: String, _ name: String, _ price: Double, _ quantity: Int)
     {
+        
+        loadCartItemFromJSONDataGET()
+        cartItems[itemId] = CartItemDetail(name: name, price: price, quantity: quantity)
+        
         let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/cart")
         var searchURLRequest = URLRequest(url: searchURL!)
         
         searchURLRequest.httpMethod = "POST"
         searchURLRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //let tempCartDetail = CartItemDetail(name: name, price: price, quantity: quantity)
 
         do
         {
+//            let jsonBody = try JSONEncoder().encode(Cart(
+//            restaurantId: restaurandId,
+//            cartItems : [itemId: CartItemDetail(name: name, price: price, quantity: quantity)]
+//            ))
+
             let jsonBody = try JSONEncoder().encode(Cart(
-            restaurantId: restaurandId, //"3152696958",
-            cartItems : [itemId: CartItemDetail(name: name, price: price, quantity: quantity)]
+                restaurantId: restaurandId,
+                cartItems : self.cartItems
             ))
+            
             searchURLRequest.httpBody = jsonBody
             
             print("jsonBody:\(jsonBody)")
@@ -159,31 +158,19 @@ class restaurantViewController: UIViewController
             {
                 guard let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode)
-                    else {
+                    else
+                    {
                         print(error as Any)
                         return
-                }
+                    }
 
                 let cartResponse = try JSONDecoder().decode(Cart.self, from: data)
-
                 print(cartResponse)
-
-                self.loadCartItemFromJSONDataGET()
-//                if signUpDetailsResponse.username != nil
-//                {
-//                    DispatchQueue.main.async
-//                    {
-//                        self.displayAlert(title: "", message: "Registration successful.")
-//                    }
+                
+//                DispatchQueue.main.async {
+//                    self.menuItemTableView.reloadData()
 //                }
-//                else
-//                {
-//                    DispatchQueue.main.async
-//                        {
-//                            //self.displayAlert(title: "", message: "Sorry. Could not register. Try after sometime.")
-//                            displayAlert(vc: self, title: "", message: "Sorry. Could not register. Try after sometime.")
-//                    }
-//                }
+                
             }
             catch
             {
@@ -232,9 +219,7 @@ extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
             }
         
             cell?.btnAddAction = { [unowned self] in
-
                 var tempQuantity = 0
-                
                 if let quantity = Int((cell?.lblAdd.text)!)
                 {
                     cell?.lblAdd.text = String(quantity + 1)
@@ -247,6 +232,26 @@ extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
                 }
                 self.loadCartItemFromJSONDataPOST(self.selectedRestaurant.id!, self.arrMenuItems[indexPath.row].id!, self.arrMenuItems[indexPath.row].name!, self.arrMenuItems[indexPath.row].price!, tempQuantity)
             }
+            
+            cell?.btnSubtractAction = { [unowned self] in
+                var tempQuantity = 0
+                if let quantity = Int((cell?.lblAdd.text)!)
+                {
+                    if(quantity > 0)
+                    {
+                        cell?.lblAdd.text = String(quantity - 1)
+                        tempQuantity = quantity - 1
+                    }
+                    else if(quantity == 0)
+                    {
+                        cell?.lblAdd.text = "Add"
+                        tempQuantity = 0
+                        cell?.btnMinus.isHidden = true
+                    }
+                }
+            self.loadCartItemFromJSONDataPOST(self.selectedRestaurant.id!, self.arrMenuItems[indexPath.row].id!, self.arrMenuItems[indexPath.row].name!, self.arrMenuItems[indexPath.row].price!, tempQuantity)
+            }
+            
         }
         return cell!
     }

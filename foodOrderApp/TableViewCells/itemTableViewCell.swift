@@ -18,10 +18,10 @@ class itemTableViewCell: UITableViewCell
     
     @IBOutlet weak var btnPlus: UIButton!
     @IBOutlet weak var btnMinus: UIButton!
-    
     @IBOutlet weak var lblAdd: UILabel!
-    var btnAddAction : (()->())?
     
+    var btnAddAction : (()->())?
+    var btnSubtractAction : (()->())?
     
     override func awakeFromNib()
     {
@@ -29,6 +29,11 @@ class itemTableViewCell: UITableViewCell
         self.btnPlus.addTarget(self, action: #selector(btnPlusTapped(_:)), for: .touchUpInside)
     }
 
+    override func prepareForReuse()
+    {
+        super.prepareForReuse()
+        lblAdd.text = "Add"
+    }
 //    override func setSelected(_ selected: Bool, animated: Bool) {
 //        super.setSelected(selected, animated: animated)
 //
@@ -43,6 +48,6 @@ class itemTableViewCell: UITableViewCell
     
     @IBAction func btnMinusTapped(_ sender: UIButton)
     {
-        
+        btnSubtractAction?()
     }
 }

@@ -361,22 +361,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j0h-3h-lzC" userLabel="imgFoodPic">
-                                                    <rect key="frame" x="10" y="5" width="118" height="134.5"/>
+                                                    <rect key="frame" x="10" y="5" width="244" height="134.5"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mui-mk-N3h" userLabel="lblTitle">
-                                                    <rect key="frame" x="138" y="10" width="246" height="58"/>
+                                                    <rect key="frame" x="264" y="10" width="540" height="58"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="American, Chinese, Indian" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zb-rc-Y8E" userLabel="lblType">
-                                                    <rect key="frame" x="138" y="66.5" width="226" height="29"/>
+                                                    <rect key="frame" x="264" y="66.5" width="520" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.61568627450000002" green="0.61568627450000002" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 mins . Rs.800 for two " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYI-u5-Uxr" userLabel="lblCost">
-                                                    <rect key="frame" x="138" y="105.5" width="246" height="29"/>
+                                                    <rect key="frame" x="264" y="105.5" width="540" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.61568627450000002" green="0.61568627450000002" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -526,38 +526,38 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x1r-m6-GlE" userLabel="imgFoodItem">
-                                                    <rect key="frame" x="10" y="10" width="118" height="124.5"/>
+                                                    <rect key="frame" x="10" y="10" width="244" height="124.5"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf9-FG-dMP" userLabel="lblItemTitle">
-                                                    <rect key="frame" x="138" y="10" width="246" height="29"/>
+                                                    <rect key="frame" x="264" y="10" width="540" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZa-ia-14u" userLabel="lblCost">
-                                                    <rect key="frame" x="138" y="107" width="142.5" height="27.5"/>
+                                                    <rect key="frame" x="264" y="107" width="331.5" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.61568627450000002" green="0.61568627450000002" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OSf-Ra-iJC" userLabel="viewAdd">
-                                                    <rect key="frame" x="285.5" y="107" width="98.5" height="27.5"/>
+                                                    <rect key="frame" x="600.5" y="107" width="203.5" height="27.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oN5-Xe-6vs" userLabel="lblAdd">
-                                                            <rect key="frame" x="34.5" y="0.0" width="29.5" height="27.5"/>
+                                                            <rect key="frame" x="87" y="0.0" width="29.5" height="27.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" name="Fire Brick"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nw-Ti-yFs" userLabel="btnPlus">
-                                                            <rect key="frame" x="79" y="0.0" width="19.5" height="27.5"/>
+                                                            <rect key="frame" x="163" y="0.0" width="40.5" height="27.5"/>
                                                             <state key="normal" title="+"/>
                                                             <connections>
                                                                 <action selector="btnPlusTapped:" destination="3z6-ik-SGE" eventType="touchUpInside" id="YG8-gq-TsT"/>
                                                             </connections>
                                                         </button>
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCD-T9-uLY" userLabel="btnMinus">
-                                                            <rect key="frame" x="0.0" y="0.0" width="19.5" height="27.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="40.5" height="27.5"/>
                                                             <state key="normal" title="-"/>
                                                             <connections>
                                                                 <action selector="btnMinusTapped:" destination="3z6-ik-SGE" eventType="touchUpInside" id="weh-54-vzu"/>
@@ -586,7 +586,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMP-qI-gnx" userLabel="txtViewIngredients">
-                                                    <rect key="frame" x="138" y="44" width="246" height="58"/>
+                                                    <rect key="frame" x="264" y="44" width="540" height="58"/>
                                                     <color key="textColor" red="0.61568627450000002" green="0.61568627450000002" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
