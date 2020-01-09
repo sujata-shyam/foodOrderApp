@@ -140,7 +140,6 @@ class restaurantViewController: UIViewController
             ))
             
             searchURLRequest.httpBody = jsonBody
-            
             print("jsonBody:\(jsonBody)")
         }
         catch
@@ -178,7 +177,6 @@ class restaurantViewController: UIViewController
             }
         }.resume()
     }
-    
 }
 
 extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
@@ -212,9 +210,10 @@ extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
             
             for(key, value) in cartItems
             {
-                if(key == arrMenuItems[indexPath.row].id)
+                if( (key == arrMenuItems[indexPath.row].id) && ((value?.quantity)! > 0) )
                 {
                     cell?.lblAdd.text = String(Int((value?.quantity)!))
+                    cell?.btnMinus.isHidden = false
                 }
             }
         
@@ -239,21 +238,27 @@ extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
                 {
                     if(quantity > 0)
                     {
-                        cell?.lblAdd.text = String(quantity - 1)
                         tempQuantity = quantity - 1
-                    }
-                    else if(quantity == 0)
-                    {
-                        cell?.lblAdd.text = "Add"
-                        tempQuantity = 0
-                        cell?.btnMinus.isHidden = true
+                        if(tempQuantity == 0)
+                        {
+                            cell?.lblAdd.text = "Add"
+                            cell?.btnMinus.isHidden = true
+                            self.cartItems[self.arrMenuItems[indexPath.row].id!] = nil
+                        }
+                        else
+                        {
+                            cell?.lblAdd.text = String(tempQuantity)
+                        }
                     }
                 }
             self.loadCartItemFromJSONDataPOST(self.selectedRestaurant.id!, self.arrMenuItems[indexPath.row].id!, self.arrMenuItems[indexPath.row].name!, self.arrMenuItems[indexPath.row].price!, tempQuantity)
             }
-            
         }
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
