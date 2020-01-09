@@ -22,7 +22,7 @@ class restaurantViewController: UIViewController
 
     var selectedRestaurant = Restaurant(id: nil, name: nil, description: nil, city: nil, location: nil) //Value passed from prev. View Controller
     
-    var restIDFromCart = ""
+    var restaurantIdFromCart = ""
     
     var arrImages = [
         UIImage(imageLiteralResourceName: "pongal"),
@@ -98,11 +98,14 @@ class restaurantViewController: UIViewController
                     
                     if ((initialCart.restaurantId != "") || (initialCart.restaurantId != nil))
                     {
-                        self.restIDFromCart = initialCart.restaurantId!
+                        self.restaurantIdFromCart = initialCart.restaurantId!
                         
-                        if(initialCart.cartItems.count > 0)
+                        if(initialCart.restaurantId == self.selectedRestaurant.id)
                         {
-                            self.cartItems = initialCart.cartItems
+                            if(initialCart.cartItems.count > 0)
+                            {
+                                self.cartItems = initialCart.cartItems
+                            }
                         }
                     }
                 }
@@ -115,11 +118,40 @@ class restaurantViewController: UIViewController
         }
     }
     
+    func createAlertAction()
+    {
+        let alert = UIAlertController(title: "Items already in cart", message: "Your cart contains items from a different restaurant. Adding items from new restaurant will reset your cart. Do you wish to proceed", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Okay", style: .default) { (action) in
+            self.resetCart()
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(action)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func resetCart()
+    {
+        self.cartItems.removeAll()
+        menuItemTableView.reloadData()
+    }
+    
     func loadCartItemFromJSONDataPOST(_ restaurandId: String, _ itemId: String, _ name: String, _ price: Double, _ quantity: Int)
     {
-        
         loadCartItemFromJSONDataGET()
         cartItems[itemId] = CartItemDetail(name: name, price: price, quantity: quantity)
+        
+        
+        if(restaurantIdFromCart != self.selectedRestaurant.id)
+        {
+            self.createAlertAction()
+        }
+        
         
         let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/cart")
         var searchURLRequest = URLRequest(url: searchURL!)
@@ -129,11 +161,6 @@ class restaurantViewController: UIViewController
 
         do
         {
-//            let jsonBody = try JSONEncoder().encode(Cart(
-//            restaurantId: restaurandId,
-//            cartItems : [itemId: CartItemDetail(name: name, price: price, quantity: quantity)]
-//            ))
-
             let jsonBody = try JSONEncoder().encode(Cart(
                 restaurantId: restaurandId,
                 cartItems : self.cartItems
@@ -146,7 +173,7 @@ class restaurantViewController: UIViewController
         {
             print(error)
         }
-        
+    
         URLSession.shared.dataTask(with: searchURLRequest){data, response,error in
             guard let data =  data else { return }
             
@@ -177,6 +204,7 @@ class restaurantViewController: UIViewController
             }
         }.resume()
     }
+    
 }
 
 extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
@@ -208,7 +236,7 @@ extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
             cell?.txtViewIngredients.text = arrMenuItems[indexPath.row].ingredients
             cell?.lblCost.text = String(arrMenuItems[indexPath.row].price! as Double)
             
-            for(key, value) in cartItems
+            for(key, value) in cartItems//Setting initial values
             {
                 if( (key == arrMenuItems[indexPath.row].id) && ((value?.quantity)! > 0) )
                 {
@@ -252,6 +280,7 @@ extension restaurantViewController:UITableViewDelegate, UITableViewDataSource
                     }
                 }
             self.loadCartItemFromJSONDataPOST(self.selectedRestaurant.id!, self.arrMenuItems[indexPath.row].id!, self.arrMenuItems[indexPath.row].name!, self.arrMenuItems[indexPath.row].price!, tempQuantity)
+
             }
         }
         return cell!
