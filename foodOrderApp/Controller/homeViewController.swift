@@ -12,12 +12,12 @@ class homeViewController: UIViewController
 {
     var arrRestaurants = [Restaurant]()
     
-    var arrImages = [UIImage(imageLiteralResourceName: "Baked"),
-                     UIImage(imageLiteralResourceName: "American"),
-                     UIImage(imageLiteralResourceName: "Pizza"),
-                     UIImage(imageLiteralResourceName: "FrenchFries"),
-                     UIImage(imageLiteralResourceName: "Burger"),
-                     UIImage(imageLiteralResourceName: "Indian")
+    var arrImages = [UIImage(named: "Baked"),
+                     UIImage(named: "American"),
+                     UIImage(named: "Pizza"),
+                     UIImage(named: "FrenchFries"),
+                     UIImage(named: "Burger"),
+                     UIImage(named: "Indian")
                      ]
     
     @IBOutlet weak var restaurantTableView: UITableView!

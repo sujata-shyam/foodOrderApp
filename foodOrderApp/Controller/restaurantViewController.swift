@@ -16,7 +16,7 @@ class restaurantViewController: UIViewController
     @IBOutlet weak var lblOtherDetails: UILabel!
     
     @IBOutlet weak var menuItemTableView: UITableView!
-        
+    
     var arrMenuItems = [MenuItem]()
     var cartItems = [String:CartItemDetail?]()
 
@@ -152,6 +152,7 @@ class restaurantViewController: UIViewController
             self.createAlertAction()
         }
         
+        saveRestaurantDetailsLocally()
         
         let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/cart")
         var searchURLRequest = URLRequest(url: searchURL!)
@@ -205,6 +206,12 @@ class restaurantViewController: UIViewController
         }.resume()
     }
     
+    func saveRestaurantDetailsLocally()
+    {
+        defaults.set(selectedRestaurant.id, forKey: "restaurantId")
+        defaults.set(selectedRestaurant.name, forKey: "restaurantName")
+        defaults.set(selectedRestaurant.city, forKey: "restaurantCity")
+    }
 }
 
 extension restaurantViewController:UITableViewDelegate, UITableViewDataSource

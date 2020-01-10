@@ -18,6 +18,7 @@
 		8563212D23A8D154001A9F32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8563212B23A8D154001A9F32 /* LaunchScreen.storyboard */; };
 		859692DF23C0BAC2003CF291 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */; };
 		85B4696723C73AE700D30D3B /* cartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B4696623C73AE700D30D3B /* cartViewController.swift */; };
+		85B4696923C86CC700D30D3B /* checkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B4696823C86CC700D30D3B /* checkoutTableViewCell.swift */; };
 		85BC414023A9F91B00AA5B0D /* Colour.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85BC413F23A9F91B00AA5B0D /* Colour.xcassets */; };
 		85BC414223AB2F4000AA5B0D /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414123AB2F4000AA5B0D /* homeViewController.swift */; };
 		85BC414523AB5FAF00AA5B0D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414423AB5FAF00AA5B0D /* API.swift */; };
@@ -42,6 +43,7 @@
 		8563212E23A8D154001A9F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		85B4696623C73AE700D30D3B /* cartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartViewController.swift; sourceTree = "<group>"; };
+		85B4696823C86CC700D30D3B /* checkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutTableViewCell.swift; sourceTree = "<group>"; };
 		85BC413F23A9F91B00AA5B0D /* Colour.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colour.xcassets; sourceTree = "<group>"; };
 		85BC414123AB2F4000AA5B0D /* homeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		85BC414423AB5FAF00AA5B0D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				85BC414A23AB88C500AA5B0D /* restaurantTableViewCell.swift */,
 				852DBEF123B0817000232CF3 /* itemTableViewCell.swift */,
+				85B4696823C86CC700D30D3B /* checkoutTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				85C424B223AE176E00E9ABEA /* menuItem.swift in Sources */,
 				8563212323A8D150001A9F32 /* AppDelegate.swift in Sources */,
 				85B4696723C73AE700D30D3B /* cartViewController.swift in Sources */,
+				85B4696923C86CC700D30D3B /* checkoutTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
