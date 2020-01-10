@@ -141,116 +141,104 @@
                                 <rect key="frame" x="10" y="532" width="399" height="221"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWz-NN-I3W" userLabel="lblBillDetail">
-                                        <rect key="frame" x="5" y="5" width="389" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="9fd-m1-GM8"/>
-                                        </constraints>
+                                        <rect key="frame" x="5" y="5" width="389" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3F-aF-xOS" userLabel="lblItemTotal">
-                                        <rect key="frame" x="5" y="40" width="199.5" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1RC-Se-j8f">
+                                        <rect key="frame" x="5" y="31.5" width="389" height="184.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4MG-ar-d71">
+                                                <rect key="frame" x="0.0" y="0.0" width="389" height="42.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3F-aF-xOS" userLabel="lblItemTotal">
+                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="42.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCp-pR-gyc" userLabel="lblItemTotalAmt">
+                                                        <rect key="frame" x="197" y="0.0" width="192" height="42.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="d2Y-gc-Rb5">
+                                                <rect key="frame" x="0.0" y="47.5" width="389" height="42.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Charges:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTC-fs-Yd7" userLabel="lblRestaurantCharges">
+                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="42.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdy-Sg-cAI" userLabel="lblRestaurantChargesAmt">
+                                                        <rect key="frame" x="197" y="0.0" width="192" height="42.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="WZ6-dV-O8M">
+                                                <rect key="frame" x="0.0" y="95" width="389" height="42"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Fee:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiG-Xg-gYl" userLabel="lblDeliveryFee">
+                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="42"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEU-Md-Scl" userLabel="lblDeliveryFeeAmt">
+                                                        <rect key="frame" x="197" y="0.0" width="192" height="42"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SBm-MD-EGy">
+                                                <rect key="frame" x="0.0" y="142" width="389" height="42.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Bill:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Er8-ce-Bul" userLabel="lblFinalBill">
+                                                        <rect key="frame" x="0.0" y="0.0" width="192" height="42.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdZ-Q3-1sq" userLabel="lblFinalBillAmt">
+                                                        <rect key="frame" x="197" y="0.0" width="192" height="42.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="UCd-GV-c9H"/>
+                                            <constraint firstItem="SBm-MD-EGy" firstAttribute="leading" secondItem="1RC-Se-j8f" secondAttribute="leading" id="I84-Df-DAd"/>
+                                            <constraint firstAttribute="trailing" secondItem="4MG-ar-d71" secondAttribute="trailing" id="NIm-l0-53i"/>
+                                            <constraint firstAttribute="trailing" secondItem="WZ6-dV-O8M" secondAttribute="trailing" id="Xsa-OI-FYT"/>
+                                            <constraint firstItem="WZ6-dV-O8M" firstAttribute="leading" secondItem="1RC-Se-j8f" secondAttribute="leading" id="fui-D3-i5p"/>
+                                            <constraint firstAttribute="trailing" secondItem="d2Y-gc-Rb5" secondAttribute="trailing" id="kie-Tq-pQg"/>
+                                            <constraint firstItem="d2Y-gc-Rb5" firstAttribute="leading" secondItem="1RC-Se-j8f" secondAttribute="leading" id="r6q-9y-gnH"/>
+                                            <constraint firstAttribute="trailing" secondItem="SBm-MD-EGy" secondAttribute="trailing" id="tbE-CK-t6X"/>
+                                            <constraint firstItem="4MG-ar-d71" firstAttribute="leading" secondItem="1RC-Se-j8f" secondAttribute="leading" id="z1V-oQ-Qd9"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCp-pR-gyc" userLabel="lblItemTotalAmt">
-                                        <rect key="frame" x="209.5" y="40" width="184.5" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="9Dp-CN-Yh6"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Charges:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTC-fs-Yd7" userLabel="lblRestaurantCharges">
-                                        <rect key="frame" x="5" y="75" width="199.5" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="1PT-4L-Cek"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdy-Sg-cAI" userLabel="lblRestaurantChargesAmt">
-                                        <rect key="frame" x="209.5" y="75" width="184.5" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="NjY-kl-rqQ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery Fee:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiG-Xg-gYl" userLabel="lblDeliveryFee">
-                                        <rect key="frame" x="5" y="110" width="199.5" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="m07-68-hID"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEU-Md-Scl" userLabel="lblDeliveryFeeAmt">
-                                        <rect key="frame" x="209.5" y="110" width="184.5" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="DE3-VN-1D5"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Bill:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Er8-ce-Bul" userLabel="lblFinalBill">
-                                        <rect key="frame" x="5" y="145" width="199.5" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="SOV-Xj-Ns3"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdZ-Q3-1sq" userLabel="lblFinalBillAmt">
-                                        <rect key="frame" x="209.5" y="145" width="184.5" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="wGb-Ux-N0Z"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Er8-ce-Bul" firstAttribute="leading" secondItem="V1O-ud-uUU" secondAttribute="leading" constant="5" id="16O-ee-Rc3"/>
-                                    <constraint firstItem="iiG-Xg-gYl" firstAttribute="leading" secondItem="V1O-ud-uUU" secondAttribute="leading" constant="5" id="9cC-Fc-SLf"/>
-                                    <constraint firstItem="rdy-Sg-cAI" firstAttribute="leading" secondItem="WTC-fs-Yd7" secondAttribute="trailing" constant="5" id="ADd-li-mMx"/>
-                                    <constraint firstItem="ZdZ-Q3-1sq" firstAttribute="top" secondItem="iiG-Xg-gYl" secondAttribute="bottom" constant="5" id="CJg-Sl-xr7"/>
-                                    <constraint firstAttribute="trailing" secondItem="wCp-pR-gyc" secondAttribute="trailing" constant="5" id="DCY-TR-OCp"/>
-                                    <constraint firstItem="Er8-ce-Bul" firstAttribute="width" secondItem="V1O-ud-uUU" secondAttribute="width" multiplier="0.5" id="E7b-qJ-T9w"/>
-                                    <constraint firstItem="WTC-fs-Yd7" firstAttribute="width" secondItem="V1O-ud-uUU" secondAttribute="width" multiplier="0.5" id="GmY-Oh-aT1"/>
-                                    <constraint firstItem="WTC-fs-Yd7" firstAttribute="leading" secondItem="V1O-ud-uUU" secondAttribute="leading" constant="5" id="Gnh-F2-SJ2"/>
-                                    <constraint firstItem="Er8-ce-Bul" firstAttribute="top" secondItem="iiG-Xg-gYl" secondAttribute="bottom" constant="5" id="JNr-Ib-awn"/>
-                                    <constraint firstItem="W3F-aF-xOS" firstAttribute="top" secondItem="OWz-NN-I3W" secondAttribute="bottom" constant="5" id="JTM-KX-ow1"/>
-                                    <constraint firstAttribute="trailing" secondItem="SEU-Md-Scl" secondAttribute="trailing" constant="5" id="Lk8-Ek-MSK"/>
-                                    <constraint firstItem="W3F-aF-xOS" firstAttribute="leading" secondItem="V1O-ud-uUU" secondAttribute="leading" constant="5" id="Y4v-cQ-dYV"/>
-                                    <constraint firstItem="SEU-Md-Scl" firstAttribute="top" secondItem="rdy-Sg-cAI" secondAttribute="bottom" constant="5" id="Zma-8c-0md"/>
-                                    <constraint firstAttribute="trailing" secondItem="OWz-NN-I3W" secondAttribute="trailing" constant="5" id="eN3-qk-Ec5"/>
-                                    <constraint firstItem="W3F-aF-xOS" firstAttribute="width" secondItem="V1O-ud-uUU" secondAttribute="width" multiplier="0.5" id="hXP-wV-Lax"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZdZ-Q3-1sq" secondAttribute="trailing" constant="5" id="iO3-DY-9jg"/>
-                                    <constraint firstItem="rdy-Sg-cAI" firstAttribute="top" secondItem="wCp-pR-gyc" secondAttribute="bottom" constant="5" id="kdu-32-hkd"/>
-                                    <constraint firstItem="OWz-NN-I3W" firstAttribute="top" secondItem="V1O-ud-uUU" secondAttribute="top" constant="5" id="lGz-sY-sjX"/>
-                                    <constraint firstItem="wCp-pR-gyc" firstAttribute="top" secondItem="OWz-NN-I3W" secondAttribute="bottom" constant="5" id="lel-u3-xwH"/>
-                                    <constraint firstItem="OWz-NN-I3W" firstAttribute="leading" secondItem="V1O-ud-uUU" secondAttribute="leading" constant="5" id="pCl-H4-H3j"/>
-                                    <constraint firstItem="iiG-Xg-gYl" firstAttribute="width" secondItem="V1O-ud-uUU" secondAttribute="width" multiplier="0.5" id="qHY-dA-85z"/>
-                                    <constraint firstAttribute="trailing" secondItem="rdy-Sg-cAI" secondAttribute="trailing" constant="5" id="rnA-97-rd5"/>
-                                    <constraint firstItem="iiG-Xg-gYl" firstAttribute="top" secondItem="WTC-fs-Yd7" secondAttribute="bottom" constant="5" id="ryp-GY-zmd"/>
-                                    <constraint firstItem="WTC-fs-Yd7" firstAttribute="top" secondItem="W3F-aF-xOS" secondAttribute="bottom" constant="5" id="thX-BQ-SQY"/>
-                                    <constraint firstItem="SEU-Md-Scl" firstAttribute="leading" secondItem="iiG-Xg-gYl" secondAttribute="trailing" constant="5" id="wfI-pg-249"/>
-                                    <constraint firstItem="ZdZ-Q3-1sq" firstAttribute="leading" secondItem="Er8-ce-Bul" secondAttribute="trailing" constant="5" id="wpT-F6-yU5"/>
-                                    <constraint firstItem="wCp-pR-gyc" firstAttribute="leading" secondItem="W3F-aF-xOS" secondAttribute="trailing" constant="5" id="xsu-6k-5ij"/>
+                                    <constraint firstItem="1RC-Se-j8f" firstAttribute="leading" secondItem="V1O-ud-uUU" secondAttribute="leading" constant="5" id="5aU-9w-RhF"/>
+                                    <constraint firstItem="OWz-NN-I3W" firstAttribute="top" secondItem="V1O-ud-uUU" secondAttribute="top" constant="5" id="DQt-TP-CyX"/>
+                                    <constraint firstItem="OWz-NN-I3W" firstAttribute="leading" secondItem="V1O-ud-uUU" secondAttribute="leading" constant="5" id="EeW-YH-zOd"/>
+                                    <constraint firstAttribute="trailing" secondItem="1RC-Se-j8f" secondAttribute="trailing" constant="5" id="jhy-2W-107"/>
+                                    <constraint firstAttribute="trailing" secondItem="OWz-NN-I3W" secondAttribute="trailing" constant="5" id="tvY-2O-iLz"/>
+                                    <constraint firstAttribute="bottom" secondItem="1RC-Se-j8f" secondAttribute="bottom" constant="5" id="wOW-MJ-X0u"/>
+                                    <constraint firstItem="1RC-Se-j8f" firstAttribute="top" secondItem="OWz-NN-I3W" secondAttribute="bottom" constant="5" id="wUM-FH-oRM"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fY-xS-EBF" userLabel="btnPlaceOrder">
