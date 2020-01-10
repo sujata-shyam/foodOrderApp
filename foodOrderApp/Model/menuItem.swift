@@ -29,4 +29,16 @@ struct CartItemDetail:Codable
     var quantity: Int?
 }
 
+struct Checkout:Codable
+{
+    let restaurantId: String?
+    let cartItems : [String:CartItemDetail?]
+    let bill: Bill?
+}
 
+struct Bill:Codable
+{
+    let deliveryfee: Double?
+    let subtotal: Double?
+    let total: Double?
+}
