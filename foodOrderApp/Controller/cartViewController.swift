@@ -23,6 +23,7 @@ class cartViewController: UIViewController {
     
     var currencySymbol = ""
     var arrCartItemDetail = [CartItemDetail]()
+    lazy var checkoutLocal = Checkout(restaurantId:nil, cartItems:nil, bill:nil)
     
     override func viewDidLoad()
     {
@@ -40,12 +41,12 @@ class cartViewController: UIViewController {
     }
     func setRestaurantDefaults()
     {
-        //let restaurantId = defaults.string(forKey: "restaurantId")
-        let restaurantName = defaults.string(forKey: "restaurantName")
-        let restaurantCity = defaults.string(forKey: "restaurantCity")
+//        let restaurantId = defaults.string(forKey: "restaurantId")
+//        let restaurantName = defaults.string(forKey: "restaurantName")
+//        let restaurantCity = defaults.string(forKey: "restaurantCity")
 
-        txtViewRestaurantName.text = restaurantName
-        txtViewRestaurantAddr.text = restaurantCity
+        txtViewRestaurantName.text = defaults.string(forKey: "restaurantName")
+        txtViewRestaurantAddr.text = defaults.string(forKey: "restaurantCity")
     }
     
     func loadCheckOutJSONDataGET()
@@ -62,9 +63,11 @@ class cartViewController: UIViewController {
                     print(checkOutDetails)
                     if ((checkOutDetails.restaurantId != "") || (checkOutDetails.restaurantId != nil))
                     {
-                        if(checkOutDetails.cartItems.count > 0)
+                        self.checkoutLocal = checkOutDetails
+                        
+                        if(checkOutDetails.cartItems!.count > 0)
                         {
-                            self.arrCartItemDetail = Array(checkOutDetails.cartItems.values) as! [CartItemDetail]
+                            self.arrCartItemDetail = Array(checkOutDetails.cartItems!.values) as! [CartItemDetail]
                             
                             let itemTotal = self.calculateItemTotal()
                             
@@ -92,7 +95,7 @@ class cartViewController: UIViewController {
 
     @IBAction func btnPlaceOrderTapped(_ sender: UIButton)
     {
-        
+        placeOrderPOST()
     }
     
     func calculateItemTotal()->Double
@@ -103,6 +106,77 @@ class cartViewController: UIViewController {
             itemTotal = itemTotal + (item.price! * Double(item.quantity!))
         }
         return itemTotal
+    }
+    
+    func placeOrderPOST()
+    {
+        let loginResponseLocal = LoginResponse(
+            msg: defaults.string(forKey: "userMessage"),
+            session: defaults.string(forKey: "userSession"),
+            id: defaults.string(forKey: "userId"),
+            username: defaults.string(forKey: "userName"),
+            phone: defaults.string(forKey: "userPhone"),
+            email: defaults.string(forKey: "userEmail")
+        )
+        
+        let locationLocal = Location(
+            latitude: defaults.string(forKey: "restaurantLatitude"),
+            longitude: defaults.string(forKey: "restaurantLongitude")
+        )
+        
+        let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/order")
+        var searchURLRequest = URLRequest(url: searchURL!)
+        
+        searchURLRequest.httpMethod = "POST"
+        searchURLRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do
+        {
+            let jsonBody = try JSONEncoder().encode(OrderDetail(
+                userDetails: loginResponseLocal,
+                order: checkoutLocal,
+                location: locationLocal
+            ))
+            
+            searchURLRequest.httpBody = jsonBody
+            print("jsonBody:\(jsonBody)")
+        }
+        catch
+        {
+            print(error)
+        }
+        
+        URLSession.shared.dataTask(with: searchURLRequest){data, response,error in
+            guard let data =  data else { return }
+            
+            do
+            {
+                guard let response = response as? HTTPURLResponse,
+                    (200...299).contains(response.statusCode)
+                    else
+                {
+                    print(error as Any)
+                    return
+                }
+                //let received = String(data: data, encoding: String.Encoding.utf8)
+                //print("received: \(received)")
+                
+                let orderResponse = try JSONDecoder().decode(OrderResponse.self, from: data)
+                print(orderResponse)
+                
+                if (orderResponse.orderid != nil)
+                {
+                    DispatchQueue.main.async
+                    {
+                        displayAlert(vc: self, title: "", message: "Order placed.")
+                    }
+                }
+            }
+            catch
+            {
+                print(error)
+            }
+            }.resume()
     }
     
 }

@@ -32,7 +32,7 @@ struct CartItemDetail:Codable
 struct Checkout:Codable
 {
     let restaurantId: String?
-    let cartItems : [String:CartItemDetail?]
+    let cartItems : [String:CartItemDetail?]?
     let bill: Bill?
 }
 
@@ -41,4 +41,21 @@ struct Bill:Codable
     let deliveryfee: Double?
     let subtotal: Double?
     let total: Double?
+}
+
+struct OrderDetail:Codable
+{
+    let userDetails: LoginResponse?
+    let order: Checkout?
+    let location: Location?
+}
+
+struct OrderResponse:Codable
+{
+    let orderid: Orderid?
+}
+
+struct Orderid:Codable
+{
+    let id: String?
 }

@@ -39,10 +39,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     {
         txtRegName.delegate = self
         txtRegEmail.delegate = self
-        //txtRegPhone.delegate = self
-        txtRegPassword.delegate = self
-        
-        //txtPhone.delegate = self
+        txtRegPassword.delegate = self        
         txtPassword.delegate = self
     }
     
@@ -50,7 +47,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     {
         if(txtPhone.text!.isEmpty)
         {
-            //displayAlert(title: "", message: "Please enter the phone no.")
             displayAlert(vc: self, title: "", message: "Please enter the phone no.")
         }
         else
@@ -105,6 +101,8 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 
                 if let name = loginResponse.username
                 {
+                    self.saveUserDetailsLocally(loginResponse)
+                    
                     DispatchQueue.main.async
                     {
                         self.lblClientName.text = "Hello \(name))"
@@ -117,7 +115,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 {
                     DispatchQueue.main.async
                     {
-                    //self.displayAlert(title: "Failed Login Attempt", message: "User does not exist")
                         displayAlert(vc: self, title: "Failed Login Attempt", message: "User does not exist")
                     }
                 }
@@ -256,18 +253,16 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 if signUpDetailsResponse.username != nil
                 {
                     DispatchQueue.main.async
-                        {
-                            //self.displayAlert(title: "", message: "Registration successful.")
-                            displayAlert(vc: self, title: "", message: "Registration successful.")
-                            self.viewSignUp.isHidden = true
-                            self.loadLoginData(self.txtRegPhone.text!)
+                    {
+                        displayAlert(vc: self, title: "", message: "Registration successful.")
+                        self.viewSignUp.isHidden = true
+                        self.loadLoginData(self.txtRegPhone.text!)
                     }
                 }
                 else
                 {
                     DispatchQueue.main.async
                     {
-                        //self.displayAlert(title: "", message: "Sorry. Could not register. Try after sometime.")
                         displayAlert(vc: self, title: "", message: "Sorry. Could not register. Try after sometime.")
                     }
                 }
@@ -277,6 +272,16 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 print(error)
             }
         }.resume()
+    }
+    
+    func saveUserDetailsLocally(_ loginResponse: LoginResponse)
+    {
+        defaults.set(loginResponse.msg, forKey: "userMessage")
+        defaults.set(loginResponse.session, forKey: "userSession")
+        defaults.set(loginResponse.id, forKey: "userId")
+        defaults.set(loginResponse.username, forKey: "userName")
+        defaults.set(loginResponse.phone, forKey: "userPhone")
+        defaults.set(loginResponse.email, forKey: "userEmail")
     }
 }
 

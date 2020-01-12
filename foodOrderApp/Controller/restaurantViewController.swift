@@ -20,7 +20,7 @@ class restaurantViewController: UIViewController
     var arrMenuItems = [MenuItem]()
     var cartItems = [String:CartItemDetail?]()
 
-    var selectedRestaurant = Restaurant(id: nil, name: nil, description: nil, city: nil, location: nil) //Value passed from prev. View Controller
+    var selectedRestaurant = Restaurant(id: nil, name: nil, description: nil, city: nil, location: nil, latitude: nil, longitude: nil) //Value passed from prev. View Controller
     
     var restaurantIdFromCart = ""
     
@@ -211,6 +211,8 @@ class restaurantViewController: UIViewController
         defaults.set(selectedRestaurant.id, forKey: "restaurantId")
         defaults.set(selectedRestaurant.name, forKey: "restaurantName")
         defaults.set(selectedRestaurant.city, forKey: "restaurantCity")
+        defaults.set(selectedRestaurant.latitude, forKey: "restaurantLatitude")
+        defaults.set(selectedRestaurant.longitude, forKey: "restaurantLongitude")
     }
 }
 

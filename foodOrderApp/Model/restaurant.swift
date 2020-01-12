@@ -13,6 +13,8 @@ struct Restaurant:Codable
     let description : String?
     let city : String?
     let location: String?
+    let latitude: String?
+    let longitude: String?
 }
 
 

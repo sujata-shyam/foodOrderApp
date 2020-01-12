@@ -26,3 +26,9 @@ struct Predictions:Codable
     let street : String?
     let description : String?
 }
+
+struct Location:Codable
+{
+    let latitude : String?
+    let longitude : String?
+}

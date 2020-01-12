@@ -80,6 +80,9 @@ class homeViewController: UIViewController
                 do
                 {
                     self.arrRestaurants = try JSONDecoder().decode([Restaurant].self, from: data)
+                    //let received = String(data: data, encoding: String.Encoding.utf8)
+                    //print("received: \(received)")
+                    
                     DispatchQueue.main.async
                     {
                             self.restaurantTableView.reloadData()
