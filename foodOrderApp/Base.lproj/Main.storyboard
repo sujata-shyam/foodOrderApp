@@ -286,12 +286,14 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Cart" image="cart" id="02j-X9-cx9" userLabel="Cart"/>
                     <connections>
+                        <outlet property="btnPlaceOrder" destination="1fY-xS-EBF" id="f60-2q-qbe"/>
                         <outlet property="checkoutTableView" destination="qrn-he-8Ca" id="lVa-qy-EgJ"/>
                         <outlet property="imgViewRestaurant" destination="85g-jD-sPK" id="ecb-bs-h9K"/>
                         <outlet property="lblDeliveryFeeAmt" destination="SEU-Md-Scl" id="8ks-OK-lDp"/>
                         <outlet property="lblFinalBillAmt" destination="ZdZ-Q3-1sq" id="eVr-gf-JUZ"/>
                         <outlet property="lblItemTotalAmt" destination="wCp-pR-gyc" id="6cG-AW-1zq"/>
                         <outlet property="lblRestaurantChargesAmt" destination="rdy-Sg-cAI" id="y4S-nM-wt9"/>
+                        <outlet property="lblTitle" destination="cAN-Km-RS4" id="RSg-S6-JY3"/>
                         <outlet property="txtViewRestaurantAddr" destination="Ixn-r9-P9v" id="es7-lo-DZl"/>
                         <outlet property="txtViewRestaurantName" destination="EDZ-1R-8bX" id="qFv-P0-9m8"/>
                     </connections>

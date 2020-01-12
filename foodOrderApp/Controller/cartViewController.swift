@@ -10,6 +10,7 @@ import UIKit
 
 class cartViewController: UIViewController {
 
+    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var imgViewRestaurant: UIImageView!
     @IBOutlet weak var txtViewRestaurantName: UITextView!
     @IBOutlet weak var txtViewRestaurantAddr: UITextView!
@@ -20,6 +21,8 @@ class cartViewController: UIViewController {
     @IBOutlet weak var lblRestaurantChargesAmt: UILabel!
     @IBOutlet weak var lblDeliveryFeeAmt: UILabel!
     @IBOutlet weak var lblFinalBillAmt: UILabel!
+    
+    @IBOutlet weak var btnPlaceOrder: UIButton!
     
     var currencySymbol = ""
     var arrCartItemDetail = [CartItemDetail]()
@@ -41,10 +44,6 @@ class cartViewController: UIViewController {
     }
     func setRestaurantDefaults()
     {
-//        let restaurantId = defaults.string(forKey: "restaurantId")
-//        let restaurantName = defaults.string(forKey: "restaurantName")
-//        let restaurantCity = defaults.string(forKey: "restaurantCity")
-
         txtViewRestaurantName.text = defaults.string(forKey: "restaurantName")
         txtViewRestaurantAddr.text = defaults.string(forKey: "restaurantCity")
     }
@@ -158,9 +157,7 @@ class cartViewController: UIViewController {
                     print(error as Any)
                     return
                 }
-                //let received = String(data: data, encoding: String.Encoding.utf8)
-                //print("received: \(received)")
-                
+            
                 let orderResponse = try JSONDecoder().decode(OrderResponse.self, from: data)
                 print(orderResponse)
                 
@@ -169,6 +166,15 @@ class cartViewController: UIViewController {
                     DispatchQueue.main.async
                     {
                         displayAlert(vc: self, title: "", message: "Order placed.")
+                        self.btnPlaceOrder.isHidden = true
+                        self.lblTitle.text = "Your order is being processed."
+                    }
+                }
+                else
+                {
+                    DispatchQueue.main.async
+                    {
+                        displayAlert(vc: self, title: "", message: "Something went wrong. Please try after a while.")
                     }
                 }
             }
