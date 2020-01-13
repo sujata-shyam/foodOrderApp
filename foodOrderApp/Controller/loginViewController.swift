@@ -28,11 +28,31 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     @IBOutlet weak var txtRegEmail: UITextField!
     @IBOutlet weak var txtRegPassword: UITextField!
     
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         setTextDelegate()
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(true)
+        
+        if(defaults.bool(forKey: "isUserLoggedIn") == true)
+        {
+            self.lblClientName.text = "Hello \(defaults.string(forKey: "userName")))"
+            self.lblClientName.isHidden = false
+            self.btnLogout.isHidden = false
+            self.viewLogin.isHidden = true
+        }
+        else
+        {
+            viewLogin.isHidden = false
+            viewSignUp.isHidden = true
+            btnLogout.isHidden = true
+        }
     }
     
     func setTextDelegate()
@@ -141,7 +161,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     @IBAction func btnLogoutTapped(_ sender: UIButton)
     {
-        
+        defaults.set(false, forKey: "isUserLoggedIn")
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton)
@@ -282,6 +302,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         defaults.set(loginResponse.username, forKey: "userName")
         defaults.set(loginResponse.phone, forKey: "userPhone")
         defaults.set(loginResponse.email, forKey: "userEmail")
+        defaults.set(true, forKey: "isUserLoggedIn")
     }
 }
 

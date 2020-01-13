@@ -15,7 +15,21 @@ class accountViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(true)
+        
+        if(defaults.bool(forKey: "isUserLoggedIn") == true)
+        {
+            performSegue(withIdentifier: "goToLoginPage", sender: self)
+        }
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        
+    }
+    
     @IBAction func btnLoginTapped(_ sender: UIButton)
     {
         
