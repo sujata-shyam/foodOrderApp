@@ -45,6 +45,17 @@ class restaurantViewController: UIViewController
         menuItemTableView.delegate = self
         menuItemTableView.dataSource = self
         
+//        if let restaurantId = selectedRestaurant.id
+//        {
+//            loadCartItemFromJSONDataGET()
+//            loadMenuItemFromJSONData(restaurantId)
+//        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(true)
+        
         if let restaurantId = selectedRestaurant.id
         {
             loadCartItemFromJSONDataGET()

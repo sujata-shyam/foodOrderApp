@@ -42,7 +42,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         
         if(defaults.bool(forKey: "isUserLoggedIn") == true)
         {
-            self.lblClientName.text = "Hello \(defaults.string(forKey: "userName")))"
+            self.lblClientName.text = "Hello \((defaults.string(forKey: "userName")!))"
             self.lblClientName.isHidden = false
             self.btnLogout.isHidden = false
             self.viewLogin.isHidden = true
@@ -161,7 +161,13 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     @IBAction func btnLogoutTapped(_ sender: UIButton)
     {
-        defaults.set(false, forKey: "isUserLoggedIn")
+        clearUserDefaults()
+        clearView()
+        
+        viewLogin.isHidden = false
+        viewSignUp.isHidden = true
+        btnLogout.isHidden = true
+        lblClientName.isHidden = true
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton)
@@ -292,6 +298,29 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 print(error)
             }
         }.resume()
+    }
+    
+    func clearView()
+    {
+        txtPhone.text = nil
+        txtPassword.text = nil
+        
+        txtRegName.text = nil
+        txtRegPhone.text =  nil
+        txtRegEmail.text = nil
+        txtRegPassword.text = nil
+    }
+    
+    func clearUserDefaults()
+    {
+        defaults.set(false, forKey: "isUserLoggedIn")
+        
+        defaults.set(nil, forKey: "userMessage")
+        defaults.set(nil, forKey: "userSession")
+        defaults.set(nil, forKey: "userId")
+        defaults.set(nil, forKey: "userName")
+        defaults.set(nil, forKey: "userPhone")
+        defaults.set(nil, forKey: "userEmail")
     }
     
     func saveUserDetailsLocally(_ loginResponse: LoginResponse)
