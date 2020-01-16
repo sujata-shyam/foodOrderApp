@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class cartViewController: UIViewController {
 
     @IBOutlet weak var lblTitle: UILabel!
@@ -163,6 +164,8 @@ class cartViewController: UIViewController {
                 
                 if (orderResponse.orderid != nil)
                 {
+                    
+                    
                     DispatchQueue.main.async
                     {
                         displayAlert(vc: self, title: "", message: "Order placed.")
