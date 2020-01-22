@@ -91,7 +91,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
             ))
             searchURLRequest.httpBody = jsonBody
             
-            print(jsonBody)
+            //print(jsonBody)
         }
         catch
         {
@@ -117,7 +117,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 }
                 let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
                 
-                print(loginResponse)
+                //print(loginResponse)
                 
                 if let name = loginResponse.username
                 {
@@ -245,7 +245,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
             ))
             searchURLRequest.httpBody = jsonBody
             
-            print("jsonBody:\(jsonBody)")
+            //print("jsonBody:\(jsonBody)")
         }
         catch
         {
@@ -259,12 +259,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
 //            print("received: \(received)")
             
             do
-            {
-//                if let response1 = response
-//                {
-//                    print("response1:\(response1)")
-//                }
-                
+            {                
                 guard let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode)
                     else {
@@ -274,7 +269,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 
                 let signUpDetailsResponse = try JSONDecoder().decode(SignUpResponse.self, from: data)
                 
-                print(signUpDetailsResponse)
+                //print(signUpDetailsResponse)
                 
                 if signUpDetailsResponse.username != nil
                 {

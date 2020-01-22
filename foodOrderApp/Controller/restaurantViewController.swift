@@ -105,7 +105,7 @@ class restaurantViewController: UIViewController
                 do
                 {
                     let initialCart = try JSONDecoder().decode(Cart.self, from: data)
-                    print(initialCart)
+                    //print(initialCart)
                     
                     if ((initialCart.restaurantId != "") || (initialCart.restaurantId != nil))
                     {
@@ -179,7 +179,7 @@ class restaurantViewController: UIViewController
             ))
             
             searchURLRequest.httpBody = jsonBody
-            print("jsonBody:\(jsonBody)")
+            //print("jsonBody:\(jsonBody)")
         }
         catch
         {
@@ -203,7 +203,7 @@ class restaurantViewController: UIViewController
                     }
 
                 let cartResponse = try JSONDecoder().decode(Cart.self, from: data)
-                print(cartResponse)
+                //print(cartResponse)
                 
 //                DispatchQueue.main.async {
 //                    self.menuItemTableView.reloadData()

@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import SocketIO
 
-
-class cartViewController: UIViewController {
-
+class cartViewController: UIViewController
+{
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var imgViewRestaurant: UIImageView!
     @IBOutlet weak var txtViewRestaurantName: UITextView!
@@ -29,6 +29,10 @@ class cartViewController: UIViewController {
     var arrCartItemDetail = [CartItemDetail]()
     lazy var checkoutLocal = Checkout(restaurantId:nil, cartItems:nil, bill:nil)
     
+    let manager = SocketManager(socketURL: URL(string: "https://tummypolice.iyangi.com")!, config: [.log(true), .compress])
+    
+    var socket:SocketIOClient!
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -60,7 +64,7 @@ class cartViewController: UIViewController {
                 do
                 {
                     let checkOutDetails = try JSONDecoder().decode(Checkout.self, from: data)
-                    print(checkOutDetails)
+                    //print(checkOutDetails)
                     if ((checkOutDetails.restaurantId != "") || (checkOutDetails.restaurantId != nil))
                     {
                         self.checkoutLocal = checkOutDetails
@@ -137,9 +141,8 @@ class cartViewController: UIViewController {
                 order: checkoutLocal,
                 location: locationLocal
             ))
-            
             searchURLRequest.httpBody = jsonBody
-            print("jsonBody:\(jsonBody)")
+            //print("jsonBody:\(jsonBody)")
         }
         catch
         {
@@ -160,18 +163,20 @@ class cartViewController: UIViewController {
                 }
             
                 let orderResponse = try JSONDecoder().decode(OrderResponse.self, from: data)
-                print(orderResponse)
+                //print(orderResponse)
                 
                 if (orderResponse.orderid != nil)
                 {
+                    self.socket = self.manager.defaultSocket
+                    self.setSocketEvents(loginResponseLocal.id!, (orderResponse.orderid?.id)!)
+                    //self.closeSocketConnection()
                     
-                    
-                    DispatchQueue.main.async
-                    {
-                        displayAlert(vc: self, title: "", message: "Order placed.")
-                        self.btnPlaceOrder.isHidden = true
-                        self.lblTitle.text = "Your order is being processed."
-                    }
+//                    DispatchQueue.main.async
+//                    {
+//                        displayAlert(vc: self, title: "", message: "Order placed.")
+//                        self.btnPlaceOrder.isHidden = true
+//                        self.lblTitle.text = "Your order is being processed."
+//                    }
                 }
                 else
                 {
@@ -185,9 +190,48 @@ class cartViewController: UIViewController {
             {
                 print(error)
             }
-            }.resume()
+        }.resume()
     }
     
+    //MARK:- Socket Functions
+    
+    private func setSocketEvents(_ userId:String, _ orderId: String)
+    {
+        self.socket.on(clientEvent: .connect) { (data, ack) in
+            print(data)
+            print("Socket connected")
+            self.socket.emit("active user", userId)
+            self.socket.emit("active order", orderId)
+            
+            self.socket.on("order approved") { data, ack in
+                
+                print(data)//returns orderid
+                
+              
+                
+                DispatchQueue.main.async
+                {
+                    displayAlert(vc: self, title: "", message: "Order placed.")
+                    self.btnPlaceOrder.isHidden = true
+                    self.lblTitle.text = "Your order is being processed."
+                }
+            }
+            
+            self.socket.on("order location"){ data, ack in
+                print(data)
+            }
+            
+            self.socket.on("task accepted") { data, ack in
+                print(data)//returns DP's ph. no.//not working
+            }
+        }
+
+        self.socket.connect()
+    }
+    
+    private func closeSocketConnection() {
+        self.socket.disconnect()
+    }
 }
 
 extension cartViewController:UITableViewDelegate, UITableViewDataSource
