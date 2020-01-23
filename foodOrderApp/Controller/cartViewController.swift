@@ -8,6 +8,7 @@
 
 import UIKit
 import SocketIO
+import CoreLocation
 
 class cartViewController: UIViewController
 {
@@ -33,11 +34,21 @@ class cartViewController: UIViewController
     
     var socket:SocketIOClient!
 
+    let locationManager = CLLocationManager()
+    
+    var latitudeDesc = String()
+    var longitudeDesc = String()
+        
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         checkoutTableView.delegate = self
         checkoutTableView.dataSource = self
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         currencySymbol = getSymbolForCurrencyCode(code: "INR")!
     }
     
@@ -99,7 +110,9 @@ class cartViewController: UIViewController
 
     @IBAction func btnPlaceOrderTapped(_ sender: UIButton)
     {
-        placeOrderPOST()
+        //locationManager.requestWhenInUseAuthorization()
+        retrieveCurrentLocation()
+        //placeOrderPOST()
     }
     
     func calculateItemTotal()->Double
@@ -124,8 +137,8 @@ class cartViewController: UIViewController
         )
         
         let locationLocal = Location(
-            latitude: defaults.string(forKey: "restaurantLatitude"),
-            longitude: defaults.string(forKey: "restaurantLongitude")
+            latitude: latitudeDesc,
+            longitude: longitudeDesc
         )
         
         let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/order")
@@ -207,8 +220,6 @@ class cartViewController: UIViewController
                 
                 print(data)//returns orderid
                 
-              
-                
                 DispatchQueue.main.async
                 {
                     displayAlert(vc: self, title: "", message: "Order placed.")
@@ -219,6 +230,8 @@ class cartViewController: UIViewController
             
             self.socket.on("order location"){ data, ack in
                 print(data)
+                //displayAlert(vc: self, title: "", message: "Received location")
+                self.performSegue(withIdentifier: "goToOrderProcess", sender: nil)
             }
             
             self.socket.on("task accepted") { data, ack in
@@ -231,6 +244,14 @@ class cartViewController: UIViewController
     
     private func closeSocketConnection() {
         self.socket.disconnect()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let orderProcessVC = segue.destination as? orderProcessViewController
+        {
+            //orderVC.restaurantId = restaurantID
+        }
     }
 }
 
@@ -251,5 +272,94 @@ extension cartViewController:UITableViewDelegate, UITableViewDataSource
 
         return cell!
     }
+}
+
+extension cartViewController:CLLocationManagerDelegate
+{
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
+    {
+//        if(status == .authorizedWhenInUse || status == .authorizedAlways)
+//        {
+//            manager.requestLocation()
+//        }
+        retrieveCurrentLocation()
+    }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        locationManager.stopUpdatingLocation()
+        locationManager.delegate = nil
+        
+        if let location = locations.last
+        {
+            latitudeDesc = "\(location.coordinate.latitude)"
+            longitudeDesc = "\(location.coordinate.longitude)"
+            
+            print("latitudeDesc:\(latitudeDesc)")
+            print(longitudeDesc)
+
+            placeOrderPOST()//Place order only after lat/longi. is received
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        if let clErr = error as? CLError
+        {
+            switch clErr
+            {
+                case CLError.locationUnknown:
+                    print("Error Location Unknown")
+                case CLError.denied:
+                    self.displayAlertForSettings()
+                default:
+                    print("other Core Location error")
+            }
+        }
+        else
+        {
+            print("other error:", error.localizedDescription)
+        }
+    }
+    
+    func retrieveCurrentLocation()
+    {
+        let status = CLLocationManager.authorizationStatus()
+        
+        if(status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled())
+        {
+            self.displayAlertForSettings()
+            return
+        }
+        
+        if(status == .notDetermined)
+        {
+            locationManager.requestWhenInUseAuthorization()
+            return
+        }
+    
+        locationManager.startUpdatingLocation()
+    }
+    
+    func displayAlertForSettings()
+    {
+        let alertController = UIAlertController (title: "The app needs access to your location to function.", message: "Go to Settings?", preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
+        alertController.addAction(settingsAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
 }

@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
+
+
 
 class homeViewController: UIViewController
 {
+    let locationManager = CLLocationManager()
     var arrRestaurants = [Restaurant]()
     
     var arrImages = [UIImage(named: "Baked"),
@@ -30,6 +34,8 @@ class homeViewController: UIViewController
         
         restaurantTableView.dataSource = self
         restaurantTableView.delegate = self
+        
+        locationManager.requestWhenInUseAuthorization()
     }
     
     func loadJSONDataWithSearchString(searchText:String)

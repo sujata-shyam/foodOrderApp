@@ -296,11 +296,27 @@
                         <outlet property="lblTitle" destination="cAN-Km-RS4" id="RSg-S6-JY3"/>
                         <outlet property="txtViewRestaurantAddr" destination="Ixn-r9-P9v" id="es7-lo-DZl"/>
                         <outlet property="txtViewRestaurantName" destination="EDZ-1R-8bX" id="qFv-P0-9m8"/>
+                        <segue destination="3cn-mC-W6N" kind="show" identifier="goToOrderProcess" id="nx6-A3-UmD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Cz-4C-Bj3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1355.072463768116" y="65.625"/>
+        </scene>
+        <!--OrderProcessViewController-->
+        <scene sceneID="uJw-eg-uwm">
+            <objects>
+                <viewController id="3cn-mC-W6N" userLabel="OrderProcessViewController" customClass="orderProcessViewController" customModule="foodOrderApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AgL-9w-mXB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="BIz-1o-VTx"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kpU-Ou-D18" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1374" y="824"/>
         </scene>
         <!--Account-->
         <scene sceneID="hlE-kA-X8J">

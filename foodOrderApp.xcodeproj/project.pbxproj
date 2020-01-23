@@ -27,6 +27,7 @@
 		85C424AE23ACAF1600E9ABEA /* restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C424AD23ACAF1600E9ABEA /* restaurant.swift */; };
 		85C424B023AE029000E9ABEA /* restaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C424AF23AE029000E9ABEA /* restaurantViewController.swift */; };
 		85C424B223AE176E00E9ABEA /* menuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C424B123AE176E00E9ABEA /* menuItem.swift */; };
+		85E4F8B423D86D900058F0BA /* orderProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4F8B323D86D900058F0BA /* orderProcessViewController.swift */; };
 		DD7A06CAC63CCB756AFFADC5 /* Pods_foodOrderApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57B828BA48F4B65B01725F2 /* Pods_foodOrderApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		85C424AD23ACAF1600E9ABEA /* restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restaurant.swift; sourceTree = "<group>"; };
 		85C424AF23AE029000E9ABEA /* restaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restaurantViewController.swift; sourceTree = "<group>"; };
 		85C424B123AE176E00E9ABEA /* menuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuItem.swift; sourceTree = "<group>"; };
+		85E4F8B323D86D900058F0BA /* orderProcessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderProcessViewController.swift; sourceTree = "<group>"; };
 		A57B828BA48F4B65B01725F2 /* Pods_foodOrderApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_foodOrderApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98B534505857055FD445911 /* Pods-foodOrderApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-foodOrderApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-foodOrderApp/Pods-foodOrderApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 				852DBEF523B313C800232CF3 /* accountViewController.swift */,
 				852DBEF723B338B000232CF3 /* loginViewController.swift */,
 				85B4696623C73AE700D30D3B /* cartViewController.swift */,
+				85E4F8B323D86D900058F0BA /* orderProcessViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				852DBEF623B313C800232CF3 /* accountViewController.swift in Sources */,
 				85C424AE23ACAF1600E9ABEA /* restaurant.swift in Sources */,
 				85C424B023AE029000E9ABEA /* restaurantViewController.swift in Sources */,
+				85E4F8B423D86D900058F0BA /* orderProcessViewController.swift in Sources */,
 				8563212523A8D150001A9F32 /* ViewController.swift in Sources */,
 				85BC414223AB2F4000AA5B0D /* homeViewController.swift in Sources */,
 				85BC414523AB5FAF00AA5B0D /* API.swift in Sources */,
@@ -445,7 +449,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T2V9TMD8BP;
 				INFOPLIST_FILE = foodOrderApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Sujata.foodOrderApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -461,7 +468,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T2V9TMD8BP;
 				INFOPLIST_FILE = foodOrderApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = Sujata.foodOrderApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
