@@ -32,3 +32,10 @@ struct Location:Codable
     let latitude : String?
     let longitude : String?
 }
+
+struct NewLocation: Codable
+{
+    let location:Location?
+}
+
+

@@ -38,7 +38,9 @@ class cartViewController: UIViewController
     
     var latitudeDesc = String()
     var longitudeDesc = String()
-        
+    var deliveryPersonLocation: Location?
+    var orderID: String?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -180,6 +182,8 @@ class cartViewController: UIViewController
                 
                 if (orderResponse.orderid != nil)
                 {
+                    self.orderID = orderResponse.orderid?.id
+                    
                     self.socket = self.manager.defaultSocket
                     self.setSocketEvents(loginResponseLocal.id!, (orderResponse.orderid?.id)!)
                     //self.closeSocketConnection()
@@ -230,8 +234,28 @@ class cartViewController: UIViewController
             
             self.socket.on("order location"){ data, ack in
                 print(data)
-                //displayAlert(vc: self, title: "", message: "Received location")
-                self.performSegue(withIdentifier: "goToOrderProcess", sender: nil)
+                do
+                {
+                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+                    
+                    
+                    let receivedLocation = try JSONDecoder().decode([NewLocation].self, from: jsonData)
+
+                    print("receivedLocation:\(receivedLocation)")
+                    
+                    if let dpLocation = receivedLocation.first?.location
+                    {
+                        print("dpLocation:\(dpLocation)")
+                        self.deliveryPersonLocation = dpLocation
+                        
+                        self.performSegue(withIdentifier: "goToOrderProcess", sender: nil)
+                    }
+                }
+                catch
+                {
+                    print(error)
+                }
+                
             }
             
             self.socket.on("task accepted") { data, ack in
@@ -242,7 +266,8 @@ class cartViewController: UIViewController
         self.socket.connect()
     }
     
-    private func closeSocketConnection() {
+    private func closeSocketConnection()
+    {
         self.socket.disconnect()
     }
     
@@ -250,7 +275,8 @@ class cartViewController: UIViewController
     {
         if let orderProcessVC = segue.destination as? orderProcessViewController
         {
-            //orderVC.restaurantId = restaurantID
+            orderProcessVC.deliveryPersonLocation = deliveryPersonLocation
+            orderProcessVC.orderID = orderID
         }
     }
 }

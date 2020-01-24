@@ -310,9 +310,62 @@
                     <view key="view" contentMode="scaleToFill" id="AgL-9w-mXB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gx-vB-d0L" userLabel="lblOrderNumber">
+                                <rect key="frame" x="10" y="54" width="394" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="rC5-c1-Fro"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DUU-5T-4jR" userLabel="MapView">
+                                <rect key="frame" x="5" y="99" width="404" height="448"/>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bHJ-AX-q5Q">
+                                <rect key="frame" x="10" y="552" width="394" height="224"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Received" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv1-dN-0SH" userLabel="lblStepOne">
+                                        <rect key="frame" x="0.0" y="0.0" width="145.5" height="71.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food is being prepared" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIR-Tf-q3O" userLabel="lblStepTwo">
+                                        <rect key="frame" x="0.0" y="76.5" width="176.5" height="71"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Picked Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saG-Bs-Qrx" userLabel="lblStepThree">
+                                        <rect key="frame" x="0.0" y="152.5" width="126.5" height="71.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DUU-5T-4jR" firstAttribute="height" secondItem="AgL-9w-mXB" secondAttribute="height" multiplier="0.5" id="BCQ-Ml-jYg"/>
+                            <constraint firstItem="bHJ-AX-q5Q" firstAttribute="leading" secondItem="BIz-1o-VTx" secondAttribute="leading" constant="10" id="CTh-Jr-8Qm"/>
+                            <constraint firstItem="bHJ-AX-q5Q" firstAttribute="height" secondItem="AgL-9w-mXB" secondAttribute="height" multiplier="0.25" id="Eeo-BB-NQb"/>
+                            <constraint firstItem="DUU-5T-4jR" firstAttribute="top" secondItem="7Gx-vB-d0L" secondAttribute="bottom" constant="5" id="UEp-Ev-OyK"/>
+                            <constraint firstItem="BIz-1o-VTx" firstAttribute="trailing" secondItem="bHJ-AX-q5Q" secondAttribute="trailing" constant="10" id="elr-wk-aft"/>
+                            <constraint firstItem="DUU-5T-4jR" firstAttribute="leading" secondItem="BIz-1o-VTx" secondAttribute="leading" constant="5" id="kcV-85-4KF"/>
+                            <constraint firstItem="7Gx-vB-d0L" firstAttribute="top" secondItem="BIz-1o-VTx" secondAttribute="top" constant="10" id="ndp-ot-V6s"/>
+                            <constraint firstItem="BIz-1o-VTx" firstAttribute="trailing" secondItem="7Gx-vB-d0L" secondAttribute="trailing" constant="10" id="qbg-k5-fKe"/>
+                            <constraint firstItem="BIz-1o-VTx" firstAttribute="trailing" secondItem="DUU-5T-4jR" secondAttribute="trailing" constant="5" id="w4I-yS-WiX"/>
+                            <constraint firstItem="7Gx-vB-d0L" firstAttribute="leading" secondItem="BIz-1o-VTx" secondAttribute="leading" constant="10" id="yGI-Fo-wnq"/>
+                            <constraint firstItem="bHJ-AX-q5Q" firstAttribute="top" secondItem="DUU-5T-4jR" secondAttribute="bottom" constant="5" id="yQb-eM-Sim"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="BIz-1o-VTx"/>
                     </view>
+                    <connections>
+                        <outlet property="lblOrderNumber" destination="7Gx-vB-d0L" id="MZY-pv-hvD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kpU-Ou-D18" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
