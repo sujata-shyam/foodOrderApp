@@ -226,9 +226,12 @@ class cartViewController: UIViewController
                 
                 DispatchQueue.main.async
                 {
-                    displayAlert(vc: self, title: "", message: "Order placed.")
+                    //displayAlert(vc: self, title: "", message: "Order placed.") //uncomment later
                     self.btnPlaceOrder.isHidden = true
                     self.lblTitle.text = "Your order is being processed."
+                    
+                    //remove the below line. its temporary
+                    self.performSegue(withIdentifier: "goToOrderProcess", sender: nil)
                 }
             }
             
@@ -248,7 +251,8 @@ class cartViewController: UIViewController
                         print("dpLocation:\(dpLocation)")
                         self.deliveryPersonLocation = dpLocation
                         
-                        self.performSegue(withIdentifier: "goToOrderProcess", sender: nil)
+                        //uncomment the below line
+                        //self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
                     }
                 }
                 catch
@@ -257,12 +261,10 @@ class cartViewController: UIViewController
                 }
                 
             }
-            
             self.socket.on("task accepted") { data, ack in
                 print(data)//returns DP's ph. no.//not working
             }
         }
-
         self.socket.connect()
     }
     
@@ -275,8 +277,9 @@ class cartViewController: UIViewController
     {
         if let orderProcessVC = segue.destination as? orderProcessViewController
         {
-            orderProcessVC.deliveryPersonLocation = deliveryPersonLocation
+            //orderProcessVC.deliveryPersonLocation = deliveryPersonLocation
             orderProcessVC.orderID = orderID
+            orderProcessVC.userLocation = Location(latitude: latitudeDesc, longitude: longitudeDesc)
         }
     }
 }
@@ -308,6 +311,7 @@ extension cartViewController:CLLocationManagerDelegate
 //        {
 //            manager.requestLocation()
 //        }
+        
         retrieveCurrentLocation()
     }
     
@@ -323,6 +327,7 @@ extension cartViewController:CLLocationManagerDelegate
             
             print("latitudeDesc:\(latitudeDesc)")
             print(longitudeDesc)
+            
 
             placeOrderPOST()//Place order only after lat/longi. is received
         }

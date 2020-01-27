@@ -320,7 +320,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DUU-5T-4jR" userLabel="MapView">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DUU-5T-4jR" userLabel="mapView">
                                 <rect key="frame" x="5" y="99" width="404" height="448"/>
                             </mapView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bHJ-AX-q5Q">
@@ -365,6 +365,7 @@
                     </view>
                     <connections>
                         <outlet property="lblOrderNumber" destination="7Gx-vB-d0L" id="MZY-pv-hvD"/>
+                        <outlet property="mapView" destination="DUU-5T-4jR" id="de0-dl-FOb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kpU-Ou-D18" userLabel="First Responder" sceneMemberID="firstResponder"/>
