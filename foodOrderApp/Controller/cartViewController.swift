@@ -8,7 +8,8 @@
 
 import UIKit
 import SocketIO
-import CoreLocation
+//import CoreLocation
+import MapKit
 
 class cartViewController: UIViewController
 {
@@ -36,8 +37,10 @@ class cartViewController: UIViewController
 
     let locationManager = CLLocationManager()
     
-    var latitudeDesc = String()
-    var longitudeDesc = String()
+    //var latitudeDesc = String()
+    //var longitudeDesc = String()
+    
+    var userCoordinate = CLLocationCoordinate2D() //to be passes thru. segue
     var deliveryPersonLocation: Location?
     var orderID: String?
     
@@ -112,9 +115,7 @@ class cartViewController: UIViewController
 
     @IBAction func btnPlaceOrderTapped(_ sender: UIButton)
     {
-        //locationManager.requestWhenInUseAuthorization()
         retrieveCurrentLocation()
-        //placeOrderPOST()
     }
     
     func calculateItemTotal()->Double
@@ -127,7 +128,7 @@ class cartViewController: UIViewController
         return itemTotal
     }
     
-    func placeOrderPOST()
+    func placeOrderPOST(_ latitudeDesc:String, _ longitudeDesc:String)
     {
         let loginResponseLocal = LoginResponse(
             msg: defaults.string(forKey: "userMessage"),
@@ -236,6 +237,7 @@ class cartViewController: UIViewController
             }
             
             self.socket.on("order location"){ data, ack in
+
                 print(data)
                 do
                 {
@@ -251,7 +253,7 @@ class cartViewController: UIViewController
                         print("dpLocation:\(dpLocation)")
                         self.deliveryPersonLocation = dpLocation
                         
-                        //uncomment the below line
+                        
                         //self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
                     }
                 }
@@ -277,9 +279,13 @@ class cartViewController: UIViewController
     {
         if let orderProcessVC = segue.destination as? orderProcessViewController
         {
+            //uncomment below line after fixing DP App
             //orderProcessVC.deliveryPersonLocation = deliveryPersonLocation
+            
+            
             orderProcessVC.orderID = orderID
-            orderProcessVC.userLocation = Location(latitude: latitudeDesc, longitude: longitudeDesc)
+            orderProcessVC.userLocation = userCoordinate
+            //orderProcessVC.userLocation = Location(latitude: latitudeDesc, longitude: longitudeDesc)
         }
     }
 }
@@ -320,16 +326,15 @@ extension cartViewController:CLLocationManagerDelegate
         locationManager.stopUpdatingLocation()
         locationManager.delegate = nil
         
-        if let location = locations.last
+        if let location = locations.first
         {
-            latitudeDesc = "\(location.coordinate.latitude)"
-            longitudeDesc = "\(location.coordinate.longitude)"
+            //latitudeDesc = "\(location.coordinate.latitude)"
+            //longitudeDesc = "\(location.coordinate.longitude)"
             
-            print("latitudeDesc:\(latitudeDesc)")
-            print(longitudeDesc)
+            userCoordinate = location.coordinate
             
-
-            placeOrderPOST()//Place order only after lat/longi. is received
+            //Place order only after lat/longi. is received
+            placeOrderPOST("\(location.coordinate.latitude)", "\(location.coordinate.longitude)")
         }
     }
     

@@ -16,6 +16,7 @@
 		8563212823A8D150001A9F32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8563212623A8D150001A9F32 /* Main.storyboard */; };
 		8563212A23A8D154001A9F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8563212923A8D154001A9F32 /* Assets.xcassets */; };
 		8563212D23A8D154001A9F32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8563212B23A8D154001A9F32 /* LaunchScreen.storyboard */; };
+		858A4E4F23E15E350085F8A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858A4E4E23E15E350085F8A0 /* MapKit.framework */; };
 		859692DF23C0BAC2003CF291 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */; };
 		85B4696723C73AE700D30D3B /* cartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B4696623C73AE700D30D3B /* cartViewController.swift */; };
 		85B4696923C86CC700D30D3B /* checkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B4696823C86CC700D30D3B /* checkoutTableViewCell.swift */; };
@@ -44,6 +45,7 @@
 		8563212923A8D154001A9F32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8563212C23A8D154001A9F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8563212E23A8D154001A9F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		858A4E4E23E15E350085F8A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		85B4696623C73AE700D30D3B /* cartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartViewController.swift; sourceTree = "<group>"; };
 		85B4696823C86CC700D30D3B /* checkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutTableViewCell.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				858A4E4F23E15E350085F8A0 /* MapKit.framework in Frameworks */,
 				DD7A06CAC63CCB756AFFADC5 /* Pods_foodOrderApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +78,7 @@
 		3AFDB000C426BAD20AAA550A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				858A4E4E23E15E350085F8A0 /* MapKit.framework */,
 				A57B828BA48F4B65B01725F2 /* Pods_foodOrderApp.framework */,
 			);
 			name = Frameworks;
@@ -202,6 +206,14 @@
 				TargetAttributes = {
 					8563211E23A8D150001A9F32 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
