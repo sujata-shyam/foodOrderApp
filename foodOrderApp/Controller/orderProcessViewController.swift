@@ -11,7 +11,6 @@ import MapKit
 
 class orderProcessViewController: UIViewController
 {
-//    var userLocation : Location? //Passed thru. segue
     var userLocation : CLLocationCoordinate2D? //Passed thru. segue                       
     var deliveryPersonLocation : Location? //Passed thru. segue
     var orderID : String? //Passed thru. segue
@@ -52,8 +51,6 @@ class orderProcessViewController: UIViewController
         
         //To display only 6 char. from the orderID
         lblOrderNumber.text = "ORDER #\((orderID?.prefix(6))!)"
-        
-        //print("deliveryPersonLocation:\(deliveryPersonLocation)")
     }
     
     func centerMapOnLocation()
@@ -73,9 +70,6 @@ class orderProcessViewController: UIViewController
         let annotations = MKPointAnnotation()
         annotations.title = title
         annotations.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-
-        
-        
         mapView.addAnnotation(annotations)
     }
     
