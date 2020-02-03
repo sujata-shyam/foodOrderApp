@@ -232,7 +232,7 @@ class cartViewController: UIViewController
                     self.lblTitle.text = "Your order is being processed."
                     
                     //remove the below line. its temporary
-                    self.performSegue(withIdentifier: "goToOrderProcess", sender: nil)
+                    //self.performSegue(withIdentifier: "goToOrderProcess", sender: nil)
                 }
             }
             
@@ -254,7 +254,7 @@ class cartViewController: UIViewController
                         self.deliveryPersonLocation = dpLocation
                         
                         
-                        //self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
+                        self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
                     }
                 }
                 catch

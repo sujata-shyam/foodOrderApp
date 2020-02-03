@@ -17,7 +17,6 @@
 		8563212A23A8D154001A9F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8563212923A8D154001A9F32 /* Assets.xcassets */; };
 		8563212D23A8D154001A9F32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8563212B23A8D154001A9F32 /* LaunchScreen.storyboard */; };
 		858A4E4F23E15E350085F8A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 858A4E4E23E15E350085F8A0 /* MapKit.framework */; };
-		858A4E5323E3E29A0085F8A0 /* tempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A4E5223E3E29A0085F8A0 /* tempViewController.swift */; };
 		859692DF23C0BAC2003CF291 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */; };
 		85B4696723C73AE700D30D3B /* cartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B4696623C73AE700D30D3B /* cartViewController.swift */; };
 		85B4696923C86CC700D30D3B /* checkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B4696823C86CC700D30D3B /* checkoutTableViewCell.swift */; };
@@ -47,7 +46,6 @@
 		8563212C23A8D154001A9F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8563212E23A8D154001A9F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		858A4E4E23E15E350085F8A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		858A4E5223E3E29A0085F8A0 /* tempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempViewController.swift; sourceTree = "<group>"; };
 		859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		85B4696623C73AE700D30D3B /* cartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartViewController.swift; sourceTree = "<group>"; };
 		85B4696823C86CC700D30D3B /* checkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutTableViewCell.swift; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 				852DBEF723B338B000232CF3 /* loginViewController.swift */,
 				85B4696623C73AE700D30D3B /* cartViewController.swift */,
 				85E4F8B323D86D900058F0BA /* orderProcessViewController.swift */,
-				858A4E5223E3E29A0085F8A0 /* tempViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -310,7 +307,6 @@
 				85BC414523AB5FAF00AA5B0D /* API.swift in Sources */,
 				85BC414823AB740D00AA5B0D /* place.swift in Sources */,
 				852DBEF823B338B000232CF3 /* loginViewController.swift in Sources */,
-				858A4E5323E3E29A0085F8A0 /* tempViewController.swift in Sources */,
 				85BC414B23AB88C500AA5B0D /* restaurantTableViewCell.swift in Sources */,
 				85C424B223AE176E00E9ABEA /* menuItem.swift in Sources */,
 				8563212323A8D150001A9F32 /* AppDelegate.swift in Sources */,
