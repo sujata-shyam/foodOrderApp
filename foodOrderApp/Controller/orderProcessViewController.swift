@@ -92,6 +92,7 @@ class orderProcessViewController: UIViewController
         centerMapOnLocation()
         
         print("restaurantLocation:\(restaurantLocation)")
+        //print("userLocation:\(userLocation)")
     }
     
     override func viewDidAppear(_ animated: Bool)

@@ -158,7 +158,7 @@ class cartViewController: UIViewController
                 location: locationLocal
             ))
             searchURLRequest.httpBody = jsonBody
-            //print("jsonBody:\(jsonBody)")
+            print("jsonBody:\(jsonBody)")
         }
         catch
         {
@@ -253,7 +253,7 @@ class cartViewController: UIViewController
                         print("dpLocation:\(dpLocation)")
                         self.deliveryPersonLocation = dpLocation
                         
-                        
+                        //Please comment the below line
                         self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
                     }
                 }
@@ -264,7 +264,17 @@ class cartViewController: UIViewController
                 
             }
             self.socket.on("task accepted") { data, ack in
-                print(data)//returns DP's ph. no.//not working
+                print(data)
+                
+                //returns DP's ph. no.
+                
+            }
+            self.socket.on("order pickedup") { data, ack in
+                print(data)
+            }
+            self.socket.on("order delivered") { data, ack in
+                print(data)
+                
             }
         }
         self.socket.connect()
