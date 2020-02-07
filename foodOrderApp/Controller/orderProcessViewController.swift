@@ -18,6 +18,11 @@ class orderProcessViewController: UIViewController
     @IBOutlet weak var lblOrderNumber: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var lblReceived: UILabel!
+    @IBOutlet weak var lblPrepared: UILabel!
+    @IBOutlet weak var lblPicked: UILabel!
+    
+    
     let regionRadius: CLLocationDistance = 500
     var steps = [MKRoute.Step]()
    
@@ -53,7 +58,6 @@ class orderProcessViewController: UIViewController
                 print("animated through all coordinates, stopping function")
                 return
             }
-            
             animateToNextCoordinate()
         }
     }
@@ -93,6 +97,11 @@ class orderProcessViewController: UIViewController
         
         print("restaurantLocation:\(restaurantLocation)")
         //print("userLocation:\(userLocation)")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOrderPickedup), name: NSNotification.Name("gotOrderPickedup"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOrderDelivered), name: NSNotification.Name("gotOrderDelivered"), object: nil)
+        
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -103,12 +112,19 @@ class orderProcessViewController: UIViewController
         lblOrderNumber.text = "ORDER #\((orderID?.prefix(6))!)"
     }
     
+    @objc func handleOrderPickedup()
+    {
+        displayAlert(vc: self, title: "", message: "Order Picked")
+    }
+    
+    
+    @objc func handleOrderDelivered()
+    {
+        displayAlert(vc: self, title: "", message: "Order Delivered")
+    }
+    
     func centerMapOnLocation()
     {
-//        let coordinateRegion = MKCoordinateRegion(center: clientLocation.coordinate,
-//                                                  latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-//        mapView.setRegion(coordinateRegion, animated: true)
-
         mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: reuseId)
     
         mapView.addAnnotation(userAnnotation)

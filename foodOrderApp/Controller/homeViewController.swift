@@ -77,11 +77,11 @@ class homeViewController: UIViewController
         }
     }
 
+    //For Kalyan Nagar
+    //func loadJSONDataWithCoordinates(_ latitude:String = "13.0251913", _ longitude:String = "77.6509358")
     
     //For GeekSkool
-    //func loadJSONDataWithCoordinates(_ latitude:String = "12.9615402", _ longitude:String = "77.6441973")
-    //For Kalyan Nagar
-    func loadJSONDataWithCoordinates(_ latitude:String = "13.0251913", _ longitude:String = "77.6509358")
+    func loadJSONDataWithCoordinates(_ latitude:String = "12.9615402", _ longitude:String = "77.6441973")
     {
         let urlString = "https://tummypolice.iyangi.com/api/v1/restaurants?latitude=\(latitude)&longitude=\(longitude)"
         

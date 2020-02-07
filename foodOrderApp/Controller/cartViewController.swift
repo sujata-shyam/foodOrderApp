@@ -31,7 +31,10 @@ class cartViewController: UIViewController
     var arrCartItemDetail = [CartItemDetail]()
     lazy var checkoutLocal = Checkout(restaurantId:nil, cartItems:nil, bill:nil)
     
-    let manager = SocketManager(socketURL: URL(string: "https://tummypolice.iyangi.com")!, config: [.log(true), .compress])
+    //let manager = SocketManager(socketURL: URL(string: "https://tummypolice.iyangi.com")!, config: [.log(true), .compress])
+    
+    let manager = SocketManager(socketURL: URL(string: "https://tummypolice.iyangi.com")!, config: [.log(true)])
+    
     
     var socket:SocketIOClient!
 
@@ -179,7 +182,6 @@ class cartViewController: UIViewController
                 }
             
                 let orderResponse = try JSONDecoder().decode(OrderResponse.self, from: data)
-                //print(orderResponse)
                 
                 if (orderResponse.orderid != nil)
                 {
@@ -187,14 +189,6 @@ class cartViewController: UIViewController
                     
                     self.socket = self.manager.defaultSocket
                     self.setSocketEvents(loginResponseLocal.id!, (orderResponse.orderid?.id)!)
-                    //self.closeSocketConnection()
-                    
-//                    DispatchQueue.main.async
-//                    {
-//                        displayAlert(vc: self, title: "", message: "Order placed.")
-//                        self.btnPlaceOrder.isHidden = true
-//                        self.lblTitle.text = "Your order is being processed."
-//                    }
                 }
                 else
                 {
@@ -239,42 +233,66 @@ class cartViewController: UIViewController
             self.socket.on("order location"){ data, ack in
 
                 print(data)
+//                do
+//                {
+//                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+//
+//
+//                    let receivedLocation = try JSONDecoder().decode([NewLocation].self, from: jsonData)
+//
+//                    print("receivedLocation:\(receivedLocation)")
+//
+//                    if let dpLocation = receivedLocation.first?.location
+//                    {
+//                        print("dpLocation:\(dpLocation)")
+//                        self.deliveryPersonLocation = dpLocation
+//
+//                        //Please comment the below line
+//                        self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
+//                    }
+//                }
                 do
                 {
                     let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
                     
                     
-                    let receivedLocation = try JSONDecoder().decode([NewLocation].self, from: jsonData)
-
+                    let receivedLocation = try JSONDecoder().decode([Location].self, from: jsonData)
+                    
                     print("receivedLocation:\(receivedLocation)")
                     
-                    if let dpLocation = receivedLocation.first?.location
+                    if let dpLocation = receivedLocation.first
                     {
                         print("dpLocation:\(dpLocation)")
                         self.deliveryPersonLocation = dpLocation
                         
                         //Please comment the below line
-                        self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
+                        //self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
                     }
                 }
                 catch
                 {
                     print(error)
                 }
-                
             }
+            
             self.socket.on("task accepted") { data, ack in
+                print("task accepted")
                 print(data)
-                
+                //PASS THIS PHONE NUMBER THRU SEGUE
+                self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
                 //returns DP's ph. no.
-                
             }
+            
             self.socket.on("order pickedup") { data, ack in
-                print(data)
+                print("order pickedup")
+                //print(data)
+                NotificationCenter.default.post(name: NSNotification.Name("gotOrderPickedup"), object: nil)
             }
+            
             self.socket.on("order delivered") { data, ack in
-                print(data)
-                
+                print("order delivered")
+                //print(data)
+                NotificationCenter.default.post(name: NSNotification.Name("gotOrderDelivered"), object: nil)
             }
         }
         self.socket.connect()

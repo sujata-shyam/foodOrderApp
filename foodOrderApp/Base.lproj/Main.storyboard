@@ -326,19 +326,19 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bHJ-AX-q5Q">
                                 <rect key="frame" x="10" y="552" width="394" height="224"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Received" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv1-dN-0SH" userLabel="lblStepOne">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Received" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv1-dN-0SH" userLabel="lblReceived">
                                         <rect key="frame" x="0.0" y="0.0" width="145.5" height="71.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food is being prepared" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIR-Tf-q3O" userLabel="lblStepTwo">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food is being prepared" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIR-Tf-q3O" userLabel="lblPrepared">
                                         <rect key="frame" x="0.0" y="76.5" width="176.5" height="71"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Picked Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saG-Bs-Qrx" userLabel="lblStepThree">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Picked Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saG-Bs-Qrx" userLabel="lblPicked">
                                         <rect key="frame" x="0.0" y="152.5" width="126.5" height="71.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -365,6 +365,9 @@
                     </view>
                     <connections>
                         <outlet property="lblOrderNumber" destination="7Gx-vB-d0L" id="MZY-pv-hvD"/>
+                        <outlet property="lblPicked" destination="saG-Bs-Qrx" id="H1B-2n-ZcJ"/>
+                        <outlet property="lblPrepared" destination="eIR-Tf-q3O" id="qpv-5G-5Wj"/>
+                        <outlet property="lblReceived" destination="uv1-dN-0SH" id="1FV-yH-0bD"/>
                         <outlet property="mapView" destination="DUU-5T-4jR" id="de0-dl-FOb"/>
                     </connections>
                 </viewController>
