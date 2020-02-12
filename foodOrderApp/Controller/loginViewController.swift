@@ -76,6 +76,9 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         txtPhone.resignFirstResponder()
     }
     
+    @IBAction func unwindTologinVC(segue:UIStoryboardSegue)
+    {}
+    
     func loadLoginData(_ phoneNumber: String)
     {
         let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/login")

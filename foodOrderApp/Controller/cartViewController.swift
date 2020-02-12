@@ -278,9 +278,11 @@ class cartViewController: UIViewController
             self.socket.on("task accepted") { data, ack in
                 print("task accepted")
                 print(data)
-                //PASS THIS PHONE NUMBER THRU SEGUE
-                self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
                 //returns DP's ph. no.
+                //PASS THIS PHONE NUMBER THRU SEGUE
+                               
+                self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
+                
             }
             
             self.socket.on("order pickedup") { data, ack in

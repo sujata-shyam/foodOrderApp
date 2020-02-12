@@ -22,6 +22,7 @@ class orderProcessViewController: UIViewController
     @IBOutlet weak var lblPrepared: UILabel!
     @IBOutlet weak var lblPicked: UILabel!
     
+    var timer:Timer?
     
     let regionRadius: CLLocationDistance = 500
     var steps = [MKRoute.Step]()
@@ -98,6 +99,8 @@ class orderProcessViewController: UIViewController
         print("restaurantLocation:\(restaurantLocation)")
         //print("userLocation:\(userLocation)")
         
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(highlightTaskAccepted), userInfo: nil, repeats: false)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handleOrderPickedup), name: NSNotification.Name("gotOrderPickedup"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleOrderDelivered), name: NSNotification.Name("gotOrderDelivered"), object: nil)
@@ -112,15 +115,46 @@ class orderProcessViewController: UIViewController
         lblOrderNumber.text = "ORDER #\((orderID?.prefix(6))!)"
     }
     
+    @objc func highlightTaskAccepted()
+    {
+        lblReceived.attributedText = NSAttributedString(string:lblReceived.text! , attributes: [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 17)
+            ])
+        
+        lblPrepared.attributedText = NSAttributedString(string:lblPrepared.text! , attributes: [
+            .foregroundColor: UIColor(named: "Fire Brick")!,
+            .font: UIFont.boldSystemFont(ofSize: 20)
+            ])
+        
+        lblPicked.attributedText = NSAttributedString(string:lblPicked.text!, attributes: [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 17)
+            ])
+    }
+    
     @objc func handleOrderPickedup()
     {
-        displayAlert(vc: self, title: "", message: "Order Picked")
+        lblReceived.attributedText = NSAttributedString(string:lblReceived.text! , attributes: [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 17)
+            ])
+        
+        lblPrepared.attributedText = NSAttributedString(string:lblPrepared.text! , attributes: [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 17)
+            ])
+        
+        lblPicked.attributedText = NSAttributedString(string:lblPicked.text!, attributes: [
+            .foregroundColor: UIColor(named: "Fire Brick")!,
+            .font: UIFont.boldSystemFont(ofSize: 20)
+            ])
     }
     
     
     @objc func handleOrderDelivered()
     {
-        displayAlert(vc: self, title: "", message: "Order Delivered")
+        performSegue(withIdentifier: "goToCompletion", sender: self)
     }
     
     func centerMapOnLocation()
@@ -242,8 +276,8 @@ extension orderProcessViewController:MKMapViewDelegate
         if overlay is MKPolyline
         {
             let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
-            renderer.lineWidth  = 5
+            renderer.strokeColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+            renderer.lineWidth  = 2
             renderer.lineJoin = .round
             return renderer
         }
