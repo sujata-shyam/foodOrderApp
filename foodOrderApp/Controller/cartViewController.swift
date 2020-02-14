@@ -83,7 +83,7 @@ class cartViewController: UIViewController
                 do
                 {
                     let checkOutDetails = try JSONDecoder().decode(Checkout.self, from: data)
-                    //print(checkOutDetails)
+
                     if ((checkOutDetails.restaurantId != "") || (checkOutDetails.restaurantId != nil))
                     {
                         self.checkoutLocal = checkOutDetails
@@ -233,24 +233,6 @@ class cartViewController: UIViewController
             self.socket.on("order location"){ data, ack in
 
                 print(data)
-//                do
-//                {
-//                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-//
-//
-//                    let receivedLocation = try JSONDecoder().decode([NewLocation].self, from: jsonData)
-//
-//                    print("receivedLocation:\(receivedLocation)")
-//
-//                    if let dpLocation = receivedLocation.first?.location
-//                    {
-//                        print("dpLocation:\(dpLocation)")
-//                        self.deliveryPersonLocation = dpLocation
-//
-//                        //Please comment the below line
-//                        self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
-//                    }
-//                }
                 do
                 {
                     let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
@@ -264,6 +246,8 @@ class cartViewController: UIViewController
                     {
                         print("dpLocation:\(dpLocation)")
                         self.deliveryPersonLocation = dpLocation
+                        
+                         NotificationCenter.default.post(name: NSNotification.Name("gotDPLocation"), object: dpLocation)
                         
                         //Please comment the below line
                         //self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
@@ -310,9 +294,7 @@ class cartViewController: UIViewController
         if let orderProcessVC = segue.destination as? orderProcessViewController
         {
             //uncomment below line after fixing DP App
-            //orderProcessVC.deliveryPersonLocation = deliveryPersonLocation
-            
-            
+            orderProcessVC.deliveryPersonLocation = deliveryPersonLocation
             orderProcessVC.orderID = orderID
             orderProcessVC.userLocation = userCoordinate
             //orderProcessVC.userLocation = Location(latitude: latitudeDesc, longitude: longitudeDesc)
