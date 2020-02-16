@@ -128,7 +128,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                     
                     DispatchQueue.main.async
                     {
-                        self.lblClientName.text = "Hello \(name))"
+                        self.lblClientName.text = "Hello \(name)"
                         self.lblClientName.isHidden = false
                         self.btnLogout.isHidden = false
                         self.viewLogin.isHidden = true
@@ -171,6 +171,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         viewSignUp.isHidden = true
         btnLogout.isHidden = true
         lblClientName.isHidden = true
+        logOutUser()
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton)
@@ -180,6 +181,19 @@ class loginViewController: UIViewController//, UITextFieldDelegate
             registerUser()
         }
         txtRegPhone.resignFirstResponder()
+    }
+    
+    func logOutUser()
+    {
+        let url = URL(string: "https://tummypolice.iyangi.com/api/v1/logout")
+        
+        if let url = url{
+            let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
+                guard let _ =  data else { print("URLSession not workig")
+                    return }
+            }
+            task.resume()
+        }
     }
     
     func checkInput()->Bool
@@ -248,7 +262,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
             ))
             searchURLRequest.httpBody = jsonBody
             
-            //print("jsonBody:\(jsonBody)")
+            
         }
         catch
         {

@@ -657,7 +657,7 @@
                                                 <rect key="frame" x="0.0" y="193.5" width="354" height="54.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -738,12 +738,12 @@
         <!--Home-->
         <scene sceneID="Bbb-pD-xkf">
             <objects>
-                <viewController id="CB7-V9-8HM" userLabel="Home" customClass="homeViewController" customModule="foodOrderApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CB7-V9-8HM" userLabel="Home" customClass="HomeViewController" customModule="foodOrderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oMM-C0-L5q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" text="GeekSkool" translatesAutoresizingMaskIntoConstraints="NO" id="yKx-wf-fyg">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yKx-wf-fyg">
                                 <rect key="frame" x="10" y="98" width="394" height="89.5"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>

@@ -8,7 +8,6 @@
 
 import UIKit
 import SocketIO
-//import CoreLocation
 import MapKit
 
 class cartViewController: UIViewController
@@ -24,7 +23,6 @@ class cartViewController: UIViewController
     @IBOutlet weak var lblRestaurantChargesAmt: UILabel!
     @IBOutlet weak var lblDeliveryFeeAmt: UILabel!
     @IBOutlet weak var lblFinalBillAmt: UILabel!
-    
     @IBOutlet weak var btnPlaceOrder: UIButton!
     
     var currencySymbol = ""
@@ -40,9 +38,6 @@ class cartViewController: UIViewController
 
     let locationManager = CLLocationManager()
     
-    //var latitudeDesc = String()
-    //var longitudeDesc = String()
-    
     var userCoordinate = CLLocationCoordinate2D() //to be passes thru. segue
     var deliveryPersonLocation: Location?
     var orderID: String?
@@ -56,7 +51,6 @@ class cartViewController: UIViewController
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
         currencySymbol = getSymbolForCurrencyCode(code: "INR")!
     }
     
@@ -66,6 +60,7 @@ class cartViewController: UIViewController
         setRestaurantDefaults()
         loadCheckOutJSONDataGET()
     }
+    
     func setRestaurantDefaults()
     {
         txtViewRestaurantName.text = defaults.string(forKey: "restaurantName")
@@ -118,7 +113,18 @@ class cartViewController: UIViewController
 
     @IBAction func btnPlaceOrderTapped(_ sender: UIButton)
     {
-        retrieveCurrentLocation()
+        //Below added 14th Feb
+        if(defaults.string(forKey: "userId") == nil)
+        {
+            displayAlert(vc: self, title: "", message: "Please sign in to checkout.")
+            return
+        }
+        else
+        {
+            retrieveCurrentLocation()
+        }
+        
+        //retrieveCurrentLocation() //Commented 14th Feb
     }
     
     func calculateItemTotal()->Double
@@ -132,7 +138,7 @@ class cartViewController: UIViewController
     }
     
     func placeOrderPOST(_ latitudeDesc:String, _ longitudeDesc:String)
-    {
+    {        
         let loginResponseLocal = LoginResponse(
             msg: defaults.string(forKey: "userMessage"),
             session: defaults.string(forKey: "userSession"),
@@ -161,7 +167,7 @@ class cartViewController: UIViewController
                 location: locationLocal
             ))
             searchURLRequest.httpBody = jsonBody
-            print("jsonBody:\(jsonBody)")
+            //print("jsonBody:\(jsonBody)")
         }
         catch
         {
@@ -217,16 +223,12 @@ class cartViewController: UIViewController
             
             self.socket.on("order approved") { data, ack in
                 
-                print(data)//returns orderid
+                //print(data)//returns orderid
                 
                 DispatchQueue.main.async
                 {
-                    //displayAlert(vc: self, title: "", message: "Order placed.") //uncomment later
                     self.btnPlaceOrder.isHidden = true
                     self.lblTitle.text = "Your order is being processed."
-                    
-                    //remove the below line. its temporary
-                    //self.performSegue(withIdentifier: "goToOrderProcess", sender: nil)
                 }
             }
             
@@ -237,20 +239,16 @@ class cartViewController: UIViewController
                 {
                     let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
                     
-                    
                     let receivedLocation = try JSONDecoder().decode([Location].self, from: jsonData)
                     
-                    print("receivedLocation:\(receivedLocation)")
+                    //print("receivedLocation:\(receivedLocation)")
                     
                     if let dpLocation = receivedLocation.first
                     {
-                        print("dpLocation:\(dpLocation)")
+                        //print("dpLocation:\(dpLocation)")
                         self.deliveryPersonLocation = dpLocation
                         
                          NotificationCenter.default.post(name: NSNotification.Name("gotDPLocation"), object: dpLocation)
-                        
-                        //Please comment the below line
-                        //self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
                     }
                 }
                 catch
@@ -260,24 +258,17 @@ class cartViewController: UIViewController
             }
             
             self.socket.on("task accepted") { data, ack in
-                print("task accepted")
-                print(data)
                 //returns DP's ph. no.
                 //PASS THIS PHONE NUMBER THRU SEGUE
                                
                 self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
-                
             }
             
             self.socket.on("order pickedup") { data, ack in
-                print("order pickedup")
-                //print(data)
                 NotificationCenter.default.post(name: NSNotification.Name("gotOrderPickedup"), object: nil)
             }
             
             self.socket.on("order delivered") { data, ack in
-                print("order delivered")
-                //print(data)
                 NotificationCenter.default.post(name: NSNotification.Name("gotOrderDelivered"), object: nil)
             }
         }
@@ -293,11 +284,9 @@ class cartViewController: UIViewController
     {
         if let orderProcessVC = segue.destination as? orderProcessViewController
         {
-            //uncomment below line after fixing DP App
             orderProcessVC.deliveryPersonLocation = deliveryPersonLocation
             orderProcessVC.orderID = orderID
             orderProcessVC.userLocation = userCoordinate
-            //orderProcessVC.userLocation = Location(latitude: latitudeDesc, longitude: longitudeDesc)
         }
     }
 }
@@ -340,9 +329,6 @@ extension cartViewController:CLLocationManagerDelegate
         
         if let location = locations.first
         {
-            //latitudeDesc = "\(location.coordinate.latitude)"
-            //longitudeDesc = "\(location.coordinate.longitude)"
-            
             userCoordinate = location.coordinate
             
             //Place order only after lat/longi. is received

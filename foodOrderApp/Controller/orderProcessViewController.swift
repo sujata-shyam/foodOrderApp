@@ -25,7 +25,7 @@ class orderProcessViewController: UIViewController
     
     var timer:Timer?
     
-    let clientLocation = CLLocation(latitude:12.96195220947266, longitude:77.64364876922691) //For GeekSkool //For Simulator
+    //let clientLocation = CLLocation(latitude:12.96195220947266, longitude:77.64364876922691) //For GeekSkool //For Simulator
     
     //let clientLocation = CLLocation(latitude:13.025232483644993, longitude:77.65087198473294) //For SPT //For Simulator
     
@@ -38,7 +38,7 @@ class orderProcessViewController: UIViewController
     
     var avgAnimationTime: Double {
         // to show delivery in 180 second, replace 180 with amount of seconds you'd like to show
-        return 120 / Double(routeCoordinates.count)
+        return 180 / Double(routeCoordinates.count)
     }
     
     var coordinateIndex: Int! {
@@ -51,32 +51,49 @@ class orderProcessViewController: UIViewController
         }
     }
     
-    
+    //WITHOUT ANIMATION
     var deliveryAnnotation: MKPointAnnotation {
-        
+
         let annotation = MKPointAnnotation()
         annotation.title = "Delivery Person"
-        dpCoordinate = CLLocationCoordinate2D(latitude: Double((deliveryPersonLocation?.latitude)!)!, longitude: Double((deliveryPersonLocation?.longitude)!)!)
+//        dpCoordinate = CLLocationCoordinate2D(latitude: Double((deliveryPersonLocation?.latitude)!)!, longitude: Double((deliveryPersonLocation?.longitude)!)!)
+
         
+        dpCoordinate = CLLocationCoordinate2D(latitude: Double(deliveryPersonLocation?.latitude ?? "12.96195220947266")!, longitude: Double(deliveryPersonLocation?.latitude ?? "77.64364876922691")!)
+
         annotation.coordinate = dpCoordinate
-        
-//        annotation.coordinate = CLLocationCoordinate2D(latitude: Double((deliveryPersonLocation?.latitude)!)!, longitude: Double((deliveryPersonLocation?.longitude)!)!)
-        
         return annotation
     }
+    
+    //Below for ANIMATION
+//    var deliveryAnnotation: MKPointAnnotation = {
+//
+//        let annotation = MKPointAnnotation()
+//        annotation.title = "Delivery Person"
+//        //dpCoordinate = CLLocationCoordinate2D(latitude: Double((deliveryPersonLocation?.latitude)!)!, longitude: Double((deliveryPersonLocation?.longitude)!)!)
+//
+//        //annotation.coordinate = dpCoordinate
+//
+//        //        annotation.coordinate = CLLocationCoordinate2D(latitude: Double((deliveryPersonLocation?.latitude)!)!, longitude: Double((deliveryPersonLocation?.longitude)!)!)
+//
+//        return annotation
+//    }()
     
     var userAnnotation: MKPointAnnotation  {
         let annotation = MKPointAnnotation()
         annotation.title = "User"
-        annotation.coordinate = clientLocation.coordinate
+        annotation.coordinate = userLocation ?? CLLocationCoordinate2D(latitude:12.96195220947266, longitude:77.64364876922691)//DO NOT DELETE
+        //annotation.coordinate = clientLocation.coordinate//FOR TESTING ONLY. DELETE
+        
         //DO NOT DELETE
-        //annotation.coordinate = MKMapItem.forCurrentLocation().placemark.coordinate
+        print("annotation.coordinate:\(annotation.coordinate)")
         return annotation
     }
 
     var restaurantAnnotation: MKPointAnnotation {
         let annotation = MKPointAnnotation()
-        annotation.title = defaults.string(forKey: "restaurantName")!
+        annotation.title = "Restaurant"
+
         annotation.coordinate = restaurantLocation.coordinate
         return annotation
     }
@@ -131,7 +148,7 @@ class orderProcessViewController: UIViewController
         
         let srcCoordinate = CLLocationCoordinate2D(latitude: Double((locationDetails.latitude)!)!, longitude: Double((locationDetails.longitude)!)!)
         
-        getDirections(srcCoordinate)
+        getDirections(srcCoordinate) //UNCOMMENT FOR WITHOUT ANIMATION
     }
     
     @objc func handleOrderPickedup()
@@ -161,28 +178,16 @@ class orderProcessViewController: UIViewController
     {
         mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: reuseId)
     
-        //let deliverycoordinate = CLLocationCoordinate2D(latitude: Double((deliveryPersonLocation?.latitude)!)!, longitude: Double((deliveryPersonLocation?.longitude)!)!)
-        
-//        let coordinateRegion = MKCoordinateRegion(center: deliverycoordinate,
-//                                                  latitudinalMeters: 500, longitudinalMeters: 500)
-        
-        //let coordinateRegion = MKCoordinateRegion(center: clientLocation.coordinate,
-//                                                  latitudinalMeters: 500, longitudinalMeters: 500)
-//
-        //mapView.setRegion(coordinateRegion, animated: true)
-        
         mapView.addAnnotation(userAnnotation)
         mapView.addAnnotation(restaurantAnnotation)
         mapView.addAnnotation(deliveryAnnotation)
         
-        //getDirections()
         getDirections(dpCoordinate)
     }
     
     func getDirections(_ sourceLocation: CLLocationCoordinate2D)
     {
-        //let sourcePlacemark = MKPlacemark(coordinate: dpCoordinate)
-        //let sourcePlacemark = MKPlacemark(coordinate: restaurantLocation.coordinate)
+        print("sourceLocation: \(sourceLocation)")
         
         let sourcePlacemark = MKPlacemark(coordinate: sourceLocation)
         let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
@@ -190,9 +195,6 @@ class orderProcessViewController: UIViewController
         //let destPlacemark = MKPlacemark(coordinate: clientLocation.coordinate)
         let destPlacemark = MKPlacemark(coordinate: restaurantLocation.coordinate)
         let destMapItem = MKMapItem(placemark: destPlacemark)
-        
-        //Substitute the below lines
-        //let destMapItem = MKMapItem.forCurrentLocation()//gives users current location too/
         
         let directionsRequest = MKDirections.Request()
         directionsRequest.source = sourceMapItem
@@ -222,10 +224,10 @@ class orderProcessViewController: UIViewController
             self.mapView.setRegion(MKCoordinateRegion(primaryRoute.polyline.boundingMapRect), animated: true)
             
             // initiate recursive animation
-            /* commented on 13th feb
-            self.routeCoordinates = primaryRoute.polyline.coordinates
-            self.coordinateIndex = 0
-            */
+             //BELOW 2 LINES FOR ANIMATION. COMMENT WHEN NOT REQUIRED
+            //self.routeCoordinates = primaryRoute.polyline.coordinates
+            //self.coordinateIndex = 0
+            
             
             //below needed. DO NOT DELETE
             //primaryRoute.expectedTravelTime //use this to display the ETA
@@ -323,7 +325,9 @@ extension orderProcessViewController:MKMapViewDelegate
                 annotationView.image = UIImage(named: "user")
             case "Delivery Person":
                 annotationView.image = UIImage(named: "deliveryPerson")
-            default: annotationView.image = UIImage(named: "restaurant")
+            case "Restaurant":
+                annotationView.image = UIImage(named: "restaurant")
+            default: break
         }
         return annotationView
     }
