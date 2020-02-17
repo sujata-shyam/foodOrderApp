@@ -15,7 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
-        LocationManager.shared.start()
+        NetworkCheck.sharedInstance.startMonitoring()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("gotInternetConnection"), object: nil, queue: nil) { notification in
+            
+            DispatchQueue.main.async {
+                LocationManager.shared.start()
+            }
+        }
+    
+        //LocationManager.shared.start()
         
         UITabBar.appearance().barTintColor = #colorLiteral(red: 0.6941176471, green: 0.537254902, blue: 0.5568627451, alpha: 1)
         UITabBar.appearance().unselectedItemTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -31,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication)
     {
         LocationManager.shared.stop()
+        NetworkCheck.sharedInstance.stopMonitoring()
     }
 }
 

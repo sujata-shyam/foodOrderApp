@@ -27,6 +27,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate
     
     func start()
     {
+        //print("Location manager started.")
         retrieveCurrentLocation()
     }
     

@@ -11,6 +11,7 @@ import UIKit
 let defaults = UserDefaults.standard
 var activityIndicator = UIActivityIndicatorView()
 
+
 func displayAlert(vc: UIViewController, title: String, message: String)
 {
     let alert =  UIAlertController(title: title, message: message, preferredStyle: .alert)
