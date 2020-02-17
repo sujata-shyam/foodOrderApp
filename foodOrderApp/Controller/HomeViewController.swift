@@ -1,5 +1,5 @@
 //
-//  homeViewController.swift
+//  HomeViewController.swift
 //  foodOrderApp
 //
 //  Created by Sujata on 19/12/19.
@@ -7,13 +7,9 @@
 //
 
 import UIKit
-import CoreLocation
 
-
-
-class homeViewController: UIViewController
+class HomeViewController: UIViewController
 {
-    let locationManager = CLLocationManager()
     var arrRestaurants = [Restaurant]()
     
     var arrImages = [UIImage(named: "Baked"),
@@ -29,13 +25,17 @@ class homeViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        loadJSONDataWithCoordinates()
+        startActivityIndicator(vc: self)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCurrentLocation), name: NSNotification.Name("gotCurrentLocation"), object: nil)
         
         restaurantTableView.dataSource = self
         restaurantTableView.delegate = self
-        
-        locationManager.requestWhenInUseAuthorization()
+    }
+    
+    @objc func handleCurrentLocation(notification: Notification)
+    {
+    loadJSONDataWithCoordinates(String(LocationManager.shared.currentLocation.coordinate.latitude), String(LocationManager.shared.currentLocation.coordinate.longitude))
     }
     
     func loadJSONDataWithSearchString(searchText:String)
@@ -51,9 +51,6 @@ class homeViewController: UIViewController
                 guard let data =  data else { print("URLSession not workig")
                     return }
                 
-                            let received = String(data: data, encoding: String.Encoding.utf8)
-                            print("received: \(received)")
-                
                 do
                 {
                     let dictPlaces = try JSONDecoder().decode(Place.self, from: data)
@@ -67,9 +64,24 @@ class homeViewController: UIViewController
                         
                         self.loadJSONDataWithCoordinates(latitude!, longitude!)
                     }
+                    else
+                    {
+                        DispatchQueue.main.async
+                        {
+                            displayAlert(vc: self, title: "", message: "Sorry.No data available for the given search.Displaying restaurants nearby your location.")
+                        }
+                    }
+                    DispatchQueue.main.async
+                    {
+                        stopActivityIndicator(vc: self)
+                    }
                 }
                 catch
                 {
+                    DispatchQueue.main.async
+                    {
+                        stopActivityIndicator(vc: self)
+                    }
                     print("error:\(error)")
                 }
             }
@@ -77,14 +89,15 @@ class homeViewController: UIViewController
         }
     }
 
-    
-        
     //For Kalyan Nagar
-//    func loadJSONDataWithCoordinates(_ latitude:String = "13.0251913", _ longitude:String = "77.6509358")
-        //For GeekSkool
+    //func loadJSONDataWithCoordinates(_ latitude:String = "13.0251913", _ longitude:String = "77.6509358")
+        
+    //For GeekSkool
     func loadJSONDataWithCoordinates(_ latitude:String = "12.9615402", _ longitude:String = "77.6441973")
     {
+        
         let urlString = "https://tummypolice.iyangi.com/api/v1/restaurants?latitude=\(latitude)&longitude=\(longitude)"
+        
         
         let url = URL(string: urlString)
             
@@ -95,16 +108,16 @@ class homeViewController: UIViewController
                 do
                 {
                     self.arrRestaurants = try JSONDecoder().decode([Restaurant].self, from: data)
-                    //let received = String(data: data, encoding: String.Encoding.utf8)
-                    //print("received: \(received)")
                     
                     DispatchQueue.main.async
                     {
-                            self.restaurantTableView.reloadData()
+                        self.restaurantTableView.reloadData()
+                        stopActivityIndicator(vc: self)
                     }
                 }
                 catch
                 {
+                    stopActivityIndicator(vc: self)
                     print("error:\(error)")
                 }
             }
@@ -113,7 +126,7 @@ class homeViewController: UIViewController
     }
 }
 
-extension homeViewController: UITableViewDelegate, UITableViewDataSource
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -164,7 +177,7 @@ extension homeViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-extension homeViewController : UISearchBarDelegate
+extension HomeViewController : UISearchBarDelegate
 {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
@@ -183,16 +196,4 @@ extension homeViewController : UISearchBarDelegate
         }
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
-    {
-        //print(searchText)
-//        if(searchText.count > 0)
-//        {
-            //loadCategories()
-//            DispatchQueue.main.async
-//            {
-//                searchBar.resignFirstResponder()
-//            }
-        //}
-    }
 }
