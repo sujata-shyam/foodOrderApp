@@ -1,3 +1,11 @@
+//
+//  NetworkCheck
+//  foodOrderApp
+//
+//  Created by Sujata on 17/02/20.
+//  Copyright © 2020 Sujata. All rights reserved.
+//  For checking Internet connection
+
 import Foundation
 import Network
 import UIKit

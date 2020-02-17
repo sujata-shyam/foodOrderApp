@@ -4,7 +4,7 @@
 //
 //  Created by Sujata on 14/02/20.
 //  Copyright © 2020 Sujata. All rights reserved.
-//
+//  For updating Location Details
 
 import Foundation
 import CoreLocation

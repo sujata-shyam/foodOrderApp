@@ -10,7 +10,7 @@ import UIKit
 
 let defaults = UserDefaults.standard
 var activityIndicator = UIActivityIndicatorView()
-
+var urlMainString = "https://tummypolice.iyangi.com/api/v1"
 
 func displayAlert(vc: UIViewController, title: String, message: String)
 {

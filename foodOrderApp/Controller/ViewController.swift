@@ -10,13 +10,10 @@ import UIKit
 
 class ViewController: UIViewController
 {
-
     //NOTE: This class is not used any where. DELETE
     override func viewDidLoad()
     {
         super.viewDidLoad()
     }
-
-
 }
 

@@ -41,7 +41,10 @@ class HomeViewController: UIViewController
     func loadJSONDataWithSearchString(searchText:String)
     {
         var arrPredictions = [Predictions]()
-        var urlString = "https://tummypolice.iyangi.com/api/v1/place/autocomplete/json?input="
+        
+//        var urlString = "https://tummypolice.iyangi.com/api/v1/place/autocomplete/json?input="
+        
+        var urlString = "\(urlMainString)/place/autocomplete/json?input="
         urlString.append(searchText)
         
         let url = URL(string: urlString)
@@ -50,7 +53,6 @@ class HomeViewController: UIViewController
             let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
                 guard let data =  data else { print("URLSession not workig")
                     return }
-                
                 do
                 {
                     let dictPlaces = try JSONDecoder().decode(Place.self, from: data)
@@ -96,9 +98,10 @@ class HomeViewController: UIViewController
     func loadJSONDataWithCoordinates(_ latitude:String = "12.9615402", _ longitude:String = "77.6441973")
     {
         
-        let urlString = "https://tummypolice.iyangi.com/api/v1/restaurants?latitude=\(latitude)&longitude=\(longitude)"
-        
-        
+//        let urlString = "https://tummypolice.iyangi.com/api/v1/restaurants?latitude=\(latitude)&longitude=\(longitude)"
+//
+        let urlString = "\(urlMainString)/restaurants?latitude=\(latitude)&longitude=\(longitude)"
+
         let url = URL(string: urlString)
             
         if let url = url{
