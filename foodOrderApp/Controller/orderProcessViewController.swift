@@ -51,19 +51,18 @@ class orderProcessViewController: UIViewController
         }
     }
     
-    //WITHOUT ANIMATION
-    var deliveryAnnotation: MKPointAnnotation {
+    var deliveryAnnotation: MKPointAnnotation = {
 
         let annotation = MKPointAnnotation()
         annotation.title = "Delivery Person"
-//        dpCoordinate = CLLocationCoordinate2D(latitude: Double((deliveryPersonLocation?.latitude)!)!, longitude: Double((deliveryPersonLocation?.longitude)!)!)
-
         
-        dpCoordinate = CLLocationCoordinate2D(latitude: Double(deliveryPersonLocation?.latitude ?? "12.96195220947266")!, longitude: Double(deliveryPersonLocation?.latitude ?? "77.64364876922691")!)
+        //Below 2 lines commented on 18th Feb
 
-        annotation.coordinate = dpCoordinate
+        //dpCoordinate = CLLocationCoordinate2D(latitude: Double(deliveryPersonLocation?.latitude ?? "12.96195220947266")!, longitude: Double(deliveryPersonLocation?.longitude ?? "77.64364876922691")!)
+        //annotation.coordinate = dpCoordinate
+        
         return annotation
-    }
+    }()
     
     //Below for ANIMATION
 //    var deliveryAnnotation: MKPointAnnotation = {
@@ -103,6 +102,9 @@ class orderProcessViewController: UIViewController
         super.viewDidLoad()
         mapView?.showsUserLocation = true
         mapView.delegate = self
+        
+        //Below dpCoordinate added on 18th Feb
+        dpCoordinate = CLLocationCoordinate2D(latitude: Double(deliveryPersonLocation?.latitude ?? "12.96195220947266")!, longitude: Double(deliveryPersonLocation?.longitude ?? "77.64364876922691")!)
         
         centerMapOnLocation()
         
@@ -187,8 +189,8 @@ class orderProcessViewController: UIViewController
     
     func getDirections(_ sourceLocation: CLLocationCoordinate2D)
     {
-        print("sourceLocation: \(sourceLocation)")
-        
+        self.deliveryAnnotation.coordinate = sourceLocation
+
         let sourcePlacemark = MKPlacemark(coordinate: sourceLocation)
         let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
         

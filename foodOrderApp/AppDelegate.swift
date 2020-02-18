@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     
-        //LocationManager.shared.start()
         
         UITabBar.appearance().barTintColor = #colorLiteral(red: 0.6941176471, green: 0.537254902, blue: 0.5568627451, alpha: 1)
         UITabBar.appearance().unselectedItemTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -32,13 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-//    func applicationDidBecomeActive(_ application: UIApplication)
-//    {
-//        print("applicationDidBecomeActive")
-//    }
+    func applicationDidBecomeActive(_ application: UIApplication)
+    {
+        SocketIOManager.sharedInstance.establishConnection()
+    }
     
     func applicationWillTerminate(_ application: UIApplication)
     {
+        SocketIOManager.sharedInstance.closeConnection()
         LocationManager.shared.stop()
         NetworkCheck.sharedInstance.stopMonitoring()
     }

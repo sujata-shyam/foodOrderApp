@@ -24,13 +24,13 @@
 		85B4696923C86CC700D30D3B /* checkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B4696823C86CC700D30D3B /* checkoutTableViewCell.swift */; };
 		85BC414023A9F91B00AA5B0D /* Colour.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85BC413F23A9F91B00AA5B0D /* Colour.xcassets */; };
 		85BC414223AB2F4000AA5B0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414123AB2F4000AA5B0D /* HomeViewController.swift */; };
-		85BC414523AB5FAF00AA5B0D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414423AB5FAF00AA5B0D /* API.swift */; };
 		85BC414823AB740D00AA5B0D /* place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414723AB740D00AA5B0D /* place.swift */; };
 		85BC414B23AB88C500AA5B0D /* restaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC414A23AB88C500AA5B0D /* restaurantTableViewCell.swift */; };
 		85C424AE23ACAF1600E9ABEA /* restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C424AD23ACAF1600E9ABEA /* restaurant.swift */; };
 		85C424B023AE029000E9ABEA /* restaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C424AF23AE029000E9ABEA /* restaurantViewController.swift */; };
 		85C424B223AE176E00E9ABEA /* menuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C424B123AE176E00E9ABEA /* menuItem.swift */; };
 		85E4150823FA6C97007EF04B /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4150723FA6C97007EF04B /* NetworkCheck.swift */; };
+		85E4150A23FAADBE007EF04B /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4150923FAADBE007EF04B /* SocketIOManager.swift */; };
 		85E4F8B423D86D900058F0BA /* orderProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E4F8B323D86D900058F0BA /* orderProcessViewController.swift */; };
 		DD7A06CAC63CCB756AFFADC5 /* Pods_foodOrderApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57B828BA48F4B65B01725F2 /* Pods_foodOrderApp.framework */; };
 /* End PBXBuildFile section */
@@ -56,13 +56,13 @@
 		85B4696823C86CC700D30D3B /* checkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutTableViewCell.swift; sourceTree = "<group>"; };
 		85BC413F23A9F91B00AA5B0D /* Colour.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colour.xcassets; sourceTree = "<group>"; };
 		85BC414123AB2F4000AA5B0D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		85BC414423AB5FAF00AA5B0D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		85BC414723AB740D00AA5B0D /* place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = place.swift; sourceTree = "<group>"; };
 		85BC414A23AB88C500AA5B0D /* restaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restaurantTableViewCell.swift; sourceTree = "<group>"; };
 		85C424AD23ACAF1600E9ABEA /* restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restaurant.swift; sourceTree = "<group>"; };
 		85C424AF23AE029000E9ABEA /* restaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = restaurantViewController.swift; sourceTree = "<group>"; };
 		85C424B123AE176E00E9ABEA /* menuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuItem.swift; sourceTree = "<group>"; };
 		85E4150723FA6C97007EF04B /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
+		85E4150923FAADBE007EF04B /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		85E4F8B323D86D900058F0BA /* orderProcessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderProcessViewController.swift; sourceTree = "<group>"; };
 		A57B828BA48F4B65B01725F2 /* Pods_foodOrderApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_foodOrderApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98B534505857055FD445911 /* Pods-foodOrderApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-foodOrderApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-foodOrderApp/Pods-foodOrderApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,7 +130,6 @@
 				8563212B23A8D154001A9F32 /* LaunchScreen.storyboard */,
 				8563212E23A8D154001A9F32 /* Info.plist */,
 				85BC413F23A9F91B00AA5B0D /* Colour.xcassets */,
-				85BC414423AB5FAF00AA5B0D /* API.swift */,
 			);
 			path = foodOrderApp;
 			sourceTree = "<group>";
@@ -141,6 +140,7 @@
 				859692DE23C0BAC2003CF291 /* GlobalFunctions.swift */,
 				851FA80E23F6991A000C11FC /* LocationManager.swift */,
 				85E4150723FA6C97007EF04B /* NetworkCheck.swift */,
+				85E4150923FAADBE007EF04B /* SocketIOManager.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -315,12 +315,12 @@
 				85E4F8B423D86D900058F0BA /* orderProcessViewController.swift in Sources */,
 				8563212523A8D150001A9F32 /* ViewController.swift in Sources */,
 				85BC414223AB2F4000AA5B0D /* HomeViewController.swift in Sources */,
-				85BC414523AB5FAF00AA5B0D /* API.swift in Sources */,
 				85BC414823AB740D00AA5B0D /* place.swift in Sources */,
 				852DBEF823B338B000232CF3 /* loginViewController.swift in Sources */,
 				85BC414B23AB88C500AA5B0D /* restaurantTableViewCell.swift in Sources */,
 				85C424B223AE176E00E9ABEA /* menuItem.swift in Sources */,
 				8563212323A8D150001A9F32 /* AppDelegate.swift in Sources */,
+				85E4150A23FAADBE007EF04B /* SocketIOManager.swift in Sources */,
 				85B4696723C73AE700D30D3B /* cartViewController.swift in Sources */,
 				851FA80F23F6991A000C11FC /* LocationManager.swift in Sources */,
 				85B4696923C86CC700D30D3B /* checkoutTableViewCell.swift in Sources */,

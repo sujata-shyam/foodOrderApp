@@ -10,15 +10,7 @@ import UIKit
 
 class checkoutTableViewCell: UITableViewCell
 {
-    
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblCost: UILabel!
     @IBOutlet weak var lblQuantity: UILabel!
-    
-    //    override func awakeFromNib() {
-//        super.awakeFromNib()
-//    }
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//    }
 }
