@@ -17,7 +17,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var viewLogin: UIView!
     @IBOutlet weak var lblClientName: UILabel!
-    
     @IBOutlet weak var btnLogout: UIButton!
     
     //MARK :- SignUp IB Outlets
@@ -27,7 +26,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     @IBOutlet weak var txtRegPhone: UITextField!
     @IBOutlet weak var txtRegEmail: UITextField!
     @IBOutlet weak var txtRegPassword: UITextField!
-    
     
     
     override func viewDidLoad()
@@ -81,20 +79,19 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     func loadLoginData(_ phoneNumber: String)
     {
-        let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/login")
+        //let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/login")
+        let searchURL = URL(string: "\(urlMainString)/login")
+        
         var searchURLRequest = URLRequest(url: searchURL!)
         
         searchURLRequest.httpMethod = "POST"
         searchURLRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         do
         {
             let jsonBody = try JSONEncoder().encode(LoginRequest(
-                phone: phoneNumber //txtPhone.text
+                phone: phoneNumber
             ))
             searchURLRequest.httpBody = jsonBody
-            
-            //print(jsonBody)
         }
         catch
         {
@@ -103,24 +100,13 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         
         URLSession.shared.dataTask(with: searchURLRequest){ data, response,error in
             guard let data =  data else { return }
-        
-            //print(data)
             do
             {
-//                if let response1 = response
-//                {
-//                    print(response1)
-//                }
-                
                 guard let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode)
-                else {
-                print(error as Any)
-                return
-                }
-                let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
+                    else { print(error as Any);return}
                 
-                //print(loginResponse)
+                let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
                 
                 if let name = loginResponse.username
                 {
@@ -148,13 +134,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
             }
         }.resume()
     }
-    
-//    func displayAlert(title: String, message: String)
-//    {
-//        let alert =  UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler:nil ))
-//        present(alert, animated: true)
-//    }
     
     @IBAction func btnSignupTapped(_ sender: UIButton)
     {
@@ -185,8 +164,10 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     func logOutUser()
     {
-        let url = URL(string: "https://tummypolice.iyangi.com/api/v1/logout")
-        
+        //let url = URL(string: "https://tummypolice.iyangi.com/api/v1/logout")
+
+        let url = URL(string: "\(urlMainString)/logout")
+
         if let url = url{
             let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
                 guard let _ =  data else { print("URLSession not workig")
@@ -200,21 +181,18 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     {
         if(txtRegName.text!.isEmpty || txtRegEmail.text!.isEmpty || txtRegPhone.text!.isEmpty || txtRegPassword.text!.isEmpty)
         {
-            //displayAlert(title: "", message: "Please enter the required details.")
             displayAlert(vc: self, title: "", message: "Please enter the required details.")
             return false
         }
         
         if(txtRegPhone.text?.count != 10)
         {
-            //displayAlert(title: "", message: "Please enter a valid 10-digit phone number.")
             displayAlert(vc: self, title: "", message: "Please enter a valid 10-digit phone number.")
             return false
         }
         
         if(txtRegPassword.text!.count < 8)
         {
-            //displayAlert(title: "", message: "Password has to be minimum of 8 characters.")
             displayAlert(vc: self, title: "", message: "Password has to be minimum of 8 characters.")
             return false
         }
@@ -222,14 +200,12 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         {
             if(!txtRegPassword.text!.isAlphanumeric)
             {
-                //displayAlert(title: "", message: "Password can have only alpha-numeric characters.")
                 displayAlert(vc: self, title: "", message: "Password can have only alpha-numeric characters.")
                 return false
             }
         }
         if(!isValidEmail(txtRegEmail.text!))
         {
-            //displayAlert(title: "", message: "Please enter a valid email address.")
             displayAlert(vc: self, title: "", message: "Please enter a valid email address.")
             return false
         }
@@ -245,13 +221,12 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     func registerUser()
     {
-        let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/register")
-        
+//        let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/register")
+        let searchURL = URL(string: "\(urlMainString)/register")
         var searchURLRequest = URLRequest(url: searchURL!)
         
         searchURLRequest.httpMethod = "POST"
         searchURLRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         do
         {
             let jsonBody = try JSONEncoder().encode(SignUpRequest(
@@ -261,8 +236,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                 phone: txtRegPhone.text
             ))
             searchURLRequest.httpBody = jsonBody
-            
-            
         }
         catch
         {
@@ -272,9 +245,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
         URLSession.shared.dataTask(with: searchURLRequest){data, response,error in
             guard let data =  data else { return }
             
-//            let received = String(data: data, encoding: String.Encoding.utf8)
-//            print("received: \(received)")
-            
             do
             {                
                 guard let response = response as? HTTPURLResponse,
@@ -283,10 +253,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                         print(error as Any)
                         return
                 }
-                
                 let signUpDetailsResponse = try JSONDecoder().decode(SignUpResponse.self, from: data)
-                
-                //print(signUpDetailsResponse)
                 
                 if signUpDetailsResponse.username != nil
                 {
@@ -325,14 +292,20 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     func clearUserDefaults()
     {
+        /*
         defaults.set(false, forKey: "isUserLoggedIn")
-        
         defaults.set(nil, forKey: "userMessage")
         defaults.set(nil, forKey: "userSession")
         defaults.set(nil, forKey: "userId")
         defaults.set(nil, forKey: "userName")
         defaults.set(nil, forKey: "userPhone")
         defaults.set(nil, forKey: "userEmail")
+        */
+        
+        if let bundleID = Bundle.main.bundleIdentifier
+        {
+            UserDefaults.standard.removePersistentDomain(forName: bundleID)
+        }
     }
     
     func saveUserDetailsLocally(_ loginResponse: LoginResponse)

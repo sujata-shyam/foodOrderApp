@@ -466,7 +466,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="btnLoginTapped:" destination="Nfc-iq-vfw" eventType="touchUpInside" id="xXh-cr-l7k"/>
                                     <segue destination="DAI-z3-6Rw" kind="show" identifier="goToLoginPage" id="DSX-QY-bJW"/>
                                 </connections>
                             </button>

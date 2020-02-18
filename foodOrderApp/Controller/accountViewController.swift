@@ -24,14 +24,5 @@ class accountViewController: UIViewController {
             performSegue(withIdentifier: "goToLoginPage", sender: self)
         }
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        
-    }
     
-    @IBAction func btnLoginTapped(_ sender: UIButton)
-    {
-        
-    }
 }
