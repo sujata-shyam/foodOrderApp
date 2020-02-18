@@ -28,11 +28,12 @@ class cartViewController: UIViewController
     var arrCartItemDetail = [CartItemDetail]()
     lazy var checkoutLocal = Checkout(restaurantId:nil, cartItems:nil, bill:nil)
     
-    let locationManager = CLLocationManager()
+    //let locationManager = CLLocationManager()
     
-    var userCoordinate = CLLocationCoordinate2D() //to be passes thru. segue
-    var deliveryPersonLocation: Location? //to be passes thru. segue
-    var orderID: String? //to be passes thru. segue
+    //Below 3 lines to be passes thru. segue
+    //var userCoordinate = CLLocationCoordinate2D()
+    var deliveryPersonLocation: Location?
+    var orderID: String?
     
     override func viewDidLoad()
     {
@@ -41,8 +42,9 @@ class cartViewController: UIViewController
         checkoutTableView.delegate = self
         checkoutTableView.dataSource = self
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //locationManager.delegate = self
+        //locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         currencySymbol = getSymbolForCurrencyCode(code: "INR")!
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleOrderApproved), name: NSNotification.Name("gotOrderApproved"), object: nil)
@@ -135,7 +137,15 @@ class cartViewController: UIViewController
         }
         else
         {
-            retrieveCurrentLocation()
+            //retrieveCurrentLocation()
+            if let templocation = LocationManager.shared.currentLocation
+            {
+                placeOrderPOST("\(templocation.coordinate.latitude)", "\(templocation.coordinate.longitude)")
+            }
+            else
+            {
+                 placeOrderPOST("12.96195220947266", "77.64364876922691")//For GeekSkool
+            }
         }
     }
     
@@ -228,7 +238,7 @@ class cartViewController: UIViewController
         {
             orderProcessVC.deliveryPersonLocation = deliveryPersonLocation
             orderProcessVC.orderID = orderID
-            orderProcessVC.userLocation = userCoordinate
+            //orderProcessVC.userLocation = userCoordinate
         }
     }
 }
@@ -252,85 +262,85 @@ extension cartViewController:UITableViewDelegate, UITableViewDataSource
     }
 }
 
-extension cartViewController:CLLocationManagerDelegate
-{
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
-    {        
-        retrieveCurrentLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-    {
-        locationManager.stopUpdatingLocation()
-        locationManager.delegate = nil
-        
-        if let location = locations.first
-        {
-            userCoordinate = location.coordinate
-            
-            //Place order only after lat/longi. is received
-            placeOrderPOST("\(location.coordinate.latitude)", "\(location.coordinate.longitude)")
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-    {
-        if let clErr = error as? CLError
-        {
-            switch clErr
-            {
-                case CLError.locationUnknown:
-                    print("Error Location Unknown")
-                case CLError.denied:
-                    self.displayAlertForSettings()
-                default:
-                    print("Other Core Location error")
-            }
-        }
-        else
-        {
-            print("other error:", error.localizedDescription)
-        }
-    }
-    
-    func retrieveCurrentLocation()
-    {
-        let status = CLLocationManager.authorizationStatus()
-        
-        if(status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled())
-        {
-            self.displayAlertForSettings()
-            return
-        }
-        
-        if(status == .notDetermined)
-        {
-            locationManager.requestWhenInUseAuthorization()
-            return
-        }
-    
-        locationManager.startUpdatingLocation()
-    }
-    
-    func displayAlertForSettings()
-    {
-        let alertController = UIAlertController (title: "The app needs access to your location to function.", message: "Go to Settings?", preferredStyle: .alert)
-        
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                return
-            }
-            
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)")
-                })
-            }
-        }
-        alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-}
+//extension cartViewController:CLLocationManagerDelegate
+//{
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
+//    {
+//        retrieveCurrentLocation()
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+//    {
+//        locationManager.stopUpdatingLocation()
+//        locationManager.delegate = nil
+//
+//        if let location = locations.first
+//        {
+//            userCoordinate = location.coordinate
+//
+//            //Place order only after lat/longi. is received
+//            placeOrderPOST("\(location.coordinate.latitude)", "\(location.coordinate.longitude)")
+//        }
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+//    {
+//        if let clErr = error as? CLError
+//        {
+//            switch clErr
+//            {
+//                case CLError.locationUnknown:
+//                    print("Error Location Unknown")
+//                case CLError.denied:
+//                    self.displayAlertForSettings()
+//                default:
+//                    print("Other Core Location error")
+//            }
+//        }
+//        else
+//        {
+//            print("other error:", error.localizedDescription)
+//        }
+//    }
+//
+//    func retrieveCurrentLocation()
+//    {
+//        let status = CLLocationManager.authorizationStatus()
+//
+//        if(status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled())
+//        {
+//            self.displayAlertForSettings()
+//            return
+//        }
+//
+//        if(status == .notDetermined)
+//        {
+//            locationManager.requestWhenInUseAuthorization()
+//            return
+//        }
+//
+//        locationManager.startUpdatingLocation()
+//    }
+//
+//    func displayAlertForSettings()
+//    {
+//        let alertController = UIAlertController (title: "The app needs access to your location to function.", message: "Go to Settings?", preferredStyle: .alert)
+//
+//        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+//            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+//                return
+//            }
+//
+//            if UIApplication.shared.canOpenURL(settingsUrl) {
+//                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+//                    print("Settings opened: \(success)")
+//                })
+//            }
+//        }
+//        alertController.addAction(settingsAction)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+//        alertController.addAction(cancelAction)
+//
+//        present(alertController, animated: true, completion: nil)
+//    }
+//}

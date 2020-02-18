@@ -11,7 +11,7 @@ import MapKit
 
 class orderProcessViewController: UIViewController
 {
-    var userLocation : CLLocationCoordinate2D? //Passed thru. segue                       
+    //var userLocation : CLLocationCoordinate2D?
     var deliveryPersonLocation : Location? //Passed thru. segue
     var orderID : String? //Passed thru. segue
     var dpCoordinate = CLLocationCoordinate2D()
@@ -81,9 +81,8 @@ class orderProcessViewController: UIViewController
     var userAnnotation: MKPointAnnotation  {
         let annotation = MKPointAnnotation()
         annotation.title = "User"
-        annotation.coordinate = userLocation ?? CLLocationCoordinate2D(latitude:12.96195220947266, longitude:77.64364876922691)//DO NOT DELETE
-        //annotation.coordinate = clientLocation.coordinate//FOR TESTING ONLY. DELETE
-        
+        annotation.coordinate = LocationManager.shared.currentLocation.coordinate
+//        annotation.coordinate = userLocation ?? CLLocationCoordinate2D(latitude:12.96195220947266, longitude:77.64364876922691)//DO NOT DELETE
         //DO NOT DELETE
         print("annotation.coordinate:\(annotation.coordinate)")
         return annotation
