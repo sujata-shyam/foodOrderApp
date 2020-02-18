@@ -42,8 +42,6 @@ class HomeViewController: UIViewController
     {
         var arrPredictions = [Predictions]()
         
-//        var urlString = "https://tummypolice.iyangi.com/api/v1/place/autocomplete/json?input="
-        
         var urlString = "\(urlMainString)/place/autocomplete/json?input="
         urlString.append(searchText)
         
@@ -97,9 +95,6 @@ class HomeViewController: UIViewController
     //For GeekSkool
     func loadJSONDataWithCoordinates(_ latitude:String = "12.9615402", _ longitude:String = "77.6441973")
     {
-        
-//        let urlString = "https://tummypolice.iyangi.com/api/v1/restaurants?latitude=\(latitude)&longitude=\(longitude)"
-//
         let urlString = "\(urlMainString)/restaurants?latitude=\(latitude)&longitude=\(longitude)"
 
         let url = URL(string: urlString)

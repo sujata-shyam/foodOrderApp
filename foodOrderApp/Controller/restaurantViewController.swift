@@ -71,7 +71,10 @@ class restaurantViewController: UIViewController
     
     func loadMenuItemFromJSONData(_ restaurantId:String)
     {
-        let url = URL(string: "https://tummypolice.iyangi.com/api/v1/menu?restaurantid=\(restaurantId)")
+        //let urlString = "\(urlMainString)/menu?restaurantid=\(restaurantId)"
+        //let url = URL(string: "https://tummypolice.iyangi.com/api/v1/menu?restaurantid=\(restaurantId)")
+     
+        let url = URL(string: "\(urlMainString)/menu?restaurantid=\(restaurantId)")
         
         if let url = url{
             let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
@@ -96,7 +99,8 @@ class restaurantViewController: UIViewController
     
     func loadCartItemFromJSONDataGET()
     {
-        let url = URL(string: "https://tummypolice.iyangi.com/api/v1/cart")
+        //let url = URL(string: "https://tummypolice.iyangi.com/api/v1/cart")
+        let url = URL(string: "\(urlMainString)/cart")
         
         if let url = url{
             let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
@@ -165,7 +169,9 @@ class restaurantViewController: UIViewController
         
         saveRestaurantDetailsLocally()
         
-        let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/cart")
+        //let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/cart")
+        
+        let searchURL = URL(string: "\(urlMainString)/cart")
         var searchURLRequest = URLRequest(url: searchURL!)
         
         searchURLRequest.httpMethod = "POST"
@@ -179,7 +185,6 @@ class restaurantViewController: UIViewController
             ))
             
             searchURLRequest.httpBody = jsonBody
-            //print("jsonBody:\(jsonBody)")
         }
         catch
         {
