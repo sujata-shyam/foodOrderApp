@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import SocketIO
 import MapKit
 
 class cartViewController: UIViewController
@@ -29,17 +28,11 @@ class cartViewController: UIViewController
     var arrCartItemDetail = [CartItemDetail]()
     lazy var checkoutLocal = Checkout(restaurantId:nil, cartItems:nil, bill:nil)
     
-     
-    //let manager = SocketManager(socketURL: URL(string: "https://tummypolice.iyangi.com")!, config: [.log(true)])
-    
-    
-    //var socket:SocketIOClient!
-
     let locationManager = CLLocationManager()
     
     var userCoordinate = CLLocationCoordinate2D() //to be passes thru. segue
-    var deliveryPersonLocation: Location?
-    var orderID: String?
+    var deliveryPersonLocation: Location? //to be passes thru. segue
+    var orderID: String? //to be passes thru. segue
     
     override func viewDidLoad()
     {
@@ -75,10 +68,6 @@ class cartViewController: UIViewController
     @objc func handleDPLocation(notification: Notification)
     {
         let locationDetails = notification.object as! Location
-        print("locationDetails:\(locationDetails)")
-        
-        //let srcCoordinate = CLLocationCoordinate2D(latitude: Double((locationDetails.latitude)!)!, longitude: Double((locationDetails.longitude)!)!)
-        
         self.deliveryPersonLocation = locationDetails
     }
     
@@ -139,7 +128,6 @@ class cartViewController: UIViewController
 
     @IBAction func btnPlaceOrderTapped(_ sender: UIButton)
     {
-        //Below added 14th Feb
         if(defaults.string(forKey: "userId") == nil)
         {
             displayAlert(vc: self, title: "", message: "Please sign in to checkout.")
@@ -149,8 +137,6 @@ class cartViewController: UIViewController
         {
             retrieveCurrentLocation()
         }
-        
-        //retrieveCurrentLocation() //Commented 14th Feb
     }
     
     func calculateItemTotal()->Double
@@ -193,7 +179,6 @@ class cartViewController: UIViewController
                 location: locationLocal
             ))
             searchURLRequest.httpBody = jsonBody
-            //print("jsonBody:\(jsonBody)")
         }
         catch
         {
@@ -218,12 +203,9 @@ class cartViewController: UIViewController
                 if (orderResponse.orderid != nil)
                 {
                     self.orderID = orderResponse.orderid?.id
-                    
-                    //self.socket = self.manager.defaultSocket
-                    //self.setSocketEvents(loginResponseLocal.id!, (orderResponse.orderid?.id)!)
-                    
+                
                     SocketIOManager.sharedInstance.emitActiveUser(loginResponseLocal.id!)
-                  SocketIOManager.sharedInstance.emitActiveOrder((orderResponse.orderid?.id)!)
+                    SocketIOManager.sharedInstance.emitActiveOrder((orderResponse.orderid?.id)!)
                 }
                 else
                 {
@@ -239,75 +221,6 @@ class cartViewController: UIViewController
             }
         }.resume()
     }
-    
-    //MARK:- Socket Functions
-    
-//    private func setSocketEvents(_ userId:String, _ orderId: String)
-//    {
-//        self.socket.on(clientEvent: .connect) { (data, ack) in
-//            print(data)
-//            print("Socket connected")
-//            self.socket.emit("active user", userId)
-//            self.socket.emit("active order", orderId)
-//
-//            self.socket.on("order approved") { data, ack in
-//
-//                //print(data)//returns orderid
-//
-//                DispatchQueue.main.async
-//                {
-//                    self.btnPlaceOrder.isHidden = true
-//                    self.lblTitle.text = "Your order is being processed."
-//                }
-//            }
-//
-//            self.socket.on("order location"){ data, ack in
-//
-//                print(data)
-//                do
-//                {
-//                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-//
-//                    let receivedLocation = try JSONDecoder().decode([Location].self, from: jsonData)
-//
-//                    //print("receivedLocation:\(receivedLocation)")
-//
-//                    if let dpLocation = receivedLocation.first
-//                    {
-//                        //print("dpLocation:\(dpLocation)")
-//                        self.deliveryPersonLocation = dpLocation
-//
-//                         NotificationCenter.default.post(name: NSNotification.Name("gotDPLocation"), object: dpLocation)
-//                    }
-//                }
-//                catch
-//                {
-//                    print(error)
-//                }
-//            }
-//
-//            self.socket.on("task accepted") { data, ack in
-//                //returns DP's ph. no.
-//                //PASS THIS PHONE NUMBER THRU SEGUE
-//
-//                self.performSegue(withIdentifier: "goToOrderProcess", sender: self)
-//            }
-//
-//            self.socket.on("order pickedup") { data, ack in
-//                NotificationCenter.default.post(name: NSNotification.Name("gotOrderPickedup"), object: nil)
-//            }
-//
-//            self.socket.on("order delivered") { data, ack in
-//                NotificationCenter.default.post(name: NSNotification.Name("gotOrderDelivered"), object: nil)
-//            }
-//        }
-//        self.socket.connect()
-//    }
-    
-//    private func closeSocketConnection()
-//    {
-//        self.socket.disconnect()
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -371,7 +284,7 @@ extension cartViewController:CLLocationManagerDelegate
                 case CLError.denied:
                     self.displayAlertForSettings()
                 default:
-                    print("other Core Location error")
+                    print("Other Core Location error")
             }
         }
         else
@@ -410,7 +323,7 @@ extension cartViewController:CLLocationManagerDelegate
             
             if UIApplication.shared.canOpenURL(settingsUrl) {
                 UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
+                    print("Settings opened: \(success)")
                 })
             }
         }
