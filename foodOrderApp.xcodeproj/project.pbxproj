@@ -101,6 +101,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		854384E223FD5730006D0597 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8563212623A8D150001A9F32 /* Main.storyboard */,
+				8563212923A8D154001A9F32 /* Assets.xcassets */,
+				8563212B23A8D154001A9F32 /* LaunchScreen.storyboard */,
+				85BC413F23A9F91B00AA5B0D /* Colour.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		854384E323FD5774006D0597 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				8563212223A8D150001A9F32 /* AppDelegate.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		8563211623A8D150001A9F32 = {
 			isa = PBXGroup;
 			children = (
@@ -122,16 +141,13 @@
 		8563212123A8D150001A9F32 /* foodOrderApp */ = {
 			isa = PBXGroup;
 			children = (
+				854384E323FD5774006D0597 /* SupportingFiles */,
 				859692DD23C0BA9B003CF291 /* Global */,
 				85BC414923AB87AA00AA5B0D /* TableViewCells */,
+				854384E223FD5730006D0597 /* View */,
 				85BC414623AB6A9500AA5B0D /* Model */,
 				85BC414323AB5F5A00AA5B0D /* Controller */,
-				8563212223A8D150001A9F32 /* AppDelegate.swift */,
-				8563212623A8D150001A9F32 /* Main.storyboard */,
-				8563212923A8D154001A9F32 /* Assets.xcassets */,
-				8563212B23A8D154001A9F32 /* LaunchScreen.storyboard */,
 				8563212E23A8D154001A9F32 /* Info.plist */,
-				85BC413F23A9F91B00AA5B0D /* Colour.xcassets */,
 			);
 			path = foodOrderApp;
 			sourceTree = "<group>";
