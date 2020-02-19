@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		851FA80F23F6991A000C11FC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851FA80E23F6991A000C11FC /* LocationManager.swift */; };
+		852B361A23FD2B2D0094A96C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852B361923FD2B2D0094A96C /* Extensions.swift */; };
 		852DBEF223B0817000232CF3 /* itemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DBEF123B0817000232CF3 /* itemTableViewCell.swift */; };
 		852DBEF623B313C800232CF3 /* accountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DBEF523B313C800232CF3 /* accountViewController.swift */; };
 		852DBEF823B338B000232CF3 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DBEF723B338B000232CF3 /* loginViewController.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		5F8BD83CF83C132ED63BA434 /* Pods-foodOrderApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-foodOrderApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-foodOrderApp/Pods-foodOrderApp.release.xcconfig"; sourceTree = "<group>"; };
 		851FA80E23F6991A000C11FC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		852B361923FD2B2D0094A96C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		852DBEF123B0817000232CF3 /* itemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemTableViewCell.swift; sourceTree = "<group>"; };
 		852DBEF523B313C800232CF3 /* accountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountViewController.swift; sourceTree = "<group>"; };
 		852DBEF723B338B000232CF3 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				851FA80E23F6991A000C11FC /* LocationManager.swift */,
 				85E4150723FA6C97007EF04B /* NetworkCheck.swift */,
 				85E4150923FAADBE007EF04B /* SocketIOManager.swift */,
+				852B361923FD2B2D0094A96C /* Extensions.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				85E4F8B423D86D900058F0BA /* orderProcessViewController.swift in Sources */,
 				8563212523A8D150001A9F32 /* ViewController.swift in Sources */,
 				85BC414223AB2F4000AA5B0D /* HomeViewController.swift in Sources */,
+				852B361A23FD2B2D0094A96C /* Extensions.swift in Sources */,
 				85BC414823AB740D00AA5B0D /* place.swift in Sources */,
 				852DBEF823B338B000232CF3 /* loginViewController.swift in Sources */,
 				85BC414B23AB88C500AA5B0D /* restaurantTableViewCell.swift in Sources */,

@@ -260,20 +260,92 @@
                                     <action selector="btnPlaceOrderTapped:" destination="ZxQ-aN-ayC" eventType="touchUpInside" id="jpC-Us-JQc"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O90-45-tBH" userLabel="emptyCartView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="mqX-PB-Ebt" userLabel="imgViewLogo">
+                                        <rect key="frame" x="41.5" y="100" width="331" height="230.5"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iw-1g-71g" userLabel="btnBrowse">
+                                        <rect key="frame" x="10" y="494.5" width="394" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="yPA-ZU-9Od"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                        <state key="normal" title="BROWSE RESTAURANTS">
+                                            <color key="titleColor" name="Peru"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="Peru"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnBrowseTapped:" destination="ZxQ-aN-ayC" eventType="touchUpInside" id="xfM-bH-K07"/>
+                                        </connections>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Your cart is empty.Add something from the menu." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5YJ-N2-z4e" userLabel="txtViewFood">
+                                        <rect key="frame" x="10" y="400.5" width="394" height="74"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="74" id="AvU-eb-nuh"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOOD FOOD IS ALWAYS COOKING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzV-mm-dKx" userLabel="lblFood">
+                                        <rect key="frame" x="10" y="350.5" width="394" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="oW5-Ih-V4C"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" name="Fire Brick"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="5YJ-N2-z4e" firstAttribute="leading" secondItem="O90-45-tBH" secondAttribute="leading" constant="10" id="4fD-jH-pRA"/>
+                                    <constraint firstItem="mqX-PB-Ebt" firstAttribute="top" secondItem="O90-45-tBH" secondAttribute="top" constant="100" id="DQM-rK-o8p"/>
+                                    <constraint firstItem="4iw-1g-71g" firstAttribute="top" secondItem="5YJ-N2-z4e" secondAttribute="bottom" constant="20" id="E0n-23-DU4"/>
+                                    <constraint firstAttribute="trailing" secondItem="5YJ-N2-z4e" secondAttribute="trailing" constant="10" id="JCK-Qn-gHK"/>
+                                    <constraint firstAttribute="trailing" secondItem="NzV-mm-dKx" secondAttribute="trailing" constant="10" id="JnN-zJ-fW9"/>
+                                    <constraint firstItem="5YJ-N2-z4e" firstAttribute="top" secondItem="NzV-mm-dKx" secondAttribute="bottom" constant="10" id="OjA-JP-RCB"/>
+                                    <constraint firstItem="4iw-1g-71g" firstAttribute="leading" secondItem="O90-45-tBH" secondAttribute="leading" constant="10" id="Qqe-hs-niK"/>
+                                    <constraint firstItem="mqX-PB-Ebt" firstAttribute="height" secondItem="O90-45-tBH" secondAttribute="height" multiplier="0.3" id="Uzr-fq-Kt0"/>
+                                    <constraint firstItem="mqX-PB-Ebt" firstAttribute="width" secondItem="O90-45-tBH" secondAttribute="width" multiplier="0.8" id="Yau-8A-LgP"/>
+                                    <constraint firstItem="NzV-mm-dKx" firstAttribute="leading" secondItem="O90-45-tBH" secondAttribute="leading" constant="10" id="eIN-fr-UnY"/>
+                                    <constraint firstAttribute="trailing" secondItem="4iw-1g-71g" secondAttribute="trailing" constant="10" id="lWQ-5X-fbc"/>
+                                    <constraint firstItem="NzV-mm-dKx" firstAttribute="top" secondItem="mqX-PB-Ebt" secondAttribute="bottom" constant="20" id="tlv-Xf-hjE"/>
+                                    <constraint firstItem="mqX-PB-Ebt" firstAttribute="centerX" secondItem="O90-45-tBH" secondAttribute="centerX" id="uQF-aQ-Jzh"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="White Smoke"/>
                         <constraints>
                             <constraint firstItem="1fY-xS-EBF" firstAttribute="top" secondItem="V1O-ud-uUU" secondAttribute="bottom" constant="10" id="30Y-2A-XhA"/>
                             <constraint firstItem="jYO-N8-y0X" firstAttribute="trailing" secondItem="1Pw-qQ-eRP" secondAttribute="trailing" constant="10" id="5CT-lV-pIS"/>
                             <constraint firstItem="1fY-xS-EBF" firstAttribute="centerX" secondItem="8JK-mq-jk3" secondAttribute="centerX" id="Iyc-gi-aAh"/>
+                            <constraint firstItem="O90-45-tBH" firstAttribute="leading" secondItem="jYO-N8-y0X" secondAttribute="leading" id="NPL-qN-UcI"/>
                             <constraint firstItem="1Pw-qQ-eRP" firstAttribute="top" secondItem="cAN-Km-RS4" secondAttribute="bottom" constant="10" id="Obj-xn-Di5"/>
                             <constraint firstItem="qrn-he-8Ca" firstAttribute="top" secondItem="1Pw-qQ-eRP" secondAttribute="bottom" constant="10" id="RWb-ru-W5u"/>
                             <constraint firstItem="1Pw-qQ-eRP" firstAttribute="height" secondItem="8JK-mq-jk3" secondAttribute="height" multiplier="0.15" id="Som-it-iUj"/>
                             <constraint firstItem="jYO-N8-y0X" firstAttribute="bottom" secondItem="1fY-xS-EBF" secondAttribute="bottom" constant="10" id="UeY-vD-kwb"/>
                             <constraint firstItem="jYO-N8-y0X" firstAttribute="trailing" secondItem="cAN-Km-RS4" secondAttribute="trailing" constant="10" id="VZF-8O-vuD"/>
+                            <constraint firstItem="jYO-N8-y0X" firstAttribute="bottom" secondItem="O90-45-tBH" secondAttribute="bottom" id="a2Q-Xh-6FT"/>
                             <constraint firstItem="V1O-ud-uUU" firstAttribute="top" secondItem="qrn-he-8Ca" secondAttribute="bottom" constant="5" id="cRo-Ba-lWJ"/>
+                            <constraint firstItem="jYO-N8-y0X" firstAttribute="trailing" secondItem="O90-45-tBH" secondAttribute="trailing" id="cfB-Lx-oKb"/>
                             <constraint firstItem="qrn-he-8Ca" firstAttribute="height" secondItem="8JK-mq-jk3" secondAttribute="height" multiplier="0.3" id="i3R-r1-ejM"/>
                             <constraint firstItem="jYO-N8-y0X" firstAttribute="trailing" secondItem="qrn-he-8Ca" secondAttribute="trailing" constant="10" id="iv9-2I-6LE"/>
+                            <constraint firstItem="O90-45-tBH" firstAttribute="top" secondItem="jYO-N8-y0X" secondAttribute="top" id="mTW-FL-72c"/>
                             <constraint firstItem="V1O-ud-uUU" firstAttribute="leading" secondItem="jYO-N8-y0X" secondAttribute="leading" constant="10" id="oRm-67-xRw"/>
                             <constraint firstItem="jYO-N8-y0X" firstAttribute="trailing" secondItem="V1O-ud-uUU" secondAttribute="trailing" constant="5" id="rYS-vV-AAw"/>
                             <constraint firstItem="qrn-he-8Ca" firstAttribute="leading" secondItem="jYO-N8-y0X" secondAttribute="leading" constant="10" id="wKP-zh-2HE"/>
@@ -286,8 +358,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Cart" image="cart" id="02j-X9-cx9" userLabel="Cart"/>
                     <connections>
+                        <outlet property="btnBrowse" destination="4iw-1g-71g" id="0UI-g1-ZoD"/>
                         <outlet property="btnPlaceOrder" destination="1fY-xS-EBF" id="f60-2q-qbe"/>
                         <outlet property="checkoutTableView" destination="qrn-he-8Ca" id="lVa-qy-EgJ"/>
+                        <outlet property="emptyCartView" destination="O90-45-tBH" id="tIO-Cu-rGi"/>
                         <outlet property="imgViewRestaurant" destination="85g-jD-sPK" id="ecb-bs-h9K"/>
                         <outlet property="lblDeliveryFeeAmt" destination="SEU-Md-Scl" id="8ks-OK-lDp"/>
                         <outlet property="lblFinalBillAmt" destination="ZdZ-Q3-1sq" id="eVr-gf-JUZ"/>
@@ -543,19 +617,24 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRy-X3-uQP">
-                                        <rect key="frame" x="157" y="170" width="60" height="36"/>
-                                        <color key="backgroundColor" name="Tan"/>
+                                        <rect key="frame" x="10" y="175" width="354" height="36"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="P1q-rn-r5c"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="a1l-yg-f6a"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <state key="normal" title="Login">
-                                            <color key="titleColor" name="Fire Brick"/>
+                                            <color key="titleColor" name="Peru"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="Peru"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -582,10 +661,11 @@
                                     <constraint firstAttribute="bottom" secondItem="70L-HF-Jza" secondAttribute="bottom" id="PVS-fc-mUL"/>
                                     <constraint firstItem="OOc-eU-aS7" firstAttribute="leading" secondItem="92K-fk-GzN" secondAttribute="leading" constant="10" id="XCm-tT-Iad"/>
                                     <constraint firstAttribute="trailing" secondItem="hIn-j7-Tkc" secondAttribute="trailing" constant="10" id="Y1I-Xx-dza"/>
-                                    <constraint firstItem="xRy-X3-uQP" firstAttribute="top" secondItem="OOc-eU-aS7" secondAttribute="bottom" constant="10" id="bfK-yZ-27U"/>
-                                    <constraint firstItem="xRy-X3-uQP" firstAttribute="centerX" secondItem="92K-fk-GzN" secondAttribute="centerX" id="bwO-BK-vnq"/>
+                                    <constraint firstItem="xRy-X3-uQP" firstAttribute="top" secondItem="OOc-eU-aS7" secondAttribute="bottom" constant="15" id="bfK-yZ-27U"/>
                                     <constraint firstItem="70L-HF-Jza" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="92K-fk-GzN" secondAttribute="leading" constant="20" symbolic="YES" id="cJ1-5C-hzd"/>
                                     <constraint firstItem="hIn-j7-Tkc" firstAttribute="leading" secondItem="92K-fk-GzN" secondAttribute="leading" constant="10" id="fS7-IX-IwK"/>
+                                    <constraint firstAttribute="trailing" secondItem="xRy-X3-uQP" secondAttribute="trailing" constant="10" id="j1l-hI-1iL"/>
+                                    <constraint firstItem="xRy-X3-uQP" firstAttribute="leading" secondItem="92K-fk-GzN" secondAttribute="leading" constant="10" id="mn0-U5-i1C"/>
                                     <constraint firstItem="Qq2-st-olO" firstAttribute="leading" secondItem="92K-fk-GzN" secondAttribute="leading" constant="10" id="n07-MU-wBq"/>
                                     <constraint firstItem="hIn-j7-Tkc" firstAttribute="top" secondItem="Qq2-st-olO" secondAttribute="bottom" constant="10" id="rCu-jT-SY3"/>
                                     <constraint firstItem="OOc-eU-aS7" firstAttribute="top" secondItem="hIn-j7-Tkc" secondAttribute="bottom" constant="10" id="rnz-VP-fIp"/>
@@ -661,18 +741,27 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="END-Ga-z0N" userLabel="btnRegister">
-                                        <rect key="frame" x="149.5" y="318" width="75" height="30"/>
-                                        <color key="backgroundColor" name="Tan"/>
+                                        <rect key="frame" x="10" y="318" width="354" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="IOO-5q-Xqc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <state key="normal" title="Register">
-                                            <color key="titleColor" name="Fire Brick"/>
+                                            <color key="titleColor" name="Peru"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="Peru"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -682,11 +771,12 @@
                                 </subviews>
                                 <color key="backgroundColor" name="White Smoke"/>
                                 <constraints>
+                                    <constraint firstItem="END-Ga-z0N" firstAttribute="leading" secondItem="RyW-CZ-nMD" secondAttribute="leading" constant="10" id="3d1-z2-fF8"/>
                                     <constraint firstItem="95Q-k7-Hg1" firstAttribute="leading" secondItem="RyW-CZ-nMD" secondAttribute="leading" id="3xy-0D-Lbn"/>
                                     <constraint firstAttribute="bottom" secondItem="END-Ga-z0N" secondAttribute="bottom" constant="10" id="AbE-cY-MqJ"/>
                                     <constraint firstAttribute="trailing" secondItem="95Q-k7-Hg1" secondAttribute="trailing" id="F6M-N4-G6Z"/>
                                     <constraint firstItem="END-Ga-z0N" firstAttribute="top" secondItem="RdF-Si-m0O" secondAttribute="bottom" constant="10" id="G5e-tO-7w1"/>
-                                    <constraint firstItem="END-Ga-z0N" firstAttribute="centerX" secondItem="RyW-CZ-nMD" secondAttribute="centerX" id="pIw-8b-1zR"/>
+                                    <constraint firstAttribute="trailing" secondItem="END-Ga-z0N" secondAttribute="trailing" constant="10" id="aVQ-NX-i3v"/>
                                     <constraint firstItem="RdF-Si-m0O" firstAttribute="top" secondItem="95Q-k7-Hg1" secondAttribute="bottom" constant="10" id="rhY-gu-62r"/>
                                     <constraint firstAttribute="trailing" secondItem="RdF-Si-m0O" secondAttribute="trailing" constant="10" id="trR-aa-I6l"/>
                                     <constraint firstItem="RdF-Si-m0O" firstAttribute="leading" secondItem="RyW-CZ-nMD" secondAttribute="leading" constant="10" id="vW2-0C-vjZ"/>
@@ -1082,6 +1172,7 @@
     </scenes>
     <resources>
         <image name="Launch" width="1152" height="1728"/>
+        <image name="Logo" width="113" height="113"/>
         <image name="account" width="24" height="24"/>
         <image name="background" width="305" height="433"/>
         <image name="cart" width="24" height="24"/>
@@ -1089,6 +1180,9 @@
         <image name="search" width="24" height="24"/>
         <namedColor name="Fire Brick">
             <color red="0.73725490196078436" green="0.19215686274509805" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Peru">
+            <color red="0.70588235294117652" green="0.52156862745098043" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Rosy Brown">
             <color red="0.69411764705882351" green="0.53725490196078429" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

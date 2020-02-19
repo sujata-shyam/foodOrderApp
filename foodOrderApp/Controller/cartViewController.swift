@@ -22,6 +22,10 @@ class cartViewController: UIViewController
     @IBOutlet weak var lblFinalBillAmt: UILabel!
     @IBOutlet weak var btnPlaceOrder: UIButton!
     
+    @IBOutlet weak var emptyCartView: UIView!
+    @IBOutlet weak var btnBrowse: UIButton!
+    
+    
     var currencySymbol = ""
     var arrCartItemDetail = [CartItemDetail]()
     lazy var checkoutLocal = Checkout(restaurantId:nil, cartItems:nil, bill:nil)
@@ -33,6 +37,7 @@ class cartViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        //setButtonUI()
         
         checkoutTableView.delegate = self
         checkoutTableView.dataSource = self
@@ -52,6 +57,14 @@ class cartViewController: UIViewController
         setRestaurantDefaults()
         loadCheckOutJSONDataGET()
     }
+    
+//    func setButtonUI()
+//    {
+//        btnBrowse.layer.cornerRadius = 10
+//        btnBrowse.layer.masksToBounds = true
+//        btnBrowse.layer.borderWidth = 2
+//        btnBrowse.layer.borderColor = #colorLiteral(red: 0.7058823529, green: 0.5215686275, blue: 0.168627451, alpha: 1)
+//    }
     
     @objc func handleOrderApproved()
     {
@@ -120,6 +133,10 @@ class cartViewController: UIViewController
         }
     }
 
+    @IBAction func btnBrowseTapped(_ sender: UIButton)
+    {
+    }
+    
     @IBAction func btnPlaceOrderTapped(_ sender: UIButton)
     {
         if(defaults.string(forKey: "userId") == nil)
