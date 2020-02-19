@@ -27,7 +27,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     @IBOutlet weak var txtRegEmail: UITextField!
     @IBOutlet weak var txtRegPassword: UITextField!
     
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -79,18 +78,14 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     func loadLoginData(_ phoneNumber: String)
     {
-        //let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/login")
         let searchURL = URL(string: "\(urlMainString)/login")
-        
         var searchURLRequest = URLRequest(url: searchURL!)
         
         searchURLRequest.httpMethod = "POST"
         searchURLRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         do
         {
-            let jsonBody = try JSONEncoder().encode(LoginRequest(
-                phone: phoneNumber
-            ))
+            let jsonBody = try JSONEncoder().encode(LoginRequest(phone: phoneNumber))
             searchURLRequest.httpBody = jsonBody
         }
         catch
@@ -128,10 +123,7 @@ class loginViewController: UIViewController//, UITextFieldDelegate
                     }
                 }
             }
-            catch
-            {
-                print(error)
-            }
+            catch{ print(error) }
         }.resume()
     }
     
@@ -164,8 +156,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     func logOutUser()
     {
-        //let url = URL(string: "https://tummypolice.iyangi.com/api/v1/logout")
-
         let url = URL(string: "\(urlMainString)/logout")
 
         if let url = url{
@@ -221,7 +211,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     func registerUser()
     {
-//        let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/register")
         let searchURL = URL(string: "\(urlMainString)/register")
         var searchURLRequest = URLRequest(url: searchURL!)
         
@@ -237,22 +226,16 @@ class loginViewController: UIViewController//, UITextFieldDelegate
             ))
             searchURLRequest.httpBody = jsonBody
         }
-        catch
-        {
-            print(error)
-        }
+        catch{ print(error) }
         
         URLSession.shared.dataTask(with: searchURLRequest){data, response,error in
             guard let data =  data else { return }
-            
             do
             {                
                 guard let response = response as? HTTPURLResponse,
                     (200...299).contains(response.statusCode)
-                    else {
-                        print(error as Any)
-                        return
-                }
+                    else { print(error as Any); return }
+                        
                 let signUpDetailsResponse = try JSONDecoder().decode(SignUpResponse.self, from: data)
                 
                 if signUpDetailsResponse.username != nil
@@ -283,7 +266,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     {
         txtPhone.text = nil
         txtPassword.text = nil
-        
         txtRegName.text = nil
         txtRegPhone.text =  nil
         txtRegEmail.text = nil
@@ -292,16 +274,6 @@ class loginViewController: UIViewController//, UITextFieldDelegate
     
     func clearUserDefaults()
     {
-        /*
-        defaults.set(false, forKey: "isUserLoggedIn")
-        defaults.set(nil, forKey: "userMessage")
-        defaults.set(nil, forKey: "userSession")
-        defaults.set(nil, forKey: "userId")
-        defaults.set(nil, forKey: "userName")
-        defaults.set(nil, forKey: "userPhone")
-        defaults.set(nil, forKey: "userEmail")
-        */
-        
         if let bundleID = Bundle.main.bundleIdentifier
         {
             UserDefaults.standard.removePersistentDomain(forName: bundleID)

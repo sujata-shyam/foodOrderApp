@@ -15,9 +15,7 @@ class cartViewController: UIViewController
     @IBOutlet weak var imgViewRestaurant: UIImageView!
     @IBOutlet weak var txtViewRestaurantName: UITextView!
     @IBOutlet weak var txtViewRestaurantAddr: UITextView!
-    
     @IBOutlet weak var checkoutTableView: UITableView!
-    
     @IBOutlet weak var lblItemTotalAmt: UILabel!
     @IBOutlet weak var lblRestaurantChargesAmt: UILabel!
     @IBOutlet weak var lblDeliveryFeeAmt: UILabel!
@@ -28,10 +26,7 @@ class cartViewController: UIViewController
     var arrCartItemDetail = [CartItemDetail]()
     lazy var checkoutLocal = Checkout(restaurantId:nil, cartItems:nil, bill:nil)
     
-    //let locationManager = CLLocationManager()
-    
-    //Below 3 lines to be passes thru. segue
-    //var userCoordinate = CLLocationCoordinate2D()
+    //Below 2 lines to be passes thru. segue
     var deliveryPersonLocation: Location?
     var orderID: String?
     
@@ -41,9 +36,6 @@ class cartViewController: UIViewController
         
         checkoutTableView.delegate = self
         checkoutTableView.dataSource = self
-        
-        //locationManager.delegate = self
-        //locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         currencySymbol = getSymbolForCurrencyCode(code: "INR")!
         
