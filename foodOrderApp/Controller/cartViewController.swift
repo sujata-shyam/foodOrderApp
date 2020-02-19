@@ -37,7 +37,6 @@ class cartViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        //setButtonUI()
         
         checkoutTableView.delegate = self
         checkoutTableView.dataSource = self
@@ -54,17 +53,9 @@ class cartViewController: UIViewController
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(true)
-        setRestaurantDefaults()
         loadCheckOutJSONDataGET()
+        setRestaurantDefaults()
     }
-    
-//    func setButtonUI()
-//    {
-//        btnBrowse.layer.cornerRadius = 10
-//        btnBrowse.layer.masksToBounds = true
-//        btnBrowse.layer.borderWidth = 2
-//        btnBrowse.layer.borderColor = #colorLiteral(red: 0.7058823529, green: 0.5215686275, blue: 0.168627451, alpha: 1)
-//    }
     
     @objc func handleOrderApproved()
     {
@@ -91,11 +82,11 @@ class cartViewController: UIViewController
     
     func loadCheckOutJSONDataGET()
     {
-        let url = URL(string: "https://tummypolice.iyangi.com/api/v1/checkout")
+        let url = URL(string: "\(urlMainString)/checkout")
         
         if let url = url{
             let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
-                guard let data =  data else { print("URLSession not workig")
+                guard let data =  data else { print("URLSession not working")
                     return }
                 do
                 {
@@ -109,19 +100,42 @@ class cartViewController: UIViewController
                         {
                             self.arrCartItemDetail = Array(checkOutDetails.cartItems!.values) as! [CartItemDetail]
                             
-                            let itemTotal = self.calculateItemTotal()
-                            
-                            DispatchQueue.main.async
+                            let arrItemZeroCount = self.arrCartItemDetail.filter{$0.quantity == 0}
+                            if arrItemZeroCount.count == self.arrCartItemDetail.count
                             {
-                                self.lblItemTotalAmt.text = self.currencySymbol + " " + String(itemTotal)
-                                self.lblDeliveryFeeAmt.text = self.currencySymbol + " " + String((checkOutDetails.bill?.deliveryfee)!)
-                                self.lblRestaurantChargesAmt.text = self.currencySymbol + " " + "50"
+                                DispatchQueue.main.async
+                                {
+                                    self.emptyCartView.isHidden = false
+                                }
+                            }
+                            else
+                            {
+                                if(defaults.string(forKey: "restaurantName") == nil)
+                                {
+                                    self.getRestaurantDetails(checkOutDetails.restaurantId!)
+                                }
                                 
-                                self.lblFinalBillAmt.text = self.currencySymbol + " " + String(itemTotal + (checkOutDetails.bill?.deliveryfee)! + 50)
+                                if arrItemZeroCount.count > 0 && arrItemZeroCount.count < self.arrCartItemDetail.count
+                                {
+                                    self.arrCartItemDetail = arrItemZeroCount
+                                }
+                                
+                                let itemTotal = self.calculateItemTotal()
                             
-                                self.checkoutTableView.reloadData()
+                                DispatchQueue.main.async
+                                {
+                                    self.emptyCartView.isHidden = true
+                                    self.lblItemTotalAmt.text = self.currencySymbol + " " + String(itemTotal)
+                                    self.lblDeliveryFeeAmt.text = self.currencySymbol + " " + String((checkOutDetails.bill?.deliveryfee)!)
+                                    self.lblRestaurantChargesAmt.text = self.currencySymbol + " " + "50"
+                                    
+                                    self.lblFinalBillAmt.text = self.currencySymbol + " " + String(itemTotal + (checkOutDetails.bill?.deliveryfee)! + 50)
+                                
+                                    self.checkoutTableView.reloadData()
+                                }
                             }
                         }
+                        
                     }
                 }
                 catch
@@ -133,8 +147,39 @@ class cartViewController: UIViewController
         }
     }
 
+    func getRestaurantDetails(_ restaurantId: String)
+    {
+        let url = URL(string: "\(urlMainString)/restaurant/info?id=\(restaurantId)")
+        
+        if let url = url{
+            let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
+                guard let data =  data else { print("URLSession not workig")
+                    return }
+                do
+                {
+                    let restDetail = try JSONDecoder().decode(Restaurant.self, from: data)
+                    
+                    if restDetail.name != nil || restDetail.name == ""
+                    {
+                        DispatchQueue.main.async
+                        {
+                            defaults.set(restDetail.name, forKey: "restaurantName")
+                            defaults.set(restDetail.city, forKey: "restaurantCity")
+                        }
+                    }
+                }
+                catch
+                {
+                    print("error:\(error)")
+                }
+            }
+            task.resume()
+        }
+    }
+    
     @IBAction func btnBrowseTapped(_ sender: UIButton)
     {
+        performSegue(withIdentifier: "unwindToHome", sender: self)
     }
     
     @IBAction func btnPlaceOrderTapped(_ sender: UIButton)
@@ -146,7 +191,6 @@ class cartViewController: UIViewController
         }
         else
         {
-            //retrieveCurrentLocation()
             if let templocation = LocationManager.shared.currentLocation
             {
                 placeOrderPOST("\(templocation.coordinate.latitude)", "\(templocation.coordinate.longitude)")
@@ -184,12 +228,11 @@ class cartViewController: UIViewController
             longitude: longitudeDesc
         )
         
-        let searchURL = URL(string: "https://tummypolice.iyangi.com/api/v1/order")
+        let searchURL = URL(string: "\(urlMainString)/order")
         var searchURLRequest = URLRequest(url: searchURL!)
         
         searchURLRequest.httpMethod = "POST"
         searchURLRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         do
         {
             let jsonBody = try JSONEncoder().encode(OrderDetail(
@@ -247,7 +290,6 @@ class cartViewController: UIViewController
         {
             orderProcessVC.deliveryPersonLocation = deliveryPersonLocation
             orderProcessVC.orderID = orderID
-            //orderProcessVC.userLocation = userCoordinate
         }
     }
 }
@@ -271,85 +313,3 @@ extension cartViewController:UITableViewDelegate, UITableViewDataSource
     }
 }
 
-//extension cartViewController:CLLocationManagerDelegate
-//{
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
-//    {
-//        retrieveCurrentLocation()
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-//    {
-//        locationManager.stopUpdatingLocation()
-//        locationManager.delegate = nil
-//
-//        if let location = locations.first
-//        {
-//            userCoordinate = location.coordinate
-//
-//            //Place order only after lat/longi. is received
-//            placeOrderPOST("\(location.coordinate.latitude)", "\(location.coordinate.longitude)")
-//        }
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-//    {
-//        if let clErr = error as? CLError
-//        {
-//            switch clErr
-//            {
-//                case CLError.locationUnknown:
-//                    print("Error Location Unknown")
-//                case CLError.denied:
-//                    self.displayAlertForSettings()
-//                default:
-//                    print("Other Core Location error")
-//            }
-//        }
-//        else
-//        {
-//            print("other error:", error.localizedDescription)
-//        }
-//    }
-//
-//    func retrieveCurrentLocation()
-//    {
-//        let status = CLLocationManager.authorizationStatus()
-//
-//        if(status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled())
-//        {
-//            self.displayAlertForSettings()
-//            return
-//        }
-//
-//        if(status == .notDetermined)
-//        {
-//            locationManager.requestWhenInUseAuthorization()
-//            return
-//        }
-//
-//        locationManager.startUpdatingLocation()
-//    }
-//
-//    func displayAlertForSettings()
-//    {
-//        let alertController = UIAlertController (title: "The app needs access to your location to function.", message: "Go to Settings?", preferredStyle: .alert)
-//
-//        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-//            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-//                return
-//            }
-//
-//            if UIApplication.shared.canOpenURL(settingsUrl) {
-//                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-//                    print("Settings opened: \(success)")
-//                })
-//            }
-//        }
-//        alertController.addAction(settingsAction)
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-//        alertController.addAction(cancelAction)
-//
-//        present(alertController, animated: true, completion: nil)
-//    }
-//}
