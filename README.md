@@ -1,4 +1,6 @@
 # foodOrderApp
+Client App related to the Good Food App
+
 This is a Food delivery App. It comprises of total three parts: 
 1. Client's App, using which the client orders food (foodOrderApp)
 2. Restaurant's App, using which the restaurant receives, approves and processes the order (foodOrderRestaurantPartnerApp)
