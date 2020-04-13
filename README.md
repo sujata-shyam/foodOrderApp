@@ -13,7 +13,11 @@ This project is developed using Swift 5, Xcode 10.2,RESTful API to connect to th
 
 YouTube Link for Demo: https://youtu.be/KqbyJOZmzoM
 
-<img src="Images/1.png" alt="Home Screen" height=400 > 
-<img src="Images/2.png" alt="Task List" height=400> 
-<img src="Images/3.png" alt="Task in detail" height=400>
+<img src="Images/1.png" alt="Home Screen" height=300 > <img src="Images/2.png" alt="Restaurant List" height=300> 
+<img src="Images/3.png" alt="Menu" height=300> <img src="Images/4.png"  height=300> 
+<img src="Images/5.png" height=300> <img src="Images/6.png" height=300> 
+<img src="Images/7.png" height=300> <img src="Images/8.png" height=300> 
+
+
+
 
