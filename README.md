@@ -10,3 +10,10 @@ On the launch of the App, client can select a restaurant from a list of restaura
 The client can track the location of the delivery partner and receives notifications about his order.
 The delivery partner is guided with route maps towards the restaurant/client location using Apple Maps.
 This project is developed using Swift 5, Xcode 10.2,RESTful API to connect to the backend services, CoreLocation, MapKit and Socket.IO frameworks
+
+YouTube Link for Demo: https://youtu.be/KqbyJOZmzoM
+
+<img src="Images/1.png" alt="Home Screen" height=400 > 
+<img src="Images/2.png" alt="Task List" height=400> 
+<img src="Images/3.png" alt="Task in detail" height=400>
+
